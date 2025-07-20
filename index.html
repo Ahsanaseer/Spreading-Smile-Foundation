@@ -30,7 +30,7 @@
                     </svg>
                 </span>
                 <div class="info-text">
-                    <span class="info-label">Locate Address:</span>
+                    <span class="info-label">Location:</span>
                     <span class="info-value">Lahore, Pakistan</span>
                 </div>
             </div>
@@ -45,13 +45,13 @@
                 </span>
                 <div class="info-text">
                     <span class="info-label">Call us any time:</span>
-                    <span class="info-value">03213214884</span>
+                    <span class="info-value">+923213214884</span>
                 </div>
             </div>
-            <div class="navbar-separator"></div>
+            <!-- <div class="navbar-separator"></div>
             <div class="info-block">
                 <span class="info-icon">
-                    <!-- Mail Icon -->
+                     Mail Icon
                     <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
                         <circle cx="12" cy="12" r="12" fill="var(--primary-color)"/>
                         <rect x="6" y="8" width="12" height="8" rx="2" stroke="#fff" stroke-width="1.5"/>
@@ -62,7 +62,7 @@
                     <span class="info-label">Email us any time:</span>
                     <span class="info-value mail" title="spreadingsmilefoundation@gmail.com">spreadingsmilefoundation@gmail.com</span>
                 </div>
-            </div>
+            </div> -->
         </div>
 
 
@@ -114,7 +114,7 @@
             <ul class="main-nav-links">
                 <li><a href="#" class="nav-link">Home</a></li>
                 <li><a href="#" class="nav-link">About Us</a></li>
-                <li><a href="#" class="nav-link">Contact</a></li>
+                <li><a href="#" class="nav-link">Contact Us</a></li>
             </ul>
         </div>
         <div class="main-nav-actions">
@@ -163,8 +163,8 @@
             
           </div>
           <h3 class="service-card-title">Fundraising</h3>
-          <p class="service-card-desc">Share stories and experiences from current volunteers to inspire others to join. Allow user to sign up for volunteer opportunities.</p>
-          <button class="service-learn-btn"><span class="service-learn-text">Learn More <span class="service-learn-arrow">↗</span></span></button>
+          <p class="service-card-desc">Fundraising is the backbone of any organization, we collect funds through our permanent donors. Your little support can help us to bring big smiles on deserving peoples's faces.</p>
+          <button class="service-learn-btn"><span class="service-learn-text">Donate Us <span class="service-learn-arrow">↗</span></span></button>
         </div>
         <!-- Card 2 -->
         <div class="service-card">
@@ -172,7 +172,7 @@
             <svg width="32" height="32" fill="none" stroke="var(--primary-color)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M22 12l-10 7L2 12l10-7 10 7z"/><path d="M2 12v7a2 2 0 002 2h16a2 2 0 002-2v-7"/></svg>
           </div>
           <h3 class="service-card-title">Education</h3>
-          <p class="service-card-desc">Explore our charity website to discover impactful projects, opportunities, and ways to donate, helping those in need thrive.</p>
+          <p class="service-card-desc">Education can have the biggest impact on someones's family tree. We take up cases so that we give learning oppertunities to underprivileged people. Help us in this cause.</p>
           <button class="service-learn-btn"><span class="service-learn-text">Learn More <span class="service-learn-arrow">↗</span></span></button>
         </div>
         <!-- Card 3 -->
@@ -181,7 +181,7 @@
             <svg width="32" height="32" fill="none" stroke="var(--primary-color)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M12 8v8M8 12h8"/></svg>
           </div>
           <h3 class="service-card-title">Medical</h3>
-          <p class="service-card-desc">Join us in making a difference! Our charity website connects you with volunteer, donation options, and inspiring stories.</p>
+          <p class="service-card-desc">Healthcare is the basic need of every family. One disease can bring down whole family below poverty line. Help us provide medicines to the patients who cant afford their treatement.</p>
           <button class="service-learn-btn"><span class="service-learn-text">Learn More <span class="service-learn-arrow">↗</span></span></button>
         </div>
       </div>
@@ -196,18 +196,107 @@
         </div>
         <div class="hero-text">
           <h1>Can Save More Life's<br>With You</h1>
-          <p class="hero-desc">Donet is the largest global crowdfunding community connecting nonprofits, donors, and companies in nearly every country. We help nonprofits from Afghanistan to Zimbabwe (and hundreds of places in between) access the tools, training, and support they need to be more effective and make our world a better place.</p>
+          <p class="hero-desc">To bring major impact on our soceity Spreading Smile Foundation also runs blood donation soceity where we provide blood for any surgery or procedure without charging a single rupee. We keep donors contact details confidential. After a person has donated blood we don't contact him/her for next three months.</p>
           <div class="hero-checks">
-            <div class="hero-check"><span class="check-icon check-green">✔</span> Charity For Foods</div>
-            <div class="hero-check"><span class="check-icon check-orange">✔</span> Charity For Education</div>
-            <div class="hero-check"><span class="check-icon check-yellow">✔</span> Charity For Water</div>
-            <div class="hero-check"><span class="check-icon check-green">✔</span> Charity For Medical</div>
+            <div class="hero-check"><span class="check-icon check-green">✔</span> Save Human Lives</div>
+            <div class="hero-check"><span class="check-icon check-orange">✔</span> Donate Blood Today</div>
+            <div class="hero-check"><span class="check-icon check-yellow">✔</span> Donate To Save Life</div>
+            <div class="hero-check"><span class="check-icon check-green">✔</span> Blood For Life</div>
           </div>
-          <button class="about-more-btn"><span>About More</span><span class="service-learn-arrow">↗</span></button>
+          <button onclick="bloodformfunc()" id="blood-form"  class="about-more-btn"><span>Donate Blood</span><span class="service-learn-arrow">↗</span></button>
         </div>
       </div>
     </section>
     <!-- Hero Section End -->
+
+
+
+
+
+
+
+<!-- Play Section Start -->
+<div class="play">
+  <div class="play-overlay"></div>
+  <div class="play-content">
+    <h1>
+      The Service To Others <br> 
+      Is The Rent You Pay For <br> 
+      The Room You Have On Earth.
+    </h1>
+    <button class="play-btn">
+      <div class="hover-overlay"></div>
+      <svg width="100" height="100" viewBox="0 0 100 100" fill="none">
+        <polygon class="play-icon" points="38,28 72,50 38,72" fill="white"/>
+      </svg>
+    </button>
+  </div>
+</div>
+<!-- Play Section End -->
+
+
+
+
+
+
+
+
+
+
+
+<!-- Directors Section Start -->
+ <section class="director-secion">
+
+  <div class="director-heading">
+    <h1>Meet Our Directors</h1>
+  </div>
+
+  <div class="director-cards">
+    <div class="director-card-1">
+      <img src="Picrures All/Moeez.jpeg" alt="moeez">
+      <div class="director-info">
+        <h2>Moeez Ali</h2>
+        <h3>Finance Director</h3>
+      </div>
+    </div>
+    <div class="director-card-2">
+      <img src="Picrures All/haseeb.jpeg" alt="haseeb">
+      <div class="director-info">
+        <h2>Haseeb ur Rehman</h2>
+        <h3>President</h3>
+      </div>
+    </div>
+    <div class="director-card-3">
+      <img src="Picrures All/hamzahbhai.jpeg" alt="hamzahbhai">
+      <div class="director-info">
+        <h2>M Hamzah Naseer</h2>
+        <h3>General Secretary</h3>
+      </div>
+    </div>
+    
+    
+
+
+  </div>
+
+
+ </section>
+<!-- Directors Section END -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
 
 <!-- Volunteer Cards Section Start -->
 <section class="volunteer-cards-section">
@@ -215,24 +304,25 @@
     <div class="volunteer-card">
       <div class="volunteer-card-bg volunteer-card-bg-1"></div>
       <div class="volunteer-card-content">
-        <h2>Become a volunteer</h2>
-        <p>Provide resources such as reports, infographics, and educational materials related to the charity's cause. Use a clear and intuitive navigation menu to help users find information quickly.</p>
-        <button class="about-more-btn"><span>Learn More</span><span class="service-learn-arrow">↗</span></button>
+        <h2>Become a Donor</h2>
+        <p>Become our monthly donor to help us arranging medicines, rashan, fees, and other basic necessaty stuff for the deseving people. We will send you monthly reminders and will keep you updated about our cases. </p>
+        <button class="about-more-btn"><span>Donate Us</span><span class="service-learn-arrow">↗</span></button>
       </div>
     </div>
     <div class="volunteer-card">
       <div class="volunteer-card-bg volunteer-card-bg-2"></div>
       <div class="volunteer-card-content">
-        <h2>Join Us volunteer</h2>
-        <p>Provide resources such as reports, infographics, and educational materials related to the charity's cause. Use a clear and intuitive navigation menu to help users find information quickly.</p>
-        <button class="about-more-btn"><span>Learn More</span><span class="service-learn-arrow">↗</span></button>
+        <h2>Become a Volunteer</h2>
+        <p>Spreading Smile Foundation runs the volunteer programs throughout the year. To become a part of our team, join our volunteer program in which you will get a chance to experience working for humanity.
+        </p>
+        <button class="about-more-btn"><span>Join Us</span><span class="service-learn-arrow">↗</span></button>
       </div>
     </div>
   </div>
 </section>
 <!-- Volunteer Cards Section End -->
 
-<h1 class="member-reviews-title">Our Members Reviews</h1>
+<h1 class="member-reviews-title">Meet The Optimistic Volunteers</h1>
 <!-- Member Reviews Section Start -->
 <section class="member-reviews-section">
   <div class="member-reviews-container">
@@ -253,6 +343,92 @@
 </section>
 <!-- Member Reviews Section End -->
 
+
+
+<!-- Footer Start -->
+<footer class="footer">
+  <div class="footer-main">
+    <div class="footer-col footer-brand">
+      <img src="Picrures All/Logo.jpg" alt="Spreading Smile Foundation Logo" class="footer-logo">
+      <p class="footer-desc">This Foundation basically targets the needy people who are not begging but working hard for their family and self respect.</p>
+      <button href="#" class="button" style="--clr: #7808d0">
+        <span class="button__icon-wrapper">
+            <svg viewBox="0 0 14 15" fill="none" xmlns="http://www.w3.org/2000/svg" class="button__icon-svg" width="10">
+                <path d="M13.376 11.552l-.264-10.44-10.44-.24.024 2.28 6.96-.048L.2 12.56l1.488 1.488 9.432-9.432-.048 6.912 2.304.024z" fill="currentColor"></path>
+            </svg>
+            <svg viewBox="0 0 14 15" fill="none" width="10" xmlns="http://www.w3.org/2000/svg" class="button__icon-svg button__icon-svg--copy">
+                <path d="M13.376 11.552l-.264-10.44-10.44-.24.024 2.28 6.96-.048L.2 12.56l1.488 1.488 9.432-9.432-.048 6.912 2.304.024z" fill="currentColor"></path>
+            </svg>
+        </span>
+        <span class="button__text">Donate Now</span>
+    </button>
+    </div>
+    <div class="footer-col footer-links">
+      <h3 class="footer-title">Quick Links</h3>
+      <div class="footer-underline"></div>
+      <ul>
+        <li><a href="#" class="footer-link"><span class="footer-link-arrow">↗</span> About Us</a></li>
+        <li><a href="#" class="footer-link"><span class="footer-link-arrow">↗</span> Privacy policy</a></li>
+        <li><a href="#" class="footer-link"><span class="footer-link-arrow">↗</span> Contact Us</a></li>
+      </ul>
+    </div>
+    <div class="footer-col footer-links">
+      <h3 class="footer-title">Our Service</h3>
+      <div class="footer-underline"></div>
+      <ul>
+        <li><a href="#" class="footer-link"><span class="footer-link-arrow">↗</span> Give Donation</a></li>
+        <li><a href="#" class="footer-link"><span class="footer-link-arrow">↗</span> Education Support</a></li>
+        <li><a href="#" class="footer-link"><span class="footer-link-arrow">↗</span> Food Support</a></li>
+        <li><a href="#" class="footer-link"><span class="footer-link-arrow">↗</span> Health Support</a></li>
+        <li><a href="#" class="footer-link"><span class="footer-link-arrow">↗</span> Our Campaign</a></li>
+      </ul>
+    </div>
+    <div class="footer-col footer-contact">
+      <div class="footer-contact-box">
+        <h3 class="footer-title">Contact Us</h3>
+        <div class="footer-contact-info">
+          <div class="footer-contact-row">
+            <span class="footer-contact-icon-phone">
+              <svg width="32" height="32" fill="none" viewBox="0 0 24 24"><circle cx="14" cy="14" r="12" fill="var(--primary-color)"/><path d="M15.05 14.44a10.57 10.57 0 01-5.49-5.49l1.64-1.64a.75.75 0 00.18-.77l-.65-2A.75.75 0 0010 4H7.25a.75.75 0 00-.75.75c0 6.8 5.52 12.25 12.25 12.25a.75.75 0 00.75-.75v-2.75a.75.75 0 00-.53-.72l-2-.65a.75.75 0 00-.77.18l-1.64 1.64z" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+            <div>
+              <div class="footer-contact-label">Call us any time:</div>
+              <div class="footer-contact-value">03213214884</div>
+            </div>
+          </div>
+          <div class="footer-contact-row">
+            <span class="footer-contact-icon-mail">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
+                        <circle cx="12" cy="12" r="12" fill="var(--primary-color)"/>
+                        <rect x="6" y="8" width="12" height="8" rx="2" stroke="#fff" stroke-width="1.5"/>
+                        <path d="M6 8l6 5 6-5" stroke="#fff" stroke-width="1.5"/>
+              </svg>
+            </span>
+            <div>
+              <div class="footer-contact-label">Email us any time:</div>
+              <div class="footer-contact-value">spreadingsmile<br>foundation@gmail.com</div>
+            </div>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; 2024 Spreading Smile Foundation. All rights reserved.</span>
+  </div>
+</footer>
+<!-- Footer End -->
+
+
+
 <script src="script.js"></script>
+
+
+
 </body>
 </html>
+
+
+
+

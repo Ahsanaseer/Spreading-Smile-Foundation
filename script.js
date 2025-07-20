@@ -104,3 +104,13 @@ if (memberImg && prevBtn && nextBtn) {
   // Initial state
   memberImg.classList.add('slide-in');
 }
+
+
+
+
+
+function bloodformfunc(){
+
+  window.open("https://docs.google.com/forms/d/e/1FAIpQLSflgKyuquG50HCYIfz11DtpTEGbl6r2UZ4VvDPRaUaN_jVCXg/viewform", "_blank");
+  
+}
