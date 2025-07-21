@@ -16,91 +16,81 @@
     
     <!-- Navbar Start -->
     <nav class="navbar">
-        <div class="navbar-left">
-            <img src="Picrures All/Logo.jpg" alt="Spreading Smile Foundation Logo" class="logo">
-        </div>
-        <div class="navbar-right">
-            <div class="info-block">
-                <span class="info-icon">
-                    <!-- Location Icon -->
-                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
-                        <circle cx="12" cy="12" r="12" fill="var(--primary-color)"/>
-                        <path d="M12 17.5C12 17.5 7 13.28 7 10A5 5 0 0117 10C17 13.28 12 17.5 12 17.5Z" stroke="#fff" stroke-width="1.5"/>
-                        <circle cx="12" cy="10" r="1.5" fill="#fff"/>
-                    </svg>
-                </span>
-                <div class="info-text">
-                    <span class="info-label">Location:</span>
-                    <span class="info-value">Lahore, Pakistan</span>
-                </div>
-            </div>
-            <div class="navbar-separator"></div>
-            <div class="info-block">
-                <span class="info-icon">
-                    <!-- Phone Icon -->
-                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
-                        <circle cx="12" cy="12" r="12" fill="var(--primary-color)"/>
-                        <path d="M15.05 14.44a10.57 10.57 0 01-5.49-5.49l1.64-1.64a.75.75 0 00.18-.77l-.65-2A.75.75 0 0010 4H7.25a.75.75 0 00-.75.75c0 6.8 5.52 12.25 12.25 12.25a.75.75 0 00.75-.75v-2.75a.75.75 0 00-.53-.72l-2-.65a.75.75 0 00-.77.18l-1.64 1.64z" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                </span>
-                <div class="info-text">
-                    <span class="info-label">Call us any time:</span>
-                    <span class="info-value">+923213214884</span>
-                </div>
-            </div>
-            <!-- <div class="navbar-separator"></div>
-            <div class="info-block">
-                <span class="info-icon">
-                     Mail Icon
-                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
-                        <circle cx="12" cy="12" r="12" fill="var(--primary-color)"/>
-                        <rect x="6" y="8" width="12" height="8" rx="2" stroke="#fff" stroke-width="1.5"/>
-                        <path d="M6 8l6 5 6-5" stroke="#fff" stroke-width="1.5"/>
-                    </svg>
-                </span>
-                <div class="info-text">
-                    <span class="info-label">Email us any time:</span>
-                    <span class="info-value mail" title="spreadingsmilefoundation@gmail.com">spreadingsmilefoundation@gmail.com</span>
-                </div>
-            </div> -->
-        </div>
-
-
-
-
-
-
-
-        <!-- Mobile Navbar Elements (order: hamburger, logo, search) -->
         <div class="navbar-mobile-left">
-            <button class="hamburger" id="hamburger-btn">
-                <span></span>
-                <span></span>
-                <span></span>
+            <button class="hamburger-btn" id="hamburger-btn" aria-label="Open navigation menu">
+                <span class="hamburger-bar"></span>
+                <span class="hamburger-bar"></span>
+                <span class="hamburger-bar"></span>
             </button>
         </div>
-        <div class="navbar-mobile-center">
+        <div class="navbar-center">
             <img src="Picrures All/Logo.jpg" alt="Spreading Smile Foundation Logo" class="logo">
         </div>
         <div class="navbar-mobile-right">
-            <button class="search-btn" id="search-btn">
-                <svg width="24" height="24" fill="none" stroke="#888" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <circle cx="11" cy="11" r="8"/>
-                    <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+            <button class="main-search-btn" id="main-search-btn">
+                <!-- Search Icon -->
+                <svg width="28" height="28" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="13" cy="13" r="10"/>
+                    <line x1="23" y1="23" x2="18.65" y2="18.65"/>
                 </svg>
             </button>
         </div>
-        <ul class="navbar-center" id="mobile-menu">
-            <li><a href="#">Home</a></li>
-            <li><a href="#">About Us</a></li>
-            <li><a href="#">Contact us</a></li>
-        </ul>
+        <div class="navbar-desktop-right">
+            <div class="navbar-right">
+                <div class="info-block">
+                    <span class="info-icon">
+                        <!-- Location Icon -->
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
+                            <circle cx="12" cy="12" r="12" fill="var(--primary-color)"/>
+                            <path d="M12 17.5C12 17.5 7 13.28 7 10A5 5 0 0117 10C17 13.28 12 17.5 12 17.5Z" stroke="#fff" stroke-width="1.5"/>
+                            <circle cx="12" cy="10" r="1.5" fill="#fff"/>
+                        </svg>
+                    </span>
+                    <div class="info-text">
+                        <span class="info-label">Location:</span>
+                        <span class="info-value">Lahore, Pakistan</span>
+                    </div>
+                </div>
+                <div class="navbar-separator"></div>
+                <div class="info-block">
+                    <span class="info-icon">
+                        <!-- Phone Icon -->
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
+                            <circle cx="12" cy="12" r="12" fill="var(--primary-color)"/>
+                            <path d="M15.05 14.44a10.57 10.57 0 01-5.49-5.49l1.64-1.64a.75.75 0 00.18-.77l-.65-2A.75.75 0 0010 4H7.25a.75.75 0 00-.75.75c0 6.8 5.52 12.25 12.25 12.25a.75.75 0 00.75-.75v-2.75a.75.75 0 00-.53-.72l-2-.65a.75.75 0 00-.77.18l-1.64 1.64z" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </span>
+                    <div class="info-text">
+                        <span class="info-label">Call us any time:</span>
+                        <span class="info-value">+923213214884</span>
+                    </div>
+                </div>
+            </div>
+        </div>
     </nav>
-    <div class="search-bar-container" id="search-bar-container">
-        <input type="text" class="search-bar" placeholder="Search...">
-    </div>
     <!-- Navbar End -->
 
+    <!-- Animated Search Bar (hidden by default, shown on search icon click) -->
+    <div class="main-search-bar-container" id="main-search-bar-container">
+        <input type="text" class="main-search-bar" placeholder="Search...">
+    </div>
+
+    <!-- Mobile Menu Start -->
+    <div class="mobile-menu" id="mobile-menu">
+        <button class="mobile-menu-close-btn" id="mobile-menu-close-btn" aria-label="Close menu">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="18" y1="6" x2="6" y2="18" />
+                <line x1="6" y1="6" x2="18" y2="18" />
+            </svg>
+        </button>
+        <ul class="mobile-nav-links">
+            <li><a href="#" class="nav-link">Home</a></li>
+            <li><a href="#" class="nav-link">About Us</a></li>
+            <li><a href="#" class="nav-link">Contact Us</a></li>
+            <li><a href="#" class="nav-link">Donate Now</a></li>
+        </ul>
+    </div>
+    <!-- Mobile Menu End -->
 
 
 
@@ -108,7 +98,8 @@
 
 
 
-    <!-- Main Navbar Row Start -->
+
+    <!-- Main Navbar Row Start (Green Rectangle) -->
     <div class="main-navbar-row">
         <div class="main-nav-bar">
             <ul class="main-nav-links">
@@ -118,16 +109,13 @@
             </ul>
         </div>
         <div class="main-nav-actions">
-            <button class="main-search-btn" id="main-search-btn">
+            <button class="main-search-btn" id="main-search-btn-desktop">
                 <!-- Search Icon -->
                 <svg width="28" height="28" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <circle cx="13" cy="13" r="10"/>
                     <line x1="23" y1="23" x2="18.65" y2="18.65"/>
                 </svg>
             </button>
-            <div class="main-search-bar-container" id="main-search-bar-container">
-                <input type="text" class="main-search-bar" placeholder="Search...">
-            </div>
             <button href="#" class="button" style="--clr: #7808d0">
                 <span class="button__icon-wrapper">
                     <svg viewBox="0 0 14 15" fill="none" xmlns="http://www.w3.org/2000/svg" class="button__icon-svg" width="10">
@@ -248,37 +236,33 @@
  <section class="director-secion">
 
   <div class="director-heading">
+    <h4>Meet Our Team Members</h4>
     <h1>Meet Our Directors</h1>
   </div>
 
   <div class="director-cards">
-    <div class="director-card-1">
-      <img src="Picrures All/Moeez.jpeg" alt="moeez">
-      <div class="director-info">
-        <h2>Moeez Ali</h2>
-        <h3>Finance Director</h3>
+    <div class="director-card">
+      <img src="Picrures All/Moeez.jpeg" alt="Moeez Ali" class="director-img">
+      <div class="director-card-body">
+        <h2 class="director-name">Moeez Ali</h2>
+        <h3 class="director-role">Finance Director</h3>
       </div>
     </div>
-    <div class="director-card-2">
-      <img src="Picrures All/haseeb.jpeg" alt="haseeb">
-      <div class="director-info">
-        <h2>Haseeb ur Rehman</h2>
-        <h3>President</h3>
+    <div class="director-card">
+      <img src="Picrures All/haseeb.jpeg" alt="Haseeb ur Rehman" class="director-img">
+      <div class="director-card-body">
+        <h2 class="director-name">Haseeb ur Rehman</h2>
+        <h3 class="director-role">President</h3>
       </div>
     </div>
-    <div class="director-card-3">
-      <img src="Picrures All/hamzahbhai.jpeg" alt="hamzahbhai">
-      <div class="director-info">
-        <h2>M Hamzah Naseer</h2>
-        <h3>General Secretary</h3>
+    <div class="director-card">
+      <img src="Picrures All/hamzahbhai.jpeg" alt="M Hamzah Naseer" class="director-img-hamzah">
+      <div class="director-card-body">
+        <h2 class="director-name">M Hamzah Naseer</h2>
+        <h3 class="director-role">General Secretary</h3>
       </div>
     </div>
-    
-    
-
-
   </div>
-
 
  </section>
 <!-- Directors Section END -->
@@ -349,7 +333,7 @@
 <footer class="footer">
   <div class="footer-main">
     <div class="footer-col footer-brand">
-      <img src="Picrures All/Logo.jpg" alt="Spreading Smile Foundation Logo" class="footer-logo">
+      <img src="Picrures All/logo-remove.png" alt="Spreading Smile Foundation Logo" class="footer-logo">
       <p class="footer-desc">This Foundation basically targets the needy people who are not begging but working hard for their family and self respect.</p>
       <button href="#" class="button" style="--clr: #7808d0">
         <span class="button__icon-wrapper">
@@ -393,7 +377,7 @@
             </span>
             <div>
               <div class="footer-contact-label">Call us any time:</div>
-              <div class="footer-contact-value">03213214884</div>
+              <div class="footer-contact-value">+923213214884</div>
             </div>
           </div>
           <div class="footer-contact-row">
@@ -423,9 +407,6 @@
 
 
 <script src="script.js"></script>
-
-
-
 </body>
 </html>
 

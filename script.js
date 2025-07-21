@@ -2,28 +2,6 @@
 document.addEventListener('DOMContentLoaded', function() {
     const hamburgerBtn = document.getElementById('hamburger-btn');
     const mobileMenu = document.getElementById('mobile-menu');
-    const searchBtn = document.getElementById('search-btn');
-    const searchBarContainer = document.getElementById('search-bar-container');
-
-    hamburgerBtn.addEventListener('click', function() {
-        mobileMenu.classList.toggle('open');
-        searchBarContainer.classList.remove('open');
-    });
-
-    searchBtn.addEventListener('click', function() {
-        searchBarContainer.classList.toggle('open');
-        mobileMenu.classList.remove('open');
-        if (searchBarContainer.classList.contains('open')) {
-            searchBarContainer.querySelector('input').focus();
-        }
-    });
-
-    document.addEventListener('click', function(e) {
-        if (!e.target.closest('.navbar') && !e.target.closest('#search-bar-container')) {
-            mobileMenu.classList.remove('open');
-            searchBarContainer.classList.remove('open');
-        }
-    });
 
     // Add main nav search animation
     const mainSearchBtn = document.getElementById('main-search-btn');
@@ -36,10 +14,39 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
     document.addEventListener('click', function(e) {
-        if (!e.target.closest('.main-nav-actions')) {
+        if (!e.target.closest('.main-search-bar-container') && !e.target.closest('.main-search-btn')) {
             mainSearchBarContainer.classList.remove('open');
         }
     });
+
+    // Hamburger and mobile menu logic
+    if (hamburgerBtn && mobileMenu) {
+        hamburgerBtn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            mobileMenu.classList.toggle('open');
+        });
+    }
+    // Close mobile menu when clicking outside
+    document.addEventListener('click', function(e) {
+        if (!e.target.closest('.mobile-menu') && !e.target.closest('.hamburger-btn')) {
+            if (mobileMenu) mobileMenu.classList.remove('open');
+        }
+    });
+    // Hide mobile menu if resizing above 768px
+    window.addEventListener('resize', function() {
+        if (window.innerWidth > 768) {
+            if (mobileMenu) mobileMenu.classList.remove('open');
+        }
+    });
+    // Close mobile menu when the close button is clicked
+    const mobileMenuCloseBtn = document.getElementById('mobile-menu-close-btn');
+    if (mobileMenuCloseBtn && mobileMenu) {
+        mobileMenuCloseBtn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            console.log('Close button clicked');
+            mobileMenu.classList.remove('open');
+        });
+    }
 });
 
 // Member Reviews slider logic
