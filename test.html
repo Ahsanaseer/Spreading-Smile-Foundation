@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>YouTube Video Popup</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f5f5f5;
+      margin: 0;
+      padding: 20px;
+      text-align: center;
+    }
+
+    #play-btn {
+      padding: 10px 20px;
+      background: red;
+      color: white;
+      border: none;
+      font-size: 18px;
+      cursor: pointer;
+      border-radius: 5px;
+      transition: background 0.3s;
+    }
+
+    #play-btn:hover {
+      background: darkred;
+    }
+
+    /* Overlay */
+    #video-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.8);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 999;
+    }
+
+    .video-container {
+      position: relative;
+      width: 80%;
+      max-width: 800px;
+      background: #000;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    #youtube-frame {
+      width: 100%;
+      height: 450px;
+    }
+
+    #close-btn {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      color: white;
+      font-size: 2rem;
+      cursor: pointer;
+      z-index: 1000;
+    }
+  </style>
+</head>
+<body>
+  <h1>Play YouTube Video Popup</h1>
+  <button id="yt-video-btn">Play Video</button>
+
+  <!-- Video Overlay -->
+  <div id="video-overlay">
+    <div class="video-container">
+      <span id="close-btn">&times;</span>
+      <iframe id="youtube-frame" src="" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+    </div>
+  </div>
+
+  <script>
+    const playBtn = document.getElementById('yt-video-btn');
+    const videoOverlay = document.getElementById('video-overlay');
+    const closeBtn = document.getElementById('close-btn');
+    const youtubeFrame = document.getElementById('youtube-frame');
+
+    const VIDEO_ID = "dQw4w9WgXcQ"; // Apna video ID yahan daalo
+
+    playBtn.addEventListener('click', () => {
+      videoOverlay.style.display = 'flex';
+      youtubeFrame.src = "https://www.youtube.com/embed/mlzBAI8u1-8?autoplay=1";
+    });
+
+    closeBtn.addEventListener('click', () => {
+      videoOverlay.style.display = 'none';
+      youtubeFrame.src = "";
+    });
+  </script>
+</body>
+</html>

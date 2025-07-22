@@ -121,3 +121,20 @@ function bloodformfunc(){
   window.open("https://docs.google.com/forms/d/e/1FAIpQLSflgKyuquG50HCYIfz11DtpTEGbl6r2UZ4VvDPRaUaN_jVCXg/viewform", "_blank");
   
 }
+
+
+
+const playBtn = document.getElementById('yt-video-btn');
+    const videoOverlay = document.getElementById('video-overlay');
+    const closeBtn = document.getElementById('close-btn');
+    const youtubeFrame = document.getElementById('youtube-frame');
+
+    playBtn.addEventListener('click', () => {
+      videoOverlay.style.display = 'flex';
+      youtubeFrame.src = "https://www.youtube.com/embed/mlzBAI8u1-8?autoplay=1";
+    });
+
+    closeBtn.addEventListener('click', () => {
+      videoOverlay.style.display = 'none';
+      youtubeFrame.src = "";
+    });
