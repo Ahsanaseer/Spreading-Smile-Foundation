@@ -166,3 +166,11 @@ document.addEventListener('DOMContentLoaded', function() {
 function bloodformfunc() {
   window.open("https://docs.google.com/forms/d/e/1FAIpQLSflgKyuquG50HCYIfz11DtpTEGbl6r2UZ4VvDPRaUaN_jVCXg/viewform", "_blank");
 }
+
+  const donateButtons = document.querySelectorAll(".js");
+
+    donateButtons.forEach(function(btn) {
+        btn.addEventListener("click", function() {
+        window.location.href = "http://192.168.1.3:5501/donateUsDetails.html";
+        });
+    });

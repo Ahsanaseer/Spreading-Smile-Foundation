@@ -1,0 +1,274 @@
+body {
+    font-family: 'Poppins', Arial, Helvetica, sans-serif;
+    background: #fff;
+    margin: 0;
+    padding: 0;
+    color: #111;
+  }
+  .donateus-header-logo img {
+      width: 300px;
+      height: 60px;
+      float: right;
+      margin-top: 50px;
+  }
+  .donateus-header-title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #e6c12a;
+    text-align: right;
+    line-height: 1.1;
+    letter-spacing: 1px;
+  }
+  .donateus-content {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 100px 24px 48px 24px;
+  }
+  .donateus-title {
+    font-size: 2.2rem;
+    font-weight: 700;
+    margin-top: 32px;
+    margin-bottom: 8px;
+    color: #111;
+  }
+  .donateus-desc {
+    font-size: 1.08rem;
+    color: #222;
+    margin-bottom: 36px;
+    max-width: 900px;
+  }
+  .donateus-cards-row {
+    display: flex;
+    gap: 32px;
+    margin-bottom: 36px;
+    justify-content: flex-start;
+  }
+  .donateus-card {
+    flex: 1 1 0;
+    min-width: 220px;
+    max-width: 340px;
+    height: 140px;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 16px rgba(23,105,91,0.10);
+    position: relative;
+    padding: 0;
+  }
+  .donateus-card-silkbank {
+    background: #88023F;
+  }
+  .donateus-card-jazzcash {
+    background: #FFD028;
+  }
+  .donateus-card-easypaisa {
+    background: #2AAE5B;
+  }
+  .donateus-card-logo {
+    width: 90px;
+    height: 40px;
+    object-fit: contain;
+    margin-bottom: 8px;
+  }
+  .silkbank-logo {
+    width: 350px;
+    height: 215px;
+    margin-left: -5px;
+    margin-top: 5px;
+  }
+  .jazzcash-logo {
+    width: 150px;
+    height: 130px; 
+  }
+  .easypaisa-logo {
+    width: 250px;
+    height: 90px;
+    margin-top: 5px;
+  }
+  
+  .donateus-details-row {
+    display: flex;
+    background: #fafafa;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(23,105,91,0.06);
+    margin-top: 18px;
+    padding: 32px 24px 24px 24px;
+    gap: 0;
+    justify-content: space-between;
+  }
+  .donateus-details-col {
+    flex: 1 1 0;
+    min-width: 220px;
+    max-width: 340px;
+    padding: 0 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    font-size: 1.08rem;
+    position: relative;
+  }
+  .donateus-details-col:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    top: 15%;
+    left: 100%;
+    transform: translateX(-16px);
+    width: 2px;
+    height: 70%;
+    background: #222;
+    opacity: 0.25;
+    border-radius: 1px;
+  }
+  .donateus-details-label {
+    font-weight: 700;
+    color: #111;
+    margin-top: 10px;
+    margin-bottom: 2px;
+    font-size: 1.08rem;
+  }
+  .donateus-details-value {
+    font-weight: 400;
+    color: #222;
+    margin-bottom: 0;
+    font-size: 1.08rem;
+  }
+  
+  /* Mobile card-detail pair container */
+  .donateus-card-detail-pair {
+    display: none;
+  }
+  
+  @media (max-width: 1024px) {
+    .donateus-content {
+      padding: 32px 4vw 32px 4vw;
+      max-width: 100vw;
+    }
+    
+    .donateus-header-logo img {
+      width: 250px;
+      height: 50px;
+      margin-top: 30px;
+    }
+    
+    .donateus-title {
+      font-size: 1.3rem;
+      margin-top: 24px;
+      margin-bottom: 6px;
+    }
+    .donateus-desc {
+      font-size: 1rem;
+      margin-bottom: 32px;
+    }
+    
+    /* Hide desktop layout */
+    .donateus-cards-row, 
+    .donateus-details-row {
+      display: none;
+    }
+    
+    /* Show paired layout */
+    .donateus-card-detail-pair {
+      display: block;
+      margin-bottom: 32px;
+    }
+    
+    .donateus-card-detail-pair:last-child {
+      margin-bottom: 0;
+    }
+    
+    .donateus-card {
+      width: 100%;
+      max-width: 100%;
+      min-width: 0;
+      height: 120px;
+      border-radius: 16px 16px 0 0;
+      margin-bottom: 0;
+      box-shadow: 0 4px 12px rgba(23,105,91,0.08);
+      padding: 20px 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .donateus-details-col {
+      width: 100%;
+      max-width: 100%;
+      min-width: 0;
+      border-radius: 0 0 16px 16px;
+      background: #fafafa;
+      box-shadow: 0 4px 12px rgba(23,105,91,0.06);
+      padding: 24px 20px;
+      gap: 8px;
+      display: flex;
+      flex-direction: column;
+      margin: 0;
+    }
+    
+    .donateus-details-col:not(:last-child)::after {
+      display: none;
+    }
+        
+    .silkbank-logo {
+      width: 200px;
+      height: 700px;
+    }
+    .jazzcash-logo{
+      width: 150px;
+      height: 39px;
+
+    }
+    .easypaisa-logo{
+      width: 200px;
+      height: 85px;
+    }
+    
+    .donateus-details-label {
+      font-size: 1.01rem;
+      margin-top: 8px;
+      font-weight: 700;
+    }
+    .donateus-details-value {
+      font-size: 0.98rem;
+      margin-bottom: 4px;
+    }
+  }
+  
+  @media (max-width: 600px) {
+    .donateus-header-logo img {
+      width: 200px;
+      height: 40px;
+      margin-top: 20px;
+    }
+    
+    .donateus-title {
+      font-size: 1.1rem;
+      margin-top: 20px;
+    }
+    .donateus-desc {
+      font-size: 0.9rem;
+      margin-bottom: 28px;
+    }
+    
+    .donateus-card {
+      height: 100px;
+      padding: 16px 0;
+    }
+    
+    .donateus-details-col {
+      padding: 20px 16px;
+    }
+    
+    .donateus-details-label {
+      font-size: 0.95rem;
+      margin-top: 6px;
+    }
+    .donateus-details-value {
+      font-size: 0.9rem;
+    }
+    
+    .donateus-card-detail-pair {
+      margin-bottom: 28px;
+    }
+  }
