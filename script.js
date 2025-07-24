@@ -155,7 +155,7 @@ function bloodformfunc() {
 
     donateButtons.forEach(function(btn) {
         btn.addEventListener("click", function() {
-        window.location.href = "/donateUsDetails.html";
+        window.location.href = "/donation.html";
         });
     });
 

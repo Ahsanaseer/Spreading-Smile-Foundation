@@ -187,7 +187,22 @@ html, body {
   height: 64px;
 }
 
-.main-search-btn {
+.main-search-btn-mobile {
+  background: none;
+  border: none;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+
+}
+
+
+/* =================================================NAVBAR SEARCH BUTTON DESKTOP============================================================================== */
+
+.main-search-btn-desktop {
   background: var(--primary-color);
   border: none;
   border-radius: 50%;
@@ -204,7 +219,7 @@ html, body {
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.main-search-btn::before {
+.main-search-btn-desktop::before {
   content: '';
   position: absolute;
   top: 100%;
@@ -217,11 +232,11 @@ html, body {
   z-index: 0;
 }
 
-.main-search-btn:hover::before {
+.main-search-btn-desktop:hover::before {
   transform: translateY(-100%);
 }
 
-.main-search-btn svg {
+.main-search-btn-desktop svg {
   position: relative;
   z-index: 1;
   transition: stroke 0.2s;
@@ -1777,6 +1792,7 @@ display: block;
   .hamburger-btn {
     display: flex;
     margin-left: 0;
+    margin-bottom: 0;
   }
   .mobile-menu {
     position: fixed;
@@ -1792,10 +1808,7 @@ display: block;
     padding-top: 100px;
     
   }
-  .mobile-nav-actions .main-search-btn {
-    width: 48px;
-    height: 48px;
-  }
+
   .mobile-nav-actions .main-search-bar-container {
     position: static;
     transform: none;
@@ -2029,14 +2042,14 @@ display: block;
       background: none;
       border: none;
       cursor: pointer;
-      margin-left: 16px;
+      margin-left: 0px;
       transition: background 0.3s;
   }
   
   .hamburger-bar {
       display: block;
-      width: 26px;
-      height: 3px;
+      width: 24px;
+      height: 2px;
       background: var(--primary-color);
       margin: 3px 0;
       border-radius: 2px;
@@ -2050,7 +2063,23 @@ display: block;
   .mobile-menu-overlay {
       display: none !important;
   }
-  
+  .footer-main {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0;
+    padding-left: 4vw;
+  }
+  .footer-contact {
+    align-items: flex-start;
+    margin-left: 32px;
+    min-width: unset;
+    margin-left: 0;
+    margin-top: 20px;
+  }
+  .footer-contact-box {
+    min-width: 220px;
+    max-width: 95vw;
+  }
 } 
 
 
