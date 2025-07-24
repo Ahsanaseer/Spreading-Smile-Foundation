@@ -52,7 +52,7 @@ document.addEventListener('DOMContentLoaded', function() {
   // Close search bars when clicking outside
   document.addEventListener('click', function(e) {
       if (!e.target.closest('.main-search-bar-container') && 
-          !e.target.closest('.main-search-btn')) {
+          !e.target.closest('.main-search-btn-desktop')) {
           if (searchBarContainerMobile) searchBarContainerMobile.classList.remove('open');
           if (searchBarContainerDesktop) searchBarContainerDesktop.classList.remove('open');
       }
