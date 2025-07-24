@@ -757,6 +757,11 @@ display: block;
   transition: box-shadow 0.2s, transform 0.1s;
   padding: 0;
   overflow: hidden;
+  transition: box-shadow 0.2s, transform 0.1s;
+   
+}
+.play-btn:hover {
+  transform: scale(0.79);
 }
 
 .play-btn .hover-overlay {
@@ -767,10 +772,12 @@ display: block;
   z-index: 1;
   transition: width 0.35s cubic-bezier(.77,0,.18,1);
   pointer-events: none;
+  
 }
 
 .play-btn:hover .hover-overlay {
   width: 100%;
+  
 }
 
 .play-btn:active {
@@ -810,12 +817,17 @@ display: block;
   padding-top: 50px;
   
 }
+.director-heading h1{
+  padding-bottom: 50px;
+  margin-bottom: -25px;
+  
+}
 
 .director-cards{
 
   display: flex;
   gap: 30px;
-  margin: 100px;
+  
 
 }
 
@@ -861,7 +873,7 @@ display: block;
 /* =================================================VOLUNTEER CARDS SECTION STYLES============================================================================== */
 .volunteer-cards-section {
   width: 100%;
-  background: #faf8f3;
+  background: #fff;
   padding: 48px 0;
   display: flex;
   justify-content: center;
@@ -1523,60 +1535,7 @@ display: block;
 } 
 
 /* Hamburger button always visible on mobile */
-@media (max-width: 1024px) {
-  .hamburger-btn {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 48px;
-    height: 48px;
-    background: var(--primary-color);
-    border: none;
-    border-radius: 50%;
-    cursor: pointer;
-    margin-left: 16px;
-    z-index: 2101;
-    position: relative;
-    overflow: hidden;
-    transition: background 0.3s;
-  }
-  .hamburger-btn::before {
-    content: '';
-    position: absolute;
-    top: 100%;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: var(--secondary-color);
-    border-radius: 50%;
-    z-index: 0;
-    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    transform: translateY(0);
-  }
-  .hamburger-btn:hover::before,
-  .hamburger-btn:focus::before {
-    transform: translateY(-100%);
-  }
-  .hamburger-bar {
-    display: block;
-    width: 26px;
-    height: 3px;
-    background: #fff;
-    margin: 3px 0;
-    border-radius: 2px;
-    transition: all 0.3s;
-    position: relative;
-    z-index: 1;
-  }
-}
 
-/* Hide the old full-screen mobile menu overlay if present */
-@media (max-width: 1024px) {
-  .mobile-menu-overlay {
-    display: none !important;
-  }
-}
 
 
 /* ===================== RESPONSIVE NAVBAR BREAKPOINTS ===================== */
@@ -1679,6 +1638,103 @@ display: block;
   height: 32px;
   stroke: #fff;
 }
+
+
+
+
+
+ 
+
+/* ===================== BACK TO TOP BUTTON ===================== */
+.back-to-top-btn {
+  position: fixed;
+  right: 32px;
+  bottom: 32px;
+  width: 56px;
+  height: 56px;
+  background: #fff;
+  border-radius: 50%;
+  box-shadow: 0 4px 24px rgba(23,105,91,0.18);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 3000;
+  cursor: pointer;
+  transition: box-shadow 0.2s, background 0.2s;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s, box-shadow 0.2s;
+}
+.back-to-top-btn.visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+.back-to-top-progress {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 56px;
+  height: 56px;
+  z-index: 1;
+  pointer-events: none;
+}
+.back-to-top-bg {
+  stroke: #eee;
+}
+.back-to-top-bar {
+  transition: stroke 0.3s, stroke-dashoffset 0.3s;
+  stroke: var(--primary-color);
+}
+.back-to-top-btn.full .back-to-top-bar {
+  stroke: var(--secondary-color);
+}
+.back-to-top-arrow {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  box-shadow: 0 2px 8px rgba(23,105,91,0.08);
+}
+.back-to-top-arrow svg {
+  display: block;
+  margin: auto;
+  stroke: var(--primary-color);
+  transition: stroke 0.3s;
+}
+.back-to-top-btn.full .back-to-top-arrow svg {
+  stroke: var(--secondary-color);
+}
+.back-to-top-btn:hover {
+  box-shadow: 0 8px 32px rgba(70,192,178,0.22);
+}
+@media (max-width: 600px) {
+  .back-to-top-btn {
+    right: 16px;
+    bottom: 16px;
+    width: 44px;
+    height: 44px;
+  }
+  .back-to-top-progress {
+    width: 44px;
+    height: 44px;
+  }
+  .back-to-top-arrow {
+    width: 28px;
+    height: 28px;
+  }
+  .member-reviews-title{
+    text-align: center;
+    width: 300px;
+    margin-left: 30px;
+  }
+} 
+
+
 
 
 @media (max-width: 1024px) {
@@ -1881,7 +1937,7 @@ display: block;
   }
   .services-title {
     font-size: 2.2rem;
-    text-align: left;
+    text-align: center;
     margin: 0 20px 30px 20px; 
   }
   .volunteer-cards-section {
@@ -1936,11 +1992,7 @@ display: block;
   .member-name{
     text-align: center;
   }
-  .member-reviews-title{
-    text-align: left;
-    width: 300px;
-    margin-left: 30px;
-  }
+
   .member-review-right {
     flex: none;
     width: 100%;
@@ -1967,6 +2019,38 @@ display: block;
 
     margin-left: 0px
   }
+  .hamburger-btn {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      width: 48px;
+      height: 48px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      margin-left: 16px;
+      transition: background 0.3s;
+  }
+  
+  .hamburger-bar {
+      display: block;
+      width: 26px;
+      height: 3px;
+      background: var(--primary-color);
+      margin: 3px 0;
+      border-radius: 2px;
+      transition: all 0.3s;
+      position: relative;
+      z-index: 1;
+  }
+  .hamburger-btn:hover .hamburger-bar {
+      background: var(--secondary-color);
+  }
+  .mobile-menu-overlay {
+      display: none !important;
+  }
+  
 } 
 
 

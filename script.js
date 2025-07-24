@@ -49,22 +49,6 @@ document.addEventListener('DOMContentLoaded', function() {
       }
   }
 
-  // Mobile search
-  if (searchBtnMobile && searchBarContainerMobile) {
-      searchBtnMobile.addEventListener('click', function(e) {
-          e.stopPropagation();
-          toggleSearchBar(searchBarContainerMobile);
-      });
-  }
-
-  // Desktop search
-  if (searchBtnDesktop && searchBarContainerDesktop) {
-      searchBtnDesktop.addEventListener('click', function(e) {
-          e.stopPropagation();
-          toggleSearchBar(searchBarContainerDesktop);
-      });
-  }
-
   // Close search bars when clicking outside
   document.addEventListener('click', function(e) {
       if (!e.target.closest('.main-search-bar-container') && 
@@ -171,6 +155,164 @@ function bloodformfunc() {
 
     donateButtons.forEach(function(btn) {
         btn.addEventListener("click", function() {
-        window.location.href = "http://192.168.1.3:5501/donateUsDetails.html";
+        window.location.href = "/donateUsDetails.html";
         });
     });
+
+// ===================== BACK TO TOP BUTTON LOGIC =====================
+(function() {
+  const btn = document.getElementById('back-to-top');
+  const progress = btn ? btn.querySelector('.back-to-top-bar') : null;
+  const circleLength = 2 * Math.PI * 28; // r=28, matches SVG
+
+  function updateBackToTop() {
+    const scrollY = window.scrollY || window.pageYOffset;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    let percent = docHeight > 0 ? scrollY / docHeight : 0;
+    percent = Math.max(0, Math.min(1, percent));
+    if (progress) {
+      progress.setAttribute('stroke-dasharray', circleLength);
+      progress.setAttribute('stroke-dashoffset', circleLength - percent * circleLength);
+    }
+    if (btn) {
+      if (scrollY > 200) {
+        btn.classList.add('visible');
+      } else {
+        btn.classList.remove('visible');
+      }
+      if (percent >= 0.995) {
+        btn.classList.add('full');
+      } else {
+        btn.classList.remove('full');
+      }
+    }
+  }
+
+  window.addEventListener('scroll', updateBackToTop);
+  window.addEventListener('resize', updateBackToTop);
+  document.addEventListener('DOMContentLoaded', updateBackToTop);
+
+  if (btn) {
+    btn.addEventListener('click', function(e) {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
+})();
+
+// ===================== SEARCH FUNCTIONALITY =====================
+(function() {
+  // Utility to remove previous highlights
+  function removeHighlights() {
+    document.querySelectorAll('.search-highlight').forEach(function(el) {
+      const parent = el.parentNode;
+      parent.replaceChild(document.createTextNode(el.textContent), el);
+      parent.normalize();
+    });
+    const noResults = document.getElementById('search-no-results');
+    if (noResults) noResults.remove();
+  }
+
+  // Highlight all matches in the body
+  function highlightAll(keyword) {
+    if (!keyword) return 0;
+    const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, {
+      acceptNode: function(node) {
+        if (!node.parentElement) return NodeFilter.FILTER_REJECT;
+        const tag = node.parentElement.tagName;
+        if (["SCRIPT", "STYLE", "NOSCRIPT"].includes(tag)) return NodeFilter.FILTER_REJECT;
+        if (node.parentElement.closest('.main-search-bar-container,.back-to-top-btn')) return NodeFilter.FILTER_REJECT;
+        if (window.getComputedStyle(node.parentElement).display === 'none') return NodeFilter.FILTER_REJECT;
+        return NodeFilter.FILTER_ACCEPT;
+      }
+    });
+    let found = 0;
+    let nodes = [];
+    while (walker.nextNode()) {
+      nodes.push(walker.currentNode);
+    }
+    nodes.forEach(function(node) {
+      const idx = node.textContent.toLowerCase().indexOf(keyword.toLowerCase());
+      if (idx !== -1 && node.textContent.trim() !== '') {
+        let html = node.textContent.replace(new RegExp('('+keyword.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')+')', 'gi'), '<mark class="search-highlight">$1</mark>');
+        const span = document.createElement('span');
+        span.innerHTML = html;
+        node.parentNode.replaceChild(span, node);
+        found++;
+      }
+    });
+    return found;
+  }
+
+  function scrollToFirstHighlight() {
+    const first = document.querySelector('.search-highlight');
+    if (first) {
+      first.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+  }
+
+  function showNoResults() {
+    removeHighlights();
+    const msg = document.createElement('div');
+    msg.id = 'search-no-results';
+    msg.textContent = 'No results found!';
+    msg.style.position = 'fixed';
+    msg.style.top = '20px';
+    msg.style.left = '50%';
+    msg.style.transform = 'translateX(-50%)';
+    msg.style.background = '#ffe066';
+    msg.style.color = '#222';
+    msg.style.padding = '12px 32px';
+    msg.style.borderRadius = '24px';
+    msg.style.fontWeight = 'bold';
+    msg.style.zIndex = 5000;
+    msg.style.boxShadow = '0 2px 12px rgba(0,0,0,0.08)';
+    document.body.appendChild(msg);
+    setTimeout(() => { if (msg.parentNode) msg.parentNode.removeChild(msg); }, 2000);
+  }
+
+  function handleSearch(input) {
+    removeHighlights();
+    const keyword = input.value.trim();
+    if (!keyword) return;
+    const found = highlightAll(keyword);
+    if (found > 0) {
+      scrollToFirstHighlight();
+    } else {
+      showNoResults();
+    }
+  }
+
+  // Attach to all search bars and their buttons
+  document.querySelectorAll('.main-search-bar').forEach(function(input) {
+    input.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter') {
+        handleSearch(input);
+      }
+    });
+    input.addEventListener('input', function() {
+      if (!input.value.trim()) removeHighlights();
+    });
+  });
+
+  // Attach to both search buttons
+  [
+    { btn: document.getElementById('main-search-btn'), container: document.getElementById('main-search-bar-container-mobile') },
+    { btn: document.getElementById('main-search-btn-desktop'), container: document.getElementById('main-search-bar-container-desktop') }
+  ].forEach(function(ref) {
+    if (ref.btn && ref.container) {
+      ref.btn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        // If bar is open, perform search; if not, open it
+        if (ref.container.classList.contains('open')) {
+          const input = ref.container.querySelector('.main-search-bar');
+          if (input) handleSearch(input);
+        } else {
+          ref.container.classList.add('open');
+          const input = ref.container.querySelector('input');
+          if (input) input.focus();
+        }
+      });
+    }
+  });
+})();
