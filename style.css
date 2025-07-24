@@ -444,7 +444,18 @@ html, body {
   transform: translateX(-50%);
   z-index: 2;
 }
-
+.fundraising-logo{
+  width: 35px;
+  height: 35px;
+}
+.edu-logo{
+  width: 35px;
+  height: 35px;
+}
+.medical-logo{
+  width: 35px;
+  height: 35px;
+}
 .service-card-title {
   font-size: 1.45rem;
   font-weight: 700;
