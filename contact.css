@@ -179,6 +179,10 @@ html, body {
   background: none;
 }
 
+  .nav-link.active {
+    color: #222;
+    font-weight: bold;
+  }
 /* =================================================MAIN NAVBAR ACTIONS STYLES============================================================================== */
 .main-nav-actions {
   display: flex;

@@ -358,6 +358,10 @@ html, body {
   color: var(--secondary-color);
   background: none;
 }
+  .nav-link.active {
+    color: #222;
+    font-weight: bold;
+  }
 
 .mobile-menu-close-btn {
   position: absolute;

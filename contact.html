@@ -161,11 +161,11 @@
             <img src="Picrures All/contactimg.png" class="contact-main-img" alt="Your image" />
         </div>
         <div class="contact-form-side">
-            <form class="contact-form">
-                <input type="text" class="contact-input" placeholder="Your Name" required>
-                <input type="email" class="contact-input" placeholder="Email Address" required>
-                <textarea class="contact-input contact-message" placeholder="Type Your Message..." required></textarea>
-                <button class="about-more-btn"><span>Send a message</span></button>
+            <form class="contact-form" action="sendMail.php" method="POST">
+                <input type="text" class="contact-input" name="name" placeholder="Your Name" required>
+                <input type="email" class="contact-input" name="email" placeholder="Email Address" required>
+                <textarea class="contact-input contact-message" name="message" placeholder="Type Your Message..." required></textarea>
+                <button type="submit" class="about-more-btn"><span>Send a message</span></button>
             </form>
         </div>
     </div>
