@@ -192,3 +192,10 @@ document.addEventListener('DOMContentLoaded', function() {
       this.classList.add('active');
     });
   });
+  const donateButtons = document.querySelectorAll(".js");
+
+  donateButtons.forEach(function(btn) {
+      btn.addEventListener("click", function() {
+      window.location.href = "/donation.html";
+      });
+  });

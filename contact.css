@@ -1060,7 +1060,7 @@ html, body {
   max-height: 220px;
 }
 
-.about-more-btn {
+.send-msg-btn {
   background-color: var(--primary-color);
   color: #fff;
   font-weight: 600;
@@ -1081,7 +1081,7 @@ html, body {
   overflow: hidden;
   z-index: 1;
 }
-.about-more-btn::before {
+.send-msg-btn::before {
   content: '';
   position: absolute;
   left: 0;
@@ -1094,22 +1094,27 @@ html, body {
   transition: transform 0.35s cubic-bezier(0.4,0,0.2,1);
   transform: translateY(100%);
 }
-.about-more-btn:hover::before,
-.about-more-btn:focus::before {
+.send-msg-btn:hover::before,
+.send-msg-btn:focus::before {
   transform: translateY(0);
 }
-.about-more-btn span {
+.send-msg-btn span {
   position: relative;
   z-index: 1;
   font-size: 13px;
   margin-left: 2px;
 }
-.about-more-btn:hover,
-.about-more-btn:focus {
+.send-msg-btn:hover,
+.send-msg-btn:focus {
   color: #fff;
 }
+.send-msg-btn:active {
+  transform: scale(0.96);
+  background: #2e8c81;
+  box-shadow: 0 1px 4px rgba(23,105,91,0.10);
+}
 
-/* Responsive */
+
 @media (max-width: 1024px) {
   .contact-main-container {
     flex-direction: column;
@@ -1117,6 +1122,13 @@ html, body {
     box-shadow: none;
     margin: 0;
     max-width: 100vw;
+  }
+  .container {
+    flex-direction: column;
+    align-items: center;
+    min-height: unset;
+    max-width: 100vw;
+    padding: 0 2vw;
   }
   .contact-image-side,
   .contact-form-side {
@@ -1126,12 +1138,18 @@ html, body {
   }
   .contact-form-side {
     padding: 32px 8vw;
+    border-radius: 0 0 32px 32px;
   }
   .contact-main-img {
     width: 260px;
     margin: 24px auto 0 auto;
     display: block;
-    margin-bottom: 200px;
+    margin-bottom: 32px;
+  }
+  .send-msg-btn {
+    margin-left: 0;
+    display: block;
+    margin: 24px auto 0 auto;
   }
 }
 
@@ -1152,12 +1170,19 @@ html, body {
     max-width: 320px;
     margin: 0 auto;
   }
-  .contact-submit-btn, .about-more-btn {
+  .send-msg-btn {
     width: 180px;
+    height: 55px;
     margin-left: 0;
+    margin: 18px auto 0 auto;
+    font-size: 1rem;
+    height: 48px;
+    padding: 10px 0;
   }
   .contact-main-img {
     width: 160px;
     margin: 12px auto 0 auto;
+    margin-bottom: 24px;
   }
 }
+

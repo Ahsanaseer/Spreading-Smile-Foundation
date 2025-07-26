@@ -838,6 +838,9 @@ display: block;
 
 
 /* =================================================DIRECTOR SECTION STYLES============================================================================== */
+.directors-mobile { 
+  display: none; 
+}
 .director-secion{
   background-color: #faf8f3;
   color: black;
@@ -1369,6 +1372,8 @@ display: block;
 
 
 /* =================================================DIRECTOR SECTION STYLES============================================================================== */
+
+
 .director-secion {
   background: #faf8f3; 
   padding: 60px 0 80px 0;
@@ -1482,7 +1487,31 @@ display: block;
   font-family: 'Poppins', Arial, sans-serif;
 }
 
-/* ===================== DIRECTOR QUOTE SECTION STYLES ===================== */
+
+/* =================================================DIRECTOR SECTION MOBILE ============================================================================== */
+
+
+.director-cards-mobile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 32px;
+}
+
+.directors-mobile .director-card,
+.directors-mobile .director-quote-card {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.directors-mobile .director-quote-card {
+  width: 320px;
+  max-width: 100%;
+  margin-bottom: 24px;
+}
+
+/* ============================================= DIRECTOR QUOTE SECTION STYLES =============================================================== */
 .director-quote-section {
   margin-top: 28px;
   padding: 28px 18px 18px 18px;
@@ -2228,11 +2257,24 @@ display: block;
     gap: 24px;
   }
   .director-quote-card {
-    width: 95vw;
-    max-width: 420px;
+    width: 320px;
+    max-width: 100%;
     padding: 24px 10px 18px 10px;
   }
+
+
 } 
+
+.directors-mobile { display: none; }
+@media (max-width: 1024px) {
+  .directors-desktop { display: none !important; }
+  .directors-mobile { display: block; }
+}
+@media (min-width: 1025px) {
+  .directors-desktop { display: block; }
+  .directors-mobile { display: none !important; }
+}
+
 
 
  
