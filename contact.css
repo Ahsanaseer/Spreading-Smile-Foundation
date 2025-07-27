@@ -175,13 +175,15 @@ html, body {
 
 .nav-link:hover,
 .nav-link:focus {
-  color: var(--secondary-color);
+  color: #eee;
   background: none;
 }
 
   .nav-link.active {
-    color: #222;
+    color: var(--secondary-color);
     font-weight: bold;
+    background: none;
+    box-shadow: none;
   }
 /* =================================================MAIN NAVBAR ACTIONS STYLES============================================================================== */
 .main-nav-actions {
