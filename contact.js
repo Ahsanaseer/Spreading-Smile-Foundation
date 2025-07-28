@@ -111,7 +111,7 @@ document.addEventListener('DOMContentLoaded', function() {
       nodes.forEach(function(node) {
         const idx = node.textContent.toLowerCase().indexOf(keyword.toLowerCase());
         if (idx !== -1 && node.textContent.trim() !== '') {
-          let html = node.textContent.replace(new RegExp('('+keyword.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')+')', 'gi'), '<mark class=\"search-highlight\">$1</mark>');
+          let html = node.textContent.replace(new RegExp('('+keyword.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')+')', 'gi'), '<mark class="search-highlight">$1</mark>');
           const span = document.createElement('span');
           span.innerHTML = html;
           node.parentNode.replaceChild(span, node);
@@ -176,48 +176,81 @@ document.addEventListener('DOMContentLoaded', function() {
     const donateButtons = document.querySelectorAll('.js');
     donateButtons.forEach(function(btn) {
       btn.addEventListener('click', function(e) {
-        // If it's an anchor, let it work as a link
         if (btn.tagName === 'A' && btn.getAttribute('href')) return;
         window.location.href = 'donation.html';
       });
     });
 
     let path = window.location.pathname.split('/').pop().toLowerCase();
-  if (!path || path === '') path = 'index.html';
+    if (!path || path === '') path = 'index.html';
 
-  const navLinks = document.querySelectorAll('.nav-link');
-  const homeNav = Array.from(navLinks).find(link => link.getAttribute('href').toLowerCase() === 'index.html');
-  const fromNav = sessionStorage.getItem('fromNavHome') === 'true';
+    const navLinks = document.querySelectorAll('.nav-link');
+    const homeNav = Array.from(navLinks).find(link => link.getAttribute('href').toLowerCase() === 'index.html');
+    const fromNav = sessionStorage.getItem('fromNavHome') === 'true';
 
-  navLinks.forEach(link => link.classList.remove('active'));
+    navLinks.forEach(link => link.classList.remove('active'));
 
-  // Highlight Home if navigated from another page
-  if ((path === 'index.html') && fromNav && homeNav) {
-    homeNav.classList.add('active');
-    sessionStorage.removeItem('fromNavHome');
-    return;
-  }
-
-  // Highlight the correct link for other pages
-  navLinks.forEach(link => {
-    const href = link.getAttribute('href').toLowerCase();
-    if (href === path) {
-      link.classList.add('active');
+    // Highlight Home if navigated from another page
+    if ((path === 'index.html') && fromNav && homeNav) {
+      homeNav.classList.add('active');
+      sessionStorage.removeItem('fromNavHome');
+      return;
     }
-  });
 
-  // Set sessionStorage on Home link click
-  if (homeNav) {
-    homeNav.addEventListener('click', function() {
-      sessionStorage.setItem('fromNavHome', 'true');
+    // Highlight the correct link for other pages
+    navLinks.forEach(link => {
+      const href = link.getAttribute('href').toLowerCase();
+      if (href === path) {
+        link.classList.add('active');
+      }
     });
-  }
-  });
 
-  const donateButtons = document.querySelectorAll(".js");
-
-  donateButtons.forEach(function(btn) {
-      btn.addEventListener("click", function() {
-      window.location.href = "/donation.html";
+    // Set sessionStorage on Home link click
+    if (homeNav) {
+      homeNav.addEventListener('click', function() {
+        sessionStorage.setItem('fromNavHome', 'true');
       });
-  });
+    }
+
+    // ===================
+    // CONTACT FORM AJAX + TOAST
+    // ===================
+    const form = document.getElementById('contactForm');
+    if (form) {
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        const formData = new FormData(form);
+
+        fetch('sendMail.php', {
+          method: 'POST',
+          body: formData
+        })
+        .then(response => response.text())
+        .then(data => {
+          showToast(data.includes('Successfully') ? 'Message Sent Successfully!' : 'Failed to Send!');
+          if (data.includes('Successfully')) form.reset();
+        })
+        .catch(() => {
+          showToast('Error sending message!');
+        });
+      });
+    }
+
+    function showToast(message) {
+      const toast = document.getElementById('toast');
+      const toastMessage = document.getElementById('toast-message');
+      
+      toastMessage.textContent = message;
+      toast.style.display = 'flex';
+      
+      setTimeout(() => {
+        toast.classList.add('show');
+      }, 10);
+      
+      setTimeout(() => {
+        toast.classList.remove('show');
+        setTimeout(() => { toast.style.display = 'none'; }, 300);
+      }, 3000);
+    }
+});
