@@ -1592,3 +1592,89 @@ html, body {
     gap: 16px;
   }
 }
+
+
+/* ===================== BACK TO TOP BUTTON ===================== */
+.back-to-top-btn {
+  position: fixed;
+  right: 32px;
+  bottom: 32px;
+  width: 56px;
+  height: 56px;
+  background: #fff;
+  border-radius: 50%;
+  box-shadow: 0 4px 24px rgba(23,105,91,0.18);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 3000;
+  cursor: pointer;
+  transition: box-shadow 0.2s, background 0.2s;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s, box-shadow 0.2s;
+}
+.back-to-top-btn.visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+.back-to-top-progress {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 56px;
+  height: 56px;
+  z-index: 1;
+  pointer-events: none;
+}
+.back-to-top-bg {
+  stroke: #eee;
+}
+.back-to-top-bar {
+  transition: stroke 0.3s, stroke-dashoffset 0.3s;
+  stroke: var(--primary-color);
+}
+.back-to-top-btn.full .back-to-top-bar {
+  stroke: var(--secondary-color);
+}
+.back-to-top-arrow {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  box-shadow: 0 2px 8px rgba(23,105,91,0.08);
+}
+.back-to-top-arrow svg {
+  display: block;
+  margin: auto;
+  stroke: var(--primary-color);
+  transition: stroke 0.3s;
+}
+.back-to-top-btn.full .back-to-top-arrow svg {
+  stroke: var(--secondary-color);
+}
+.back-to-top-btn:hover {
+  box-shadow: 0 8px 32px rgba(70,192,178,0.22);
+}
+
+@media (max-width: 600px) {
+  .back-to-top-btn {
+    right: 16px;
+    bottom: 16px;
+    width: 44px;
+    height: 44px;
+  }
+  .back-to-top-progress {
+    width: 44px;
+    height: 44px;
+  }
+  .back-to-top-arrow {
+    width: 28px;
+    height: 28px;
+  }
+}
