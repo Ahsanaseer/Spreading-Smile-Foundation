@@ -111,7 +111,7 @@ document.addEventListener('DOMContentLoaded', function() {
       nodes.forEach(function(node) {
         const idx = node.textContent.toLowerCase().indexOf(keyword.toLowerCase());
         if (idx !== -1 && node.textContent.trim() !== '') {
-          let html = node.textContent.replace(new RegExp('('+keyword.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')+')', 'gi'), '<mark class=\"search-highlight\">$1</mark>');
+          let html = node.textContent.replace(new RegExp('('+keyword.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')+')', 'gi'), '<mark class="search-highlight">$1</mark>');
           const span = document.createElement('span');
           span.innerHTML = html;
           node.parentNode.replaceChild(span, node);
@@ -176,43 +176,27 @@ document.addEventListener('DOMContentLoaded', function() {
     const donateButtons = document.querySelectorAll('.js');
     donateButtons.forEach(function(btn) {
       btn.addEventListener('click', function(e) {
-        // If it's an anchor, let it work as a link
         if (btn.tagName === 'A' && btn.getAttribute('href')) return;
         window.location.href = 'donation.html';
       });
     });
-  });
 
-  const donateButtons = document.querySelectorAll(".js");
-
-  donateButtons.forEach(function(btn) {
-      btn.addEventListener("click", function() {
-      window.location.href = "/donation.html";
-      });
-  });
-
-
-
-
-
-  document.addEventListener('DOMContentLoaded', function() {
-    // Get the current filename (case-insensitive)
     let path = window.location.pathname.split('/').pop().toLowerCase();
     if (!path || path === '') path = 'index.html';
-  
+
     const navLinks = document.querySelectorAll('.nav-link');
     const homeNav = Array.from(navLinks).find(link => link.getAttribute('href').toLowerCase() === 'index.html');
     const fromNav = sessionStorage.getItem('fromNavHome') === 'true';
-  
+
     navLinks.forEach(link => link.classList.remove('active'));
-  
+
     // Highlight Home if navigated from another page
     if ((path === 'index.html') && fromNav && homeNav) {
       homeNav.classList.add('active');
       sessionStorage.removeItem('fromNavHome');
       return;
     }
-  
+
     // Highlight the correct link for other pages
     navLinks.forEach(link => {
       const href = link.getAttribute('href').toLowerCase();
@@ -220,11 +204,11 @@ document.addEventListener('DOMContentLoaded', function() {
         link.classList.add('active');
       }
     });
-  
+
     // Set sessionStorage on Home link click
     if (homeNav) {
       homeNav.addEventListener('click', function() {
         sessionStorage.setItem('fromNavHome', 'true');
       });
     }
-  });
+});

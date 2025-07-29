@@ -316,3 +316,38 @@ function bloodformfunc() {
     }
   });
 })();
+
+
+document.addEventListener('DOMContentLoaded', function() {
+  // Get the current filename (case-insensitive)
+  let path = window.location.pathname.split('/').pop().toLowerCase();
+  if (!path || path === '') path = 'index.html';
+
+  const navLinks = document.querySelectorAll('.nav-link');
+  const homeNav = Array.from(navLinks).find(link => link.getAttribute('href').toLowerCase() === 'index.html');
+  const fromNav = sessionStorage.getItem('fromNavHome') === 'true';
+
+  navLinks.forEach(link => link.classList.remove('active'));
+
+  // Highlight Home if navigated from another page
+  if ((path === 'index.html') && fromNav && homeNav) {
+    homeNav.classList.add('active');
+    sessionStorage.removeItem('fromNavHome');
+    return;
+  }
+
+  // Highlight the correct link for other pages
+  navLinks.forEach(link => {
+    const href = link.getAttribute('href').toLowerCase();
+    if (href === path) {
+      link.classList.add('active');
+    }
+  });
+
+  // Set sessionStorage on Home link click
+  if (homeNav) {
+    homeNav.addEventListener('click', function() {
+      sessionStorage.setItem('fromNavHome', 'true');
+    });
+  }
+});
