@@ -786,6 +786,7 @@ display: block;
   height: 120px;
   background: var(--primary-color);
   border-radius: 32px;
+  border: none;
   margin-left: 48px;
   cursor: pointer;
   transition: box-shadow 0.2s, transform 0.1s;
