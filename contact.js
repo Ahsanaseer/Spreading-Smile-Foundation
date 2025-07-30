@@ -181,27 +181,54 @@ document.addEventListener('DOMContentLoaded', function() {
       });
     });
 
-    let path = window.location.pathname.split('/').pop().toLowerCase();
-    if (!path || path === '') path = 'index.html';
+    let currentPath = window.location.pathname;
+    let currentPage = '';
+    
+    // Determine current page based on path
+    if (currentPath === '/' || currentPath === '/index.html' || currentPath.endsWith('/')) {
+      currentPage = 'index.html';
+    } else if (currentPath.includes('about.html')) {
+      currentPage = 'about.html';
+    } else if (currentPath.includes('contact.html')) {
+      currentPage = 'contact.html';
+    } else if (currentPath.includes('donation.html')) {
+      currentPage = 'donation.html';
+    } else {
+      // Fallback: try to extract filename from path
+      const pathParts = currentPath.split('/');
+      currentPage = pathParts[pathParts.length - 1] || 'index.html';
+    }
 
     const navLinks = document.querySelectorAll('.nav-link');
-    const homeNav = Array.from(navLinks).find(link => link.getAttribute('href').toLowerCase() === 'index.html');
+    const homeNav = Array.from(navLinks).find(link => {
+      const href = link.getAttribute('href');
+      return href === 'index.html' || href === '/' || href === './index.html';
+    });
     const fromNav = sessionStorage.getItem('fromNavHome') === 'true';
 
+    // Remove active class from all nav links
     navLinks.forEach(link => link.classList.remove('active'));
 
     // Highlight Home if navigated from another page
-    if ((path === 'index.html') && fromNav && homeNav) {
+    if ((currentPage === 'index.html') && fromNav && homeNav) {
       homeNav.classList.add('active');
       sessionStorage.removeItem('fromNavHome');
       return;
     }
 
-    // Highlight the correct link for other pages
+    // Highlight the correct link for current page
     navLinks.forEach(link => {
-      const href = link.getAttribute('href').toLowerCase();
-      if (href === path) {
-        link.classList.add('active');
+      const href = link.getAttribute('href');
+      if (href) {
+        // Normalize href to match current page
+        let normalizedHref = href;
+        if (href === 'index.html' || href === '/' || href === './index.html') {
+          normalizedHref = 'index.html';
+        }
+        
+        if (normalizedHref === currentPage) {
+          link.classList.add('active');
+        }
       }
     });
 
