@@ -513,6 +513,24 @@ html, body {
   stroke: #fff;
 }
 
+/*================================================== Fixed navbar styles================================================== */
+.navbar.fixed,
+.main-navbar-row.fixed {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 999;
+  
+}
+
+/* Offset green navbar when both are fixed */
+.main-navbar-row.fixed {
+  top: 100px;
+  transition: all 0.3s ease;
+  background: none;
+}
+
 
 /* =================================================DONATE BUTTON STYLES============================================================================== */
 .button {

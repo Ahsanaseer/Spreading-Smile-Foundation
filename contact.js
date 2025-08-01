@@ -279,6 +279,22 @@ document.addEventListener('DOMContentLoaded', function() {
       setTimeout(() => { toast.style.display = 'none'; }, 300);
     }, 3000);
   }
+  const topNavbar = document.querySelector('.navbar');
+  const greenNavbar = document.querySelector('.main-navbar-row');
+  const trigger = document.getElementById('navbar-trigger');
+  
+  if (topNavbar && greenNavbar && trigger) {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        const isOutOfView = !entry.isIntersecting;
+        topNavbar.classList.toggle('fixed', isOutOfView);
+        greenNavbar.classList.toggle('fixed', isOutOfView);
+      },
+      { threshold: 0 }
+    );
+  
+    observer.observe(trigger);
+  }
 });
 
 // ===================== BACK TO TOP BUTTON LOGIC =====================
