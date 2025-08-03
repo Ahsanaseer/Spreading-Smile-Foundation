@@ -233,28 +233,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   });
 
-  // Set sessionStorage on Home link click
-  if (homeNav) {
-    homeNav.addEventListener('click', function() {
-      sessionStorage.setItem('fromNavHome', 'true');
-    });
-  }
-  const topNavbar = document.querySelector('.navbar');
-  const greenNavbar = document.querySelector('.main-navbar-row');
-  const trigger = document.getElementById('navbar-trigger');
   
-  if (topNavbar && greenNavbar && trigger) {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        const isOutOfView = !entry.isIntersecting;
-        topNavbar.classList.toggle('fixed', isOutOfView);
-        greenNavbar.classList.toggle('fixed', isOutOfView);
-      },
-      { threshold: 0 }
-    );
-  
-    observer.observe(trigger);
-  }
 });
 
 // ===================== BACK TO TOP BUTTON LOGIC =====================
