@@ -194,6 +194,8 @@ document.addEventListener('navbarLoaded', function() {
     currentPage = 'contact.html';
   } else if (currentPath.includes('donation') || currentPath.includes('donation.html')) {
     currentPage = 'donation.html';
+  } else if (currentPath.includes('event') || currentPath.includes('event.html')) {
+    currentPage = 'event.html';
   } else {
     // Fallback: try to extract filename from path
     const pathParts = currentPath.split('/');
@@ -261,7 +263,7 @@ const members = [
     },
     {
         name: 'Esha',
-        img: 'Picrures All/Esha.jpeg',
+        img: 'Picrures All/Esha.jpg',
         desc: 'Spreading Smile Foundation has profoundly impacted me. Working with them, I\'ve realized that hope still exists. Despite the challenges we face, there are good people in society who are eager to make a difference. This belief in humanity gives me hope. The NGO truly cares for its donors and takes responsibility for delivering aid to those in genuine need. My experience with this organization has been transformative, helping me grow personally.'
     },
     {

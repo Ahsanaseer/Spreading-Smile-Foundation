@@ -18,7 +18,7 @@ const members = [
     },
     {
         name: 'Esha',
-        img: 'Picrures All/Esha.jpeg',
+        img: 'Picrures All/Esha.jpg',
         desc: 'Spreading Smile Foundation has profoundly impacted me. Working with them, I\'ve realized that hope still exists. Despite the challenges we face, there are good people in society who are eager to make a difference. This belief in humanity gives me hope. The NGO truly cares for its donors and takes responsibility for delivering aid to those in genuine need. My experience with this organization has been transformative, helping me grow personally.'
     },
     {
@@ -27,6 +27,11 @@ const members = [
         desc: `Being part of Spreading Smiles Foundation for two years has been incredibly rewarding. I started as a volunteer in the 2023 Ramadan Program, inspired by the organization's dedication and transparency. This led me to join the team, where I've seen passionate individuals working hard to bring joy. The team welcomed me from the start, and the selection process was merit-based. Volunteering has allowed me to make a real difference, whether through outreach or simple acts of kindness.`
     }
 ];
+
+// Placeholder image path
+const createPlaceholderImage = () => {
+    return "Picrures All/placeholder-img.png";
+};
 
 document.addEventListener('DOMContentLoaded', function() {
   let currentMember = 0;
@@ -42,10 +47,30 @@ document.addEventListener('DOMContentLoaded', function() {
       memberImg.classList.add(direction === 'right' ? 'slide-left' : 'slide-right');
       
       setTimeout(() => {
+          // Update text content immediately
           memberName.textContent = members[idx].name;
           memberDesc.textContent = members[idx].desc;
-          memberImg.src = members[idx].img;
+          
+          // Show placeholder while loading new image
+          memberImg.src = createPlaceholderImage();
           memberImg.alt = members[idx].name;
+          memberImg.classList.add('loading');
+          
+          // Load the actual image in background
+          const realImg = new Image();
+          realImg.src = members[idx].img;
+          
+          realImg.onload = () => {
+              // Smoothly replace placeholder with actual image
+              memberImg.src = members[idx].img;
+              memberImg.classList.remove('loading');
+          };
+          
+          realImg.onerror = () => {
+              // Fallback to placeholder if image fails to load
+              memberImg.src = createPlaceholderImage();
+              memberImg.classList.remove('loading');
+          };
           
           // Animate in
           memberImg.classList.remove('slide-left', 'slide-right');

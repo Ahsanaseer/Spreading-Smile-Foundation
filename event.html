@@ -15,15 +15,23 @@
 
     <div data-include="navbar.html"></div>
 
-   
-
-    <!-- Event Content Start -->
-    <h1>Our Events</h1>
-    <div id="events-container" class="grid"></div>
-
-    <!-- From Uiverse.io by SchawnnahJ --> 
-    <div class="loader" id="loader"></div>
-    <!-- Event Content End -->
+    <!-- Main Content Container -->
+    <main class="main-content">
+        <!-- Event Content Start -->
+        <div class="events-header">
+            <h1>Our Events</h1>
+        </div>
+        
+        <!-- Loader Container -->
+        <div class="loader-container" id="loader-container">
+            <div class="loader" id="loader"></div>
+            <p class="loading-text">Loading events...</p>
+        </div>
+        
+        <!-- Events Container -->
+        <div id="events-container" class="events-grid"></div>
+        <!-- Event Content End -->
+    </main>
 
     <div data-include="footer.html"></div>
     
