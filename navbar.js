@@ -196,7 +196,7 @@ document.addEventListener('navbarLoaded', function() {
     currentPage = 'contact.html';
   } else if (currentPath.includes('donation') || currentPath.includes('donation.html')) {
     currentPage = 'donation.html';
-  } else if (currentPath.includes('events') || currentPath.includes('events.html') || currentPath.includes('Fullevents.html')) {
+  } else if (currentPath.includes('events') || currentPath.includes('events.html') || currentPath.includes('eventsdetail.html')) {
     currentPage = 'events.html';
   } else {
     // Fallback: try to extract filename from path

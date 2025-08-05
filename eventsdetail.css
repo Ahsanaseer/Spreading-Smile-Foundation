@@ -259,6 +259,13 @@ html, body {
     box-shadow: 0 4px 15px rgba(0,0,0,0.1);
 }
 
+/* Hide navigation buttons on mobile devices */
+@media (max-width: 768px) {
+    .carousel-nav {
+        display: none;
+    }
+}
+
 .carousel-nav:hover {
     background: rgba(255,255,255,1);
     transform: translateY(-50%) scale(1.1);
@@ -368,19 +375,19 @@ html, body {
     flex: 1;
 }
 
-.info-label {
+.event-info .info-label {
     display: block;
-    font-weight: 600;
-    color: #555;
-    font-size: 14px;
+    font-weight: bold !important;
+    color: #333;
+    font-size: 16px;
     margin-bottom: 5px;
     letter-spacing: 0.5px;
 }
 
-.info-value {
-    color: #333;
+.event-info .info-value {
+    color: #555;
     font-size: 16px;
-    font-weight: 500;
+    font-weight: normal !important;
 }
 
 .event-description {

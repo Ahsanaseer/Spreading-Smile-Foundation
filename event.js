@@ -33,7 +33,7 @@ const createPlaceholderImage = () => {
 
 // Navigate to event details page
 const navigateToEventDetails = (eventId) => {
-  window.location.href = `Fullevents.html?id=${eventId}`;
+  window.location.href = `eventsdetail.html?id=${eventId}`;
 };
 
 // Fetch events from Firestore

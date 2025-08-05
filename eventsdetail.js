@@ -156,20 +156,7 @@ function goToSlide(n) {
 window.changeSlide = changeSlide;
 window.goToSlide = goToSlide;
 
-// Auto-advance carousel every 5 seconds
-let autoAdvanceInterval;
-
-const startAutoAdvance = () => {
-  autoAdvanceInterval = setInterval(() => {
-    changeSlide(1);
-  }, 5000);
-};
-
-const stopAutoAdvance = () => {
-  if (autoAdvanceInterval) {
-    clearInterval(autoAdvanceInterval);
-  }
-};
+// Auto-scroll functionality removed - manual navigation only
 
 // Touch/swipe support for mobile
 let startX = 0;
@@ -273,7 +260,6 @@ const displayEventData = (eventData) => {
   // Initialize carousel
   showSlide(0);
   setupTouchSupport();
-  startAutoAdvance();
   
   // Show event details
   loadingContainer.style.display = 'none';
@@ -301,11 +287,4 @@ document.addEventListener('DOMContentLoaded', () => {
   fetchEventData();
 });
 
-// Pause auto-advance on hover
-document.addEventListener('DOMContentLoaded', () => {
-  const carousel = document.getElementById('carousel-images');
-  if (carousel) {
-    carousel.addEventListener('mouseenter', stopAutoAdvance);
-    carousel.addEventListener('mouseleave', startAutoAdvance);
-  }
-});
+// Auto-scroll functionality completely removed
