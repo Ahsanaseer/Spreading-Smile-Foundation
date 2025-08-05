@@ -1,5 +1,7 @@
 // ===================== BACK TO TOP BUTTON LOGIC =====================
 document.addEventListener('footerLoaded', function() {
+  // Add a small delay to ensure DOM is fully ready
+  setTimeout(() => {
   const btn = document.getElementById('back-to-top');
   const progress = btn ? btn.querySelector('.back-to-top-bar') : null;
   const circleLength = 2 * Math.PI * 28; // r=28, matches SVG
@@ -47,5 +49,6 @@ document.addEventListener('footerLoaded', function() {
       window.location.href = 'donation.html';
     });
   });
+  }, 100); // Small delay to ensure DOM is ready
 });
   

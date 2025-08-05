@@ -1,5 +1,7 @@
 // ===================== SHARED NAVIGATION AND MOBILE MENU LOGIC =====================
 document.addEventListener('navbarLoaded', function() {
+  // Add a small delay to ensure DOM is fully ready
+  setTimeout(() => {
   // Mobile menu toggle
   const hamburgerBtn = document.getElementById('hamburger-btn');
   const mobileMenu = document.getElementById('mobile-menu');
@@ -194,8 +196,8 @@ document.addEventListener('navbarLoaded', function() {
     currentPage = 'contact.html';
   } else if (currentPath.includes('donation') || currentPath.includes('donation.html')) {
     currentPage = 'donation.html';
-  } else if (currentPath.includes('event') || currentPath.includes('event.html')) {
-    currentPage = 'event.html';
+  } else if (currentPath.includes('events') || currentPath.includes('events.html') || currentPath.includes('Fullevents.html')) {
+    currentPage = 'events.html';
   } else {
     // Fallback: try to extract filename from path
     const pathParts = currentPath.split('/');
@@ -241,6 +243,7 @@ document.addEventListener('navbarLoaded', function() {
       sessionStorage.setItem('fromNavHome', 'true');
     });
   }
+  }, 100); // Small delay to ensure DOM is ready
 });
 
 // Blood form function

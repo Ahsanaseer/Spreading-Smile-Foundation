@@ -280,11 +280,8 @@
     right: 0;
   }
   
-  /* For mobile navbar search */
-  .navbar-mobile-right .main-search-bar-container {
-    right: 10px;
-    left: auto;
-  }
+     /* For mobile navbar search */
+ 
   
   /* Search input styles */
   .main-search-bar {
@@ -446,7 +443,7 @@
   /* ===================== SEARCH BAR ANIMATION ===================== */
   .main-search-bar-container {
     position: absolute;
-    left: 0;
+    right: 77px;
     top: 100%;
     margin-top: 24px; /* Increased gap below the search button */
     background: #fff;
@@ -686,9 +683,8 @@
     }
   
     .main-search-bar-container {
-      left: 0;
-      right: 0;
       margin: 0 auto;
+      margin-left: 100px;
       top: 64px;
       min-width: 220px;
       max-width: 100px;
@@ -704,16 +700,16 @@
       width: 40px;
       height: 40px;
     }
-    .main-search-bar-container {
-      right: 10px;
-      left: auto;
-      margin-top: 10px;
-    }
-    
-    .navbar-mobile-right .main-search-bar-container {
-      right: 10px;
-      left: auto;
-    }
+         .main-search-bar-container {
+       right: 20px;
+       left: auto;
+       margin-top: 10px;
+     }
+     
+     .navbar-mobile-right .main-search-bar-container {
+       right: 20px;
+       left: auto;
+     }
     .hamburger-btn {
       display: flex;
       flex-direction: column;

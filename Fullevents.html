@@ -16,32 +16,42 @@
 
     <div data-include="navbar.html"></div>
 
+    <!-- Loading Container -->
+    <div id="loading-container" class="loading-container">
+        <div class="loader"></div>
+        <p class="loading-text">Loading event details...</p>
+    </div>
 
-    <div class="event-details-container">
+    <!-- Error Container -->
+    <div id="error-container" class="error-container" style="display: none;">
+        <h2>Event Not Found</h2>
+        <p id="error-message">The event you're looking for doesn't exist or has been removed.</p>
+        <a href="events.html" class="back-btn">
+            <svg class="back-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="19" y1="12" x2="5" y2="12"></line>
+                <polyline points="12,19 5,12 12,5"></polyline>
+            </svg>
+            <span class="back-text">Back to Events</span>
+        </a>
+    </div>
+
+    <div id="event-details-container" class="event-details-container" style="display: none;">
         <!-- Page Header -->
         <div class="page-header">
-            <h1 class="page-title">Bait ul Zaeef Oldage Home</h1>
-            <p class="page-subtitle">A heartwarming visit to bring joy and smiles to elderly residents</p>
+            <h1 class="page-title" id="event-title">Loading...</h1>
+            <p class="page-subtitle" id="event-subtitle">Loading event details...</p>
         </div>
 
         <!-- Image Carousel -->
         <div class="event-image-carousel">
             <div class="carousel-container">
                 <div class="carousel-images" id="carousel-images">
-                    <img src="Picrures All/kid 1.jpg" alt="Event Image 1" class="carousel-image">
-                    <img src="Picrures All/kid 2.jpeg" alt="Event Image 2" class="carousel-image">
-                    <img src="Picrures All/kid 3.jpeg" alt="Event Image 3" class="carousel-image">
-                    <img src="Picrures All/kid 4.jpeg" alt="Event Image 4" class="carousel-image">
-                    <img src="Picrures All/volunteer-1.jpg" alt="Event Image 5" class="carousel-image">
+                    <!-- Images will be dynamically loaded here -->
                 </div>
                 <button class="carousel-nav carousel-prev" onclick="changeSlide(-1)">‹</button>
                 <button class="carousel-nav carousel-next" onclick="changeSlide(1)">›</button>
                 <div class="carousel-dots" id="carousel-dots">
-                    <button class="carousel-dot active" onclick="goToSlide(0)"></button>
-                    <button class="carousel-dot" onclick="goToSlide(1)"></button>
-                    <button class="carousel-dot" onclick="goToSlide(2)"></button>
-                    <button class="carousel-dot" onclick="goToSlide(3)"></button>
-                    <button class="carousel-dot" onclick="goToSlide(4)"></button>
+                    <!-- Dots will be dynamically generated -->
                 </div>
             </div>
         </div>
@@ -63,7 +73,7 @@
                         </div>
                         <div class="info-details">
                             <span class="info-label">Date</span>
-                            <span class="info-value">April 24, 2022</span>
+                            <span class="info-value" id="event-date">Loading...</span>
                         </div>
                     </div>
                     <div class="info-item">
@@ -75,7 +85,7 @@
                         </div>
                         <div class="info-details">
                             <span class="info-label">Time</span>
-                            <span class="info-value">5:00 PM</span>
+                            <span class="info-value" id="event-time">Loading...</span>
                         </div>
                     </div>
                     <div class="info-item">
@@ -87,39 +97,18 @@
                         </div>
                         <div class="info-details">
                             <span class="info-label">Venue</span>
-                            <span class="info-value">Bait ul Zaeef Oldage Home</span>
+                            <span class="info-value" id="event-venue">Loading...</span>
                         </div>
                     </div>
-                    <div class="info-item">
-                        <div class="info-icon-fullevents">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
-                                <circle cx="9" cy="7" r="4"></circle>
-                                <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
-                                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
-                            </svg>
-                        </div>
-                        <div class="info-details">
-                            <span class="info-label">Participants</span>
-                            <span class="info-value">15 Volunteers</span>
-                        </div>
-                    </div>
+
                 </div>
             </div>
 
             <!-- Event Description -->
             <div class="event-description">
                 <h2>About This Event</h2>
-                <div class="description-text">
-                    <p>Our visit to "Bait ul Zaeef Oldage Home" where we spent time with them and listened to their hearts.</p>
-                    
-                    <p>We played games with them and they enjoyed it so well. We arranged an iftar party, dinner, and distributed gifts and Eid clothes to them.</p>
-                    
-                    <p>We tried to fill colors in their Eid. This all happened because of your donations.</p>
-                    
-                    <p>Your donations brought smiles to many sad and silent faces. We are very thankful to everyone who contributed to this purpose.</p>
-                    
-                    <p>Keep Supporting and Spreading Smiles with us.</p>
+                <div class="description-text" id="event-description">
+                    <p>Loading event description...</p>
                 </div>
 
                 <div class="contact-info">
@@ -141,11 +130,8 @@
                     </div>
                 </div>
 
-                <div class="hashtags">
+                <div class="hashtags" id="event-hashtags">
                     <span class="hashtag">#helpothers</span>
-                    <span class="hashtag">#old</span>
-                    <span class="hashtag">#oldagehome</span>
-                    <span class="hashtag">#Lahore</span>
                     <span class="hashtag">#NGO</span>
                     <span class="hashtag">#Spreadingsmilefoundation</span>
                     <span class="hashtag">#keepgiving</span>
@@ -168,8 +154,8 @@
 
     <div data-include="footer.html"></div>
 
-    
-    <script src="Fullevents.js"></script>
+    <!-- Firebase SDK -->
+    <script type="module" src="Fullevents.js"></script>
     <script src="include.js"></script>
     <script src="navbar.js"></script>
     <script src="footer.js"></script>

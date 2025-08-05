@@ -20,6 +20,7 @@ const loaderContainer = document.getElementById("loader-container");
 // Hide events and show loader initially
 eventsContainer.style.display = "none";
 loaderContainer.style.display = "flex";
+document.getElementById("eventkiheading").style.display = "none";
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
@@ -30,26 +31,51 @@ const createPlaceholderImage = () => {
   return "Picrures All/placeholder-img.png"; // 🟢 Change this if your image path is different
 };
 
+// Navigate to event details page
+const navigateToEventDetails = (eventId) => {
+  window.location.href = `Fullevents.html?id=${eventId}`;
+};
+
 // Fetch events from Firestore
 const fetchEvents = async () => {
   try {
     const querySnapshot = await getDocs(collection(db, "allEvents"));
 
     if (querySnapshot.empty) {
+      document.getElementById("eventkiheading").style.display = "none";
       eventsContainer.innerHTML = `
         <div style="text-align: center; width: 100%; padding: 40px;">
           <h3 style="color: #666; margin-bottom: 10px;">No events found</h3>
-          <p style="color: #999;">Check back later for upcoming events.</p>
+          <p style="color: #999;">Check your internet connection and try again.</p>
         </div>
       `;
     } else {
       querySnapshot.forEach((doc) => {
         const event = doc.data();
+        const eventId = doc.id; // Get the document ID
         const imageSrc = event.imagesPublic && event.imagesPublic[0] ? event.imagesPublic[0] : null;
 
         // Create card
         const eventBox = document.createElement("div");
         eventBox.className = "event-box";
+        eventBox.style.cursor = "pointer"; // Add pointer cursor
+        eventBox.setAttribute("data-event-id", eventId); // Store event ID
+
+        // Add click event listener
+        eventBox.addEventListener("click", () => {
+          navigateToEventDetails(eventId);
+        });
+
+        // Add hover effect
+        eventBox.addEventListener("mouseenter", () => {
+          eventBox.style.transform = "translateY(-5px)";
+          eventBox.style.boxShadow = "0 8px 25px rgba(0,0,0,0.15)";
+        });
+
+        eventBox.addEventListener("mouseleave", () => {
+          eventBox.style.transform = "translateY(0)";
+          eventBox.style.boxShadow = "0 4px 15px rgba(0,0,0,0.1)";
+        });
 
         // Create image element with placeholder
         const img = document.createElement("img");
@@ -78,17 +104,22 @@ const fetchEvents = async () => {
         // Event title
         const title = document.createElement("h3");
         title.className = "event-title";
-        title.textContent = event.title || "Event Title";
+        title.textContent = event.title || "Title Not Available";
 
         // Event address
         const address = document.createElement("p");
         address.className = "event-address";
         address.textContent = event.address || "Address not available";
 
+
+
+
+
         // Append elements
         eventBox.appendChild(img);
         eventBox.appendChild(title);
         eventBox.appendChild(address);
+        
         eventsContainer.appendChild(eventBox);
       });
     }
@@ -96,13 +127,14 @@ const fetchEvents = async () => {
     // Hide loader and show events
     loaderContainer.style.display = "none";
     eventsContainer.style.display = "flex";
+    document.getElementById("eventkiheading").style.display = "block";
 
   } catch (error) {
     console.error("Error fetching events:", error);
     eventsContainer.innerHTML = `
       <div style="text-align: center; width: 100%; padding: 40px;">
         <h3 style="color: #e74c3c; margin-bottom: 10px;">Error loading events</h3>
-        <p style="color: #999;">Please try again later.</p>
+        <p style="color: #999;">Please try again later or check your internet connection.</p>
       </div>
     `;
     loaderContainer.style.display = "none";
