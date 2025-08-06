@@ -1,4 +1,190 @@
+// Firebase imports from CDN
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
+// Firebase config
+const firebaseConfig = {
+  apiKey: "AIzaSyCgYJmsDvgZeGD-Gq2yzXMPKhSs8YmmitQ",
+  authDomain: "spreading-smile-foundation.firebaseapp.com",
+  projectId: "spreading-smile-foundation",
+  storageBucket: "spreading-smile-foundation.appspot.com",
+  messagingSenderId: "232128085724",
+  appId: "1:232128085724:web:3733b285474fd63f38c05e",
+  measurementId: "G-ZC6Y3KJMLY"
+};
+
+
+
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+
+
+// Function to get progress bar color based on percentage
+const getProgressBarColor = (percentage) => {
+  if (percentage <= 30) {
+    return '#e74c3c'; // Red
+  } else if (percentage > 30 && percentage < 70) {
+    return '#EEBB1B'; // Secondary color
+  } else if (percentage >= 70 && percentage <= 100) {
+    return '#46C0B2'; // Primary color
+  }
+};
+
+
+
+// Function to create a case card
+const createCaseCard = (caseData, caseId) => {
+  const { title, imagesPublic, collectedAmount, requiredAmount, status } = caseData;
+  
+  // Convert string values to numbers
+  const raisedStr = caseData.collectedAmount;    
+  const goalStr = caseData.requiredAmount;       
+  const raised = Number(raisedStr.replace(/,/g, ""));
+  const goal = Number(goalStr.replace(/,/g, ""));
+  
+  const percentage = goal > 0 ? (raised / goal) * 100 : 0;
+
+  
+  // Get progress bar color
+  const progressBarColor = getProgressBarColor(percentage);
+  
+  // Get image source
+  const imageSrc = caseData.imagesPublic && caseData.imagesPublic.length > 0 ? caseData.imagesPublic[0] : createPlaceholderImage();
+  
+  // Create card element
+  const card = document.createElement('div');
+  card.className = 'Cases-card';
+  
+  // Set progress indicator text
+  const progressText = `${Math.round(percentage)}%`;
+  
+  card.innerHTML = `
+    <div class="Cases-image">
+      <img src="${createPlaceholderImage()}" alt="${title}" class="Cases-img">
+      <div class="progress-indicator">${progressText}</div>
+    </div>
+    <div class="Cases-content">
+      <h3 class="Cases-title">${title}</h3>
+      <div class="progress-bar">
+        <div class="progress-fill" style="width: ${percentage}%; background: ${progressBarColor}"></div>
+      </div>
+      <div class="Cases-details">
+        <span class="raised">Raised - Rs ${raised}</span>
+        <span class="goal">Goal - Rs ${goal}</span>
+      </div>
+      <a href="donation.html" class="donate-btn">
+        <span>Donate Now</span>
+        <span class="donate-arrow">→</span>
+      </a>
+    </div>
+  `;
+  
+  // Load real image in background
+  const img = card.querySelector('.Cases-img');
+  if (imageSrc !== createPlaceholderImage()) {
+    const realImg = new Image();
+    realImg.src = imageSrc;
+    
+    realImg.onload = () => {
+      img.src = imageSrc;
+    };
+    
+    realImg.onerror = () => {
+      img.src = createPlaceholderImage();
+    };
+  }
+  
+  return card;
+};
+
+
+
+
+// Function to fetch and render processing cases
+const fetchAndRenderProcessingCases = async () => {
+  const casesCardsWrapper = document.getElementById('cases-cards-wrapper');
+  const loaderContainer = document.getElementById('loader-container');
+  
+  // Show loader and hide cards wrapper
+  loaderContainer.style.display = 'flex';
+  casesCardsWrapper.style.display = 'none';
+  
+  try {
+    const querySnapshot = await getDocs(collection(db, "allCases"));
+    
+    if (querySnapshot.empty) {
+      console.log("No cases found");
+      // Hide loader and show cards wrapper
+      loaderContainer.style.display = 'none';
+      casesCardsWrapper.style.display = 'flex';
+      casesCardsWrapper.innerHTML = '<p style="text-align: center; color: #666; padding: 40px;">No processing cases found.</p>';
+      return;
+    }
+    
+    // Clear existing cards
+    casesCardsWrapper.innerHTML = '';
+    
+    // Filter and render processing cases
+    querySnapshot.forEach((doc) => {
+      const caseData = doc.data();
+      const caseId = doc.id;
+    
+      if (caseData.status === "processing") {
+        const card = createCaseCard(caseData, caseId);
+        casesCardsWrapper.appendChild(card);
+      }
+    });
+    
+    // Hide loader and show cards wrapper
+    loaderContainer.style.display = 'none';
+    casesCardsWrapper.style.display = 'flex';
+    
+    // If no processing cases found
+    if (casesCardsWrapper.children.length === 0) {
+      casesCardsWrapper.innerHTML = '<p style="text-align: center; color: #666; padding: 40px;">No processing cases found.</p>';
+    }
+    
+  } catch (error) {
+    console.error("Error fetching cases:", error);
+    // Hide loader and show cards wrapper
+    loaderContainer.style.display = 'none';
+    casesCardsWrapper.style.display = 'flex';
+    casesCardsWrapper.innerHTML = '<p style="text-align: center; color: #e74c3c; padding: 40px;">Error loading cases. Please try again later.</p>';
+  }
+};
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // ===================== HOME PAGE SPECIFIC LOGIC =====================
+
+
+
 // Member Reviews slider logic
 const members = [
     {
@@ -34,6 +220,9 @@ const createPlaceholderImage = () => {
 };
 
 document.addEventListener('DOMContentLoaded', function() {
+  // Fetch and render processing cases
+  fetchAndRenderProcessingCases();
+  
   let currentMember = 0;
   const memberName = document.getElementById('member-name');
   const memberDesc = document.getElementById('member-desc');
@@ -108,6 +297,28 @@ document.addEventListener('DOMContentLoaded', function() {
       closeBtn.addEventListener('click', () => {
           videoOverlay.style.display = 'none';
           youtubeFrame.src = "";
+      });
+  }
+  // Cases cards navigation functionality
+  const casesLeftBtn = document.getElementById('casesleft');
+  const casesRightBtn = document.getElementById('casesright');
+  const casesCardsWrapper = document.getElementById('cases-cards-wrapper');
+
+  if (casesLeftBtn && casesRightBtn && casesCardsWrapper) {
+      casesLeftBtn.addEventListener('click', () => {
+          const cardWidth = 380 + 24; // card width + gap
+          casesCardsWrapper.scrollBy({
+              left: -cardWidth,
+              behavior: 'smooth'
+          });
+      });
+
+      casesRightBtn.addEventListener('click', () => {
+          const cardWidth = 380 + 24; // card width + gap
+          casesCardsWrapper.scrollBy({
+              left: cardWidth,
+              behavior: 'smooth'
+          });
       });
   }
 });

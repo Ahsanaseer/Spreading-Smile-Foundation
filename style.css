@@ -206,6 +206,450 @@ display: block;
   background: #fff;
   padding: 40px 0 40px 0;
 }
+
+/* =================================================CASES LOADERS STYLES============================================================================== */
+ /* From Uiverse.io by SchawnnahJ */ 
+ .loader-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 60vh;
+  padding: 40px 20px;
+}
+
+.loading-text {
+  margin-top: 20px;
+  font-size: 1.1rem;
+  color: #666;
+  font-weight: 500;
+}
+ .loader {
+  position: relative;
+  width: 2.5em;
+  height: 2.5em;
+  transform: rotate(165deg);
+}
+
+.loader:before, .loader:after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  display: block;
+  width: 0.5em;
+  height: 0.5em;
+  border-radius: 0.25em;
+  transform: translate(-50%, -50%);
+}
+
+.loader:before {
+  animation: before8 2s infinite;
+}
+
+.loader:after {
+  animation: after6 2s infinite;
+}
+
+@keyframes before8 {
+  0% {
+    width: 0.5em;
+    box-shadow: 1em -0.5em rgba(225, 20, 98, 0.75), -1em 0.5em rgba(111, 202, 220, 0.75);
+  }
+
+  35% {
+    width: 2.5em;
+    box-shadow: 0 -0.5em rgba(225, 20, 98, 0.75), 0 0.5em rgba(111, 202, 220, 0.75);
+  }
+
+  70% {
+    width: 0.5em;
+    box-shadow: -1em -0.5em rgba(225, 20, 98, 0.75), 1em 0.5em rgba(111, 202, 220, 0.75);
+  }
+
+  100% {
+    box-shadow: 1em -0.5em rgba(225, 20, 98, 0.75), -1em 0.5em rgba(111, 202, 220, 0.75);
+  }
+}
+
+@keyframes after6 {
+  0% {
+    height: 0.5em;
+    box-shadow: 0.5em 1em rgba(61, 184, 143, 0.75), -0.5em -1em rgba(233, 169, 32, 0.75);
+  }
+
+  35% {
+    height: 2.5em;
+    box-shadow: 0.5em 0 rgba(61, 184, 143, 0.75), -0.5em 0 rgba(233, 169, 32, 0.75);
+  }
+
+  70% {
+    height: 0.5em;
+    box-shadow: 0.5em -1em rgba(61, 184, 143, 0.75), -0.5em 1em rgba(233, 169, 32, 0.75);
+  }
+
+  100% {
+    box-shadow: 0.5em 1em rgba(61, 184, 143, 0.75), -0.5em -1em rgba(233, 169, 32, 0.75);
+  }
+}
+
+
+/* =================================================Cases CARDS SECTION STYLES============================================================================== */
+.Cases-section {
+  width: 100%;
+  background: linear-gradient(135deg, #faf8f3 0%, #f5f2e8 100%);
+  padding: 60px 0;
+  overflow: visible;
+  position: relative;
+}
+
+.Cases-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 300px;
+  height: 300px;
+  z-index: 1;
+  pointer-events: none;
+}
+
+
+
+/* =================================================Cases CARDS STYLES============================================================================== */
+.Cases-container {
+  width: 100%;
+  max-width: 100vw;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+}
+
+.Cases-cards-wrapper {
+  display: flex;
+  gap: 24px;
+  padding: 8px 20px;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+  scroll-snap-type: x mandatory;
+  position: relative;
+}
+
+.Cases-cards-wrapper::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 60px;
+  height: 100%;
+  background: none;
+  pointer-events: none;
+  z-index: 3;
+}
+
+.Cases-cards-wrapper::-webkit-scrollbar {
+  display: none; 
+}
+
+.Cases-card {
+  flex: 0 0 380px;
+  background: #fff;
+  border-radius: 20px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  scroll-snap-align: start;
+  position: relative;
+  border: 1px solid rgba(23, 105, 91, 0.08);
+  transform: translateY(0);
+  margin: 0px 0px;
+}
+
+
+.Cases-card:hover {
+  transform: translateY(-8px);
+  border-color: rgba(23, 105, 91, 0.15);
+}
+
+.Cases-image {
+  position: relative;
+  width: 100%;
+  height: 220px;
+  overflow: hidden;
+  border-radius: 20px 20px 0 0;
+}
+
+.Cases-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.Cases-card:hover .Cases-img {
+  transform: scale(1.05);
+}
+
+.carousel-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255,255,255,0.95);
+  border: none;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 20px;
+  color: #333;
+  transition: all 0.3s;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+}
+
+.carousel-nav-icon {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+}
+
+.carousel-nav:hover {
+  background: rgba(255,255,255,1);
+  transform: translateY(-50%) scale(1.1);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+}
+
+.carousel-prev {
+  left: 30px;
+}
+
+.carousel-next {
+  right: 30px;
+}
+
+/* Hide navigation buttons on mobile devices */
+@media (max-width: 768px) {
+  .carousel-nav {
+    display: none;
+  }
+}
+
+.progress-indicator {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: var(--secondary-color);
+  color: #fff;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  z-index: 2;
+}
+
+.Cases-content {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.Cases-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #333;
+  line-height: 1.4;
+  margin: 0;
+  font-family: 'Poppins', Arial, sans-serif;
+}
+
+.progress-bar {
+  width: 100%;
+  height: 8px;
+  background: #f0f0f0;
+  border-radius: 4px;
+  overflow: hidden;
+  position: relative;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--secondary-color), #ffa726);
+  border-radius: 4px;
+  transition: width 0.3s ease;
+  position: relative;
+}
+
+/* Progress bar color overrides for dynamic content */
+.progress-fill[style*="background: #e74c3c"] {
+  background: #e74c3c !important;
+}
+
+.progress-fill[style*="background: #EEBB1B"] {
+  background: #EEBB1B !important;
+}
+
+.progress-fill[style*="background: #46C0B2"] {
+  background: #46C0B2 !important;
+}
+
+.progress-fill::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3));
+  border-radius: 4px;
+}
+
+.Cases-details {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.9rem;
+  color: #666;
+  font-weight: 500;
+}
+
+.raised {
+  color: var(--primary-color);
+  font-weight: 600;
+}
+
+.goal {
+  color: #888;
+}
+
+.donate-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: var(--primary-color);
+  color: #fff;
+  text-decoration: none;
+  padding: 12px 24px;
+  border-radius: 25px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 16px rgba(70, 192, 178, 0.3);
+  position: relative;
+  overflow: hidden;
+  border: none;
+  cursor: pointer;
+}
+
+.donate-btn::before {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--secondary-color);
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: translateY(0);
+  z-index: 0;
+  border-radius: 25px;
+}
+
+.donate-btn:hover::before {
+  transform: translateY(-100%);
+}
+
+.donate-btn span {
+  position: relative;
+  z-index: 1;
+  color: #fff;
+}
+
+.donate-arrow {
+  font-size: 1.1rem;
+  transition: transform 0.3s ease;
+}
+
+.donate-btn:hover .donate-arrow {
+  transform: translateX(4px);
+}
+
+/* Auto-scroll animation */
+@keyframes autoScroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-404px); /* card width + gap */
+  }
+}
+
+.Cases-cards-wrapper.auto-scroll {
+  animation: autoScroll 5s linear infinite;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .Cases-section {
+    padding: 40px 0;
+  }
+  
+  
+  
+  .Cases-card {
+    flex: 0 0 320px;
+  }
+  
+  .Cases-image {
+    height: 180px;
+  }
+  
+  .Cases-content {
+    padding: 20px;
+    gap: 12px;
+  }
+  
+  .Cases-title {
+    font-size: 1rem;
+  }
+  
+  .Cases-details {
+    font-size: 0.8rem;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 4px;
+  }
+  
+  .donate-btn {
+    padding: 10px 20px;
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .Cases-card {
+    flex: 0 0 280px;
+  }
+  
+  .Cases-image {
+    height: 160px;
+  }
+  
+  .Cases-content {
+    padding: 16px;
+  }
+  
+  .Cases-title {
+    font-size: 0.9rem;
+  }
+}
+
 .hero-content {
   display: flex;
   align-items: center;

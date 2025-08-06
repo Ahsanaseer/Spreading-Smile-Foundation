@@ -257,6 +257,15 @@ html, body {
     color: #333;
     transition: all 0.3s;
     box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.carousel-nav-icon {
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
 }
 
 /* Hide navigation buttons on mobile devices */

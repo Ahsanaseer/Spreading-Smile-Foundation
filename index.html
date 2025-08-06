@@ -23,6 +23,10 @@
 
     <img src="Picrures All/backgroung kid.jpeg" alt="Background" class="background">
 
+    
+
+
+
     <!-- Humanist Services Section Start -->
     <section class="services-section">
       <h2 class="services-title">To Create A Society Where No One Goes To Bed Hungry!</h2>
@@ -58,26 +62,64 @@
     </section>
     <!-- Humanist Services Section End -->
 
-    <!-- Hero Section Start -->
-    <section class="hero-section">
-      <div class="hero-content">
-        <div class="hero-image">
-          <div class="poster"></div>
-        </div>
-        <div class="hero-text">
-          <h1>Can Save More Life's With You</h1>
-          <p class="hero-desc">To bring major impact on our soceity Spreading Smile Foundation also runs blood donation soceity where we provide blood for any surgery or procedure without charging a single rupee. We keep donors contact details confidential. After a person has donated blood we don't contact him/her for next three months.</p>
-          <div class="hero-checks">
-            <div class="hero-check"><span class="check-icon check-green">✔</span> Save Human Lives</div>
-            <div class="hero-check"><span class="check-icon check-orange">✔</span> Donate Blood Today</div>
-            <div class="hero-check"><span class="check-icon check-yellow">✔</span> Donate To Save Life</div>
-            <div class="hero-check"><span class="check-icon check-green">✔</span> Blood For Life</div>
+
+
+
+
+
+    <!-- Cases Cards Section Start -->
+    <section class="Cases-section">
+      <div class="Cases-container" id="cases-container">
+        <!-- Loader Container -->
+          <div class="loader-container" id="loader-container">
+            <div class="loader" id="loader"></div>
+            <p class="loading-text">Loading cases...</p>
           </div>
-          <button onclick="bloodformfunc()" id="blood-form"  class="about-more-btn"><span>Donate Blood</span><span class="service-learn-arrow">↗</span></button>
-        </div>
+          <button class="carousel-nav carousel-prev" id="casesleft" ><img src="Picrures All/left-arrow.svg" alt="Previous" class="carousel-nav-icon left"></button>
+          <button class="carousel-nav carousel-next" id="casesright" ><img src="Picrures All/right-arrow.svg" alt="Next" class="carousel-nav-icon right"></button>
+          <div class="Cases-cards-wrapper" id="cases-cards-wrapper"></div>
       </div>
     </section>
-    <!-- Hero Section End -->
+    <!-- Cases Cards Section End -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- Hero Section Start -->
+<section class="hero-section">
+  <div class="hero-content">
+    <div class="hero-image">
+      <div class="poster"></div>
+    </div>
+    <div class="hero-text">
+      <h1>Can Save More Life's With You</h1>
+      <p class="hero-desc">To bring major impact on our soceity Spreading Smile Foundation also runs blood donation soceity where we provide blood for any surgery or procedure without charging a single rupee. We keep donors contact details confidential. After a person has donated blood we don't contact him/her for next three months.</p>
+      <div class="hero-checks">
+        <div class="hero-check"><span class="check-icon check-green">✔</span> Save Human Lives</div>
+        <div class="hero-check"><span class="check-icon check-orange">✔</span> Donate Blood Today</div>
+        <div class="hero-check"><span class="check-icon check-yellow">✔</span> Donate To Save Life</div>
+        <div class="hero-check"><span class="check-icon check-green">✔</span> Blood For Life</div>
+      </div>
+      <button onclick="bloodformfunc()" id="blood-form"  class="about-more-btn"><span>Donate Blood</span><span class="service-learn-arrow">↗</span></button>
+    </div>
+  </div>
+</section>
+<!-- Hero Section End -->
+
+
+
+
+
 
 
 
@@ -176,7 +218,7 @@
 
 <script src="navbar.js"></script>
 
-<script src="script.js"></script>
+<script type="module" src="script.js"></script>
 
 <script src="footer.js"></script>
 

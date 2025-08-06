@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="icon" type="image/png" href="Picrures All/favicon.png">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="bloodDonationForm.css">
+    <title>Blood Donation Registration - Spreading Smile Foundation</title>     
+</head>
+
+<body>
+    
+    <div data-include="navbar.html"></div>
+
+    <!-- Blood Donation Form Section Start -->
+    <div class="contact-main-container">
+        <div class="contact-page-heading">
+            <h1>Blood Donation Registration</h1>
+            <p class="form-description">
+                Thank you for your interest in joining the Spreading Smile Foundation's Blood Donor Platform! We are building a network to collect donor details and connect them with individuals in urgent need of blood. When a need arises, we will contact the donor directly and coordinate the donation process.
+            </p>
+            <p class="form-description">
+                By joining this platform, you can help save lives and provide hope to those facing critical situations. Please ensure that the information you provide is accurate and complete. Your data will remain secure and will only be used for this initiative.
+            </p>
+        </div>
+        <div class="container">
+            <div class="contact-form-side">
+                <form class="contact-form" id="bloodDonationForm" method="POST">
+                    <!-- Personal Information -->
+                     <h4 class="contact-input-label">Full Name <span style="color: red;">*</span></h4>
+                    <input type="text" class="contact-input" name="fullName" placeholder="Type here..." required>
+                    <h4 class="contact-input-label">Contact Number <span style="color: red;">*</span></h4>
+                    <input type="tel" class="contact-input" name="contactNumber" placeholder="Type here..." required>
+                    <h4 class="contact-input-label">Address <span style="color: red;">*</span></h4>
+                    <input type="text" class="contact-input" name="address" placeholder="Type here..." required>
+                    <h4 class="contact-input-label">Age (In Years) <span style="color: red;">*</span></h4>
+                    <input type="number" class="contact-input" name="age" placeholder="Type here..." required>
+                    
+                    <!-- Gender Selection -->
+                    <label class="radio-label">Gender <span style="color: red;">*</span></label>
+                    <div class="radio-group">
+                        
+                        <div class="radio-options">
+                            <label class="radio-option">
+                                <input type="radio" name="gender" value="male" required>
+                                <span class="radio-custom"></span>
+                                <span class="radio-text">Male</span>
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="gender" value="female" required>
+                                <span class="radio-custom"></span>
+                                <span class="radio-text">Female</span>
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="gender" value="transgender" required>
+                                <span class="radio-custom"></span>
+                                <span class="radio-text">Transgender</span>
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="gender" value="prefer-not-to-say" required>
+                                <span class="radio-custom"></span>
+                                <span class="radio-text">Prefer not to say</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Blood Group Selection -->
+                    <label class="radio-label">Blood Group <span style="color: red;">*</span></label>
+                    <div class="radio-group">
+                        <div class="radio-options">
+                            <label class="radio-option">
+                                <input type="radio" name="bloodGroup" value="A+" required>
+                                <span class="radio-custom"></span>
+                                <span class="radio-text">A+</span>
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="bloodGroup" value="A-" required>
+                                <span class="radio-custom"></span>
+                                <span class="radio-text">A-</span>
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="bloodGroup" value="B+" required>
+                                <span class="radio-custom"></span>
+                                <span class="radio-text">B+</span>
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="bloodGroup" value="B-" required>
+                                <span class="radio-custom"></span>
+                                <span class="radio-text">B-</span>
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="bloodGroup" value="AB+" required>
+                                <span class="radio-custom"></span>
+                                <span class="radio-text">AB+</span>
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="bloodGroup" value="AB-" required>
+                                <span class="radio-custom"></span>
+                                <span class="radio-text">AB-</span>
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="bloodGroup" value="O+" required>
+                                <span class="radio-custom"></span>
+                                <span class="radio-text">O+</span>
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="bloodGroup" value="O-" required>
+                                <span class="radio-custom"></span>
+                                <span class="radio-text">O-</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Emergency Donations -->
+                     <label class="radio-label">Are you available for emergency donations? <span style="color: red;">*</span></label>
+                    <div class="radio-group">
+                        
+                        <div class="radio-options">
+                            <label class="radio-option">
+                                <input type="radio" name="emergencyDonations" value="yes" required>
+                                <span class="radio-custom"></span>
+                                <span class="radio-text">Yes</span>
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="emergencyDonations" value="no" required>
+                                <span class="radio-custom"></span>
+                                <span class="radio-text">No</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Preferred Contact Method -->
+                    <label class="checkbox-label">Preferred method of contact <span style="color: red;">*</span></label>
+                    <div class="checkbox-group">
+                        
+                        <div class="checkbox-options">
+                            <label class="checkbox-option">
+                                <input type="checkbox" name="contactMethod" value="phone" required>
+                                <span class="checkbox-custom"></span>
+                                <span class="checkbox-text">Phone</span>
+                            </label>
+                            <label class="checkbox-option">
+                                <input type="checkbox" name="contactMethod" value="whatsapp" required>
+                                <span class="checkbox-custom"></span>
+                                <span class="checkbox-text">WhatsApp</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Weight and Height -->
+                    <label class="radio-label">Enter your Weight and Height <span style="color: red;">*</span></label>
+                    <input type="text" class="contact-input" name="weightHeight" placeholder="Type here..." required>
+
+                    <!-- Previous Blood Donation -->
+                    <label class="radio-label">Have you donated blood before? <span style="color: red;">*</span></label>
+                    <div class="radio-group">
+                        
+                        <div class="radio-options">
+                            <label class="radio-option">
+                                <input type="radio" name="previousDonation" value="yes" required>
+                                <span class="radio-custom"></span>
+                                <span class="radio-text">Yes</span>
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="previousDonation" value="no" required>
+                                <span class="radio-custom"></span>
+                                <span class="radio-text">No</span>
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="previousDonation" value="maybe" required>
+                                <span class="radio-custom"></span>
+                                <span class="radio-text">Maybe</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Last Donation Date -->
+                    <input type="date" class="contact-input" name="lastDonationDate" placeholder="If yes, when was your last blood donation?" style="display: none;">
+
+                    <!-- Chronic Illnesses -->
+                    <label class="radio-label">Do you have any chronic illnesses? <span style="color: red;">*</span></label>
+                    <div class="radio-group">
+                        
+                        <div class="radio-options">
+                            <label class="radio-option">
+                                <input type="radio" name="chronicIllnesses" value="yes" required>
+                                <span class="radio-custom"></span>
+                                <span class="radio-text">Yes</span>
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="chronicIllnesses" value="no" required>
+                                <span class="radio-custom"></span>
+                                <span class="radio-text">No</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Chronic Illnesses Details -->
+                    <div id="chronicIllnessesContainer">
+                         <label class="radio-label chronic">Please mention <span style="color: red;">*</span></label>
+                         <input type="text" class="contact-input" name="chronicIllnessesDetails" placeholder="Type here..." id="chronicIllnessesDetails">
+                    </div>
+
+                    <!-- Transport Requirement -->
+                    <label class="radio-label">Would you be requiring transport if we ask you to donate blood? <span style="color: red;">*</span></label>
+                    <div class="radio-group">
+                        
+                        <div class="radio-options">
+                            <label class="radio-option">
+                                <input type="radio" name="transportRequired" value="yes" required>
+                                <span class="radio-custom"></span>
+                                <span class="radio-text">Yes</span>
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="transportRequired" value="no" required>
+                                <span class="radio-custom"></span>
+                                <span class="radio-text">No</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Emergency Contact -->
+                    <label class="radio-label">Emergency Contact information <span style="color: red;">*</span></label>
+                    <input type="text" class="contact-input" name="emergencyContact" placeholder="Type here..." required>
+
+                    <!-- Consent -->
+                    <div class="checkbox-group last">
+                        <label class="checkbox-option consent-checkbox">
+                            <input type="checkbox" name="consent" required>
+                            <span class="checkbox-custom"></span>
+                            <span class="checkbox-text last-checkbox-text">Do you consent to your information being stored and used for blood donation purposes<span style="color: red;">*</span></span>
+                        </label>
+                    </div>
+
+                    <div class="form-buttons">
+                        <button type="submit" class="send-msg-btn">
+                            <span>Submit</span>
+                        </button>
+                        <button type="button" class="clear-form-btn" id="clearFormBtn">
+                            <span>Clear Form</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- Blood Donation Form Section End -->
+
+    <div data-include="footer.html"></div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast" style="display: none;">
+        <div class="toast-content" id="toast-message">
+            Registration Submitted Successfully.
+        </div>
+    </div>
+
+    <script src="bloodDonationForm.js"></script>
+    <script src="include.js"></script>
+    <script src="navbar.js"></script>
+    <script src="footer.js"></script>
+</body>
+</html>
