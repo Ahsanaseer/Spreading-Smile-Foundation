@@ -248,5 +248,5 @@ document.addEventListener('navbarLoaded', function() {
 
 // Blood form function
 function bloodformfunc() {
-  window.open("https://docs.google.com/forms/d/e/1FAIpQLSflgKyuquG50HCYIfz11DtpTEGbl6r2UZ4VvDPRaUaN_jVCXg/viewform", "_blank");
+  window.location.href = "bloodDonorForm.html";
 }
