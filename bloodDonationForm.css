@@ -35,6 +35,7 @@ html, body {
   text-align: left;
   padding-top: 0;
   margin-bottom: 40px;
+  margin-left: 24px;
 }
 
 .contact-page-heading h1 {
@@ -217,7 +218,16 @@ html, body {
 }
 
 .radio-option input[type="radio"] {
-  display: none;
+  position: absolute;
+  opacity: 0;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }
 
 .radio-custom {
@@ -306,7 +316,16 @@ html, body {
 }
 
 .checkbox-option input[type="checkbox"] {
-  display: none;
+  position: absolute;
+  opacity: 0;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }
 
 .checkbox-custom {
@@ -475,7 +494,7 @@ html, body {
   }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 768px) {
   .page-container {
     padding: 0 16px;
     margin: 16px auto 0 auto;
@@ -498,20 +517,34 @@ html, body {
   .form-buttons {
     flex-direction: column;
     gap: 12px;
-    align-items: flex-start;
+    
   }
   
   .send-msg-btn,
   .clear-form-btn {
+    justify-content: center;
+    align-items: center;
     width: 180px;
     height: 48px;
-    margin: 0;
     font-size: 1rem;
     padding: 10px 0;
   }
+    .send-msg-btn{
+    margin-right: 184px;
+    }
+    .send-msg-btn-text{
+      font-size: 0.9rem !important;
+    }
+    .clear-form-btn-text{
+      font-size: 0.9rem !important;
+    }
 
   .contact-page-heading h1 {
-    font-size: 1.8rem;
+    margin-top: -60px;
+    width: 350px;
+    font-size: 1.2rem;
+    overflow: visible;
+    
   }
 
   .radio-options,
@@ -530,9 +563,25 @@ html, body {
   }
 
   .question-card {
-    padding: 16px;
+    width: 90%;
+    padding: 20px;
     margin-bottom: 12px;
+    margin-left: auto;
+    margin-right: auto;
   }
+  .form-description{
+    font-size:0.75rem ;
+  }
+  .minimal-input::placeholder {
+   font-size: 0.75rem;
+  }
+  .minimal-input-label, .radio-label, .checkbox-label{
+    font-size: 0.95rem;
+  }
+  .last-checkbox-text{
+    font-size: 0.75rem;
+  }
+  
 }
 
 .chronic{
