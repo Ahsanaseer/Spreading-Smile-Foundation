@@ -3,19 +3,19 @@ document.addEventListener('DOMContentLoaded', function() {
     const toast = document.getElementById('toast');
     const toastMessage = document.getElementById('toast-message');
     const chronicIllnessesDetails = document.getElementById('chronicIllnessesDetails');
-    const lastDonationDate = document.querySelector('input[name="lastDonationDate"]');
+    const lastDonationCard = document.getElementById('lastDonationCard');
+    const chronicIllnessesContainer = document.getElementById('chronicIllnessesContainer');
     const clearFormBtn = document.getElementById('clearFormBtn');
 
     // Handle chronic illnesses radio buttons
     const chronicIllnessesRadios = document.querySelectorAll('input[name="chronicIllnesses"]');
     chronicIllnessesRadios.forEach(radio => {
         radio.addEventListener('change', function() {
-            const chronicIllnessesDetailsContainer = chronicIllnessesDetails.parentElement;
             if (this.value === 'yes') {
-                chronicIllnessesDetailsContainer.style.display = 'block';
+                chronicIllnessesContainer.style.display = 'block';
                 chronicIllnessesDetails.required = true;
             } else {
-                chronicIllnessesDetailsContainer.style.display = 'none';
+                chronicIllnessesContainer.style.display = 'none';
                 chronicIllnessesDetails.required = false;
                 chronicIllnessesDetails.value = '';
             }
@@ -27,12 +27,14 @@ document.addEventListener('DOMContentLoaded', function() {
     previousDonationRadios.forEach(radio => {
         radio.addEventListener('change', function() {
             if (this.value === 'yes') {
-                lastDonationDate.style.display = 'block';
-                lastDonationDate.required = true;
+                lastDonationCard.style.display = 'block';
+                const lastDonationInput = lastDonationCard.querySelector('input[name="lastDonationDate"]');
+                lastDonationInput.required = true;
             } else {
-                lastDonationDate.style.display = 'none';
-                lastDonationDate.required = false;
-                lastDonationDate.value = '';
+                lastDonationCard.style.display = 'none';
+                const lastDonationInput = lastDonationCard.querySelector('input[name="lastDonationDate"]');
+                lastDonationInput.required = false;
+                lastDonationInput.value = '';
             }
         });
     });
@@ -72,8 +74,8 @@ document.addEventListener('DOMContentLoaded', function() {
         form.reset();
         
         // Hide conditional fields
-        chronicIllnessesDetails.parentElement.style.display = 'none';
-        lastDonationDate.style.display = 'none';
+        chronicIllnessesContainer.style.display = 'none';
+        lastDonationCard.style.display = 'none';
         
         // Clear any custom styling
         document.querySelectorAll('.radio-custom, .checkbox-custom').forEach(element => {
@@ -150,8 +152,8 @@ document.addEventListener('DOMContentLoaded', function() {
             form.reset();
             
             // Hide conditional fields
-            chronicIllnessesDetails.parentElement.style.display = 'none';
-            lastDonationDate.style.display = 'none';
+            chronicIllnessesContainer.style.display = 'none';
+            lastDonationCard.style.display = 'none';
             
             // Clear any custom styling
             document.querySelectorAll('.radio-custom, .checkbox-custom').forEach(element => {
@@ -195,8 +197,8 @@ document.addEventListener('DOMContentLoaded', function() {
     // Initialize form state
     function initializeForm() {
         // Hide conditional fields initially
-        chronicIllnessesDetails.parentElement.style.display = 'none';
-        lastDonationDate.style.display = 'none';
+        chronicIllnessesContainer.style.display = 'none';
+        lastDonationCard.style.display = 'none';
         
         // Set up radio button styling
         document.querySelectorAll('input[type="radio"]').forEach(radio => {
