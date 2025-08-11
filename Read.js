@@ -234,51 +234,8 @@ if (form) {
     });
 }
 
-// Add interactive functionality for conditional fields
-document.addEventListener('DOMContentLoaded', function() {
-    // Show/hide last donation date based on previous donation selection
-    const previousDonationInputs = document.querySelectorAll('input[name="previousDonation"]');
-    const lastDonationCard = document.getElementById('lastDonationCard');
-    
-    previousDonationInputs.forEach(input => {
-        input.addEventListener('change', function() {
-            if (this.value === 'yes') {
-                lastDonationCard.style.display = 'block';
-                document.getElementById('lastDonationDate').required = true;
-            } else {
-                lastDonationCard.style.display = 'none';
-                document.getElementById('lastDonationDate').required = false;
-                document.getElementById('lastDonationDate').value = '';
-            }
-        });
-    });
-
-    // Show/hide chronic illnesses details based on chronic illnesses selection
-    const chronicIllnessesInputs = document.querySelectorAll('input[name="chronicIllnesses"]');
-    const chronicIllnessesContainer = document.getElementById('chronicIllnessesContainer');
-    
-    chronicIllnessesInputs.forEach(input => {
-        input.addEventListener('change', function() {
-            if (this.value === 'yes') {
-                chronicIllnessesContainer.style.display = 'block';
-                document.getElementById('chronicIllnessesDetails').required = true;
-            } else {
-                chronicIllnessesContainer.style.display = 'none';
-                document.getElementById('chronicIllnessesDetails').required = false;
-                document.getElementById('chronicIllnessesDetails').value = '';
-            }
-        });
-    });
-
-    // Clear form functionality (enhanced version)
-    const clearFormBtn = document.getElementById('clearFormBtn');
-    if (clearFormBtn) {
-        clearFormBtn.addEventListener('click', function() {
-            document.getElementById('bloodDonationForm').reset();
-            lastDonationCard.style.display = 'none';
-            chronicIllnessesContainer.style.display = 'none';
-            document.getElementById('lastDonationDate').required = false;
-            document.getElementById('chronicIllnessesDetails').required = false;
-        });
-    }
-});
+// Clear form functionality
+const clearFormBtn = document.getElementById('clearFormBtn');
+if (clearFormBtn) {
+    clearFormBtn.addEventListener('click', resetForm);
+}
