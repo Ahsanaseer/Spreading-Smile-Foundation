@@ -190,7 +190,9 @@ if (form) {
                 bloodGroup: rawData.bloodGroup,
                 weightHeight: rawData.weightHeight,
                 chronicIllnesses: formatYesNo(rawData.chronicIllnesses), // Format Yes/No
+                illnessDetails: rawData.chronicIllnessesDetails,
                 donatedBefore: formatYesNo(rawData.donatedBefore), // Format Yes/No
+                lastDonationDate: rawData.donatedBeforeDate,
                 emergencyDonations: formatYesNo(rawData.emergencyDonations), // Format Yes/No
                 preferredContactMethod: formatPreferredContactMethod(rawData.preferredContactMethod), // Format contact method
                 consent: formatYesNo(rawData.consent ? "yes" : "no"), // Format consent as Yes/No
@@ -200,18 +202,8 @@ if (form) {
                 timestamp: rawData.timestamp
             };
 
-            // Conditionally include lastDonationDate only if donatedBefore = "Yes"
-            if (donorData.donatedBefore === "Yes" && rawData.donatedBeforeDate) {
-                donorData.lastDonationDate = rawData.donatedBeforeDate;
-            }
-
-            // Conditionally include illnessDetails only if chronicIllnesses = "Yes"
-            if (donorData.chronicIllnesses === "Yes" && rawData.chronicIllnessesDetails) {
-                donorData.illnessDetails = rawData.chronicIllnessesDetails;
-            }
-
             // Submit to Firebase
-            const docRef = await addDoc(collection(db, "Testing"), donorData);
+            const docRef = await addDoc(collection(db, "allBloodDonors"), donorData);
             await updateDoc(docRef, { id: docRef.id });
             
             // Show success toast
