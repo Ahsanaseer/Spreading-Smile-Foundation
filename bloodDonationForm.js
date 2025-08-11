@@ -101,20 +101,24 @@ const resetForm = () => {
 };
 
 const showToast = (message) => {
-    const toast = document.getElementById('toast');
-    const toastMessage = document.getElementById('toast-message');
-    
-    if (toast && toastMessage) {
-        toastMessage.textContent = message;
-        toast.style.display = 'block';
-        toast.classList.add('show');
-        
-        setTimeout(() => {
-            toast.classList.remove('show');
+    // Use global toast manager
+    if (window.toastManager) {
+        window.toastManager.show(message, 'info');
+    } else {
+        // Fallback to legacy method
+        const toast = document.getElementById('toast');
+        const toastMessage = document.getElementById('toast-message');
+        if (toast && toastMessage) {
+            toastMessage.textContent = message;
+            toast.style.display = 'flex';
+            toast.classList.add('show');
             setTimeout(() => {
-                toast.style.display = 'none';
-            }, 300);
-        }, 3000);
+                toast.classList.remove('show');
+                setTimeout(() => {
+                    toast.style.display = 'none';
+                }, 300);
+            }, 3500);
+        }
     }
 };
 

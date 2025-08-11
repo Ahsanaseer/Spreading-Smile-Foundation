@@ -51,6 +51,11 @@ let slides = [];
 let dots = [];
 let totalSlides = 0;
 
+// Global variables for popup
+let popupCurrentSlide = 0;
+let popupImages = [];
+let popupTotalSlides = 0;
+
 // Placeholder image path
 const createPlaceholderImage = () => {
   return "Picrures All/placeholder-img.png";
@@ -113,6 +118,10 @@ const createCarouselImages = (images) => {
       img.src = imageSrc;
       img.alt = `Event Image ${index + 1}`;
       img.className = "carousel-image";
+      
+      // Add click handler for popup
+      img.addEventListener('click', () => openPopup(index));
+      
       carouselImages.appendChild(img);
       
       // Create dot
@@ -157,6 +166,81 @@ window.changeSlide = changeSlide;
 window.goToSlide = goToSlide;
 
 // Auto-scroll functionality removed - manual navigation only
+
+// Popup Modal Functions
+const openPopup = (imageIndex) => {
+  const popup = document.getElementById('image-popup');
+  const popupImage = document.getElementById('popup-image');
+  const popupCounter = document.getElementById('popup-counter');
+  
+  popupCurrentSlide = imageIndex;
+  popupImages = slides.map(img => img.src);
+  popupTotalSlides = popupImages.length;
+  
+  // Update popup image and counter
+  popupImage.src = popupImages[popupCurrentSlide];
+  popupCounter.textContent = `${popupCurrentSlide + 1} / ${popupTotalSlides}`;
+  
+  // Show popup
+  popup.classList.add('active');
+  document.body.style.overflow = 'hidden';
+  
+  // Update navigation buttons
+  updatePopupNavigation();
+};
+
+const closePopup = () => {
+  const popup = document.getElementById('image-popup');
+  popup.classList.remove('active');
+  document.body.style.overflow = 'auto';
+};
+
+const showPopupSlide = (index) => {
+  const popupImage = document.getElementById('popup-image');
+  const popupCounter = document.getElementById('popup-counter');
+  
+  popupCurrentSlide = (index + popupTotalSlides) % popupTotalSlides;
+  
+  popupImage.src = popupImages[popupCurrentSlide];
+  popupCounter.textContent = `${popupCurrentSlide + 1} / ${popupTotalSlides}`;
+  
+  updatePopupNavigation();
+};
+
+const updatePopupNavigation = () => {
+  const prevBtn = document.getElementById('popup-prev');
+  const nextBtn = document.getElementById('popup-next');
+  
+  // Update button states
+  prevBtn.disabled = popupTotalSlides <= 1;
+  nextBtn.disabled = popupTotalSlides <= 1;
+};
+
+const popupNext = () => {
+  showPopupSlide(popupCurrentSlide + 1);
+};
+
+const popupPrev = () => {
+  showPopupSlide(popupCurrentSlide - 1);
+};
+
+// Keyboard navigation for popup
+const handlePopupKeyboard = (e) => {
+  const popup = document.getElementById('image-popup');
+  if (!popup.classList.contains('active')) return;
+  
+  switch(e.key) {
+    case 'Escape':
+      closePopup();
+      break;
+    case 'ArrowLeft':
+      popupPrev();
+      break;
+    case 'ArrowRight':
+      popupNext();
+      break;
+  }
+};
 
 // Touch/swipe support for mobile
 let startX = 0;
@@ -285,6 +369,41 @@ document.addEventListener('DOMContentLoaded', () => {
   }
   
   fetchEventData();
+  
+  // Setup popup event listeners
+  setupPopupEventListeners();
+  
+  // Setup keyboard navigation
+  document.addEventListener('keydown', handlePopupKeyboard);
 });
+
+// Setup popup event listeners
+const setupPopupEventListeners = () => {
+  // Close button
+  const closeBtn = document.getElementById('popup-close');
+  if (closeBtn) {
+    closeBtn.addEventListener('click', closePopup);
+  }
+  
+  // Navigation buttons
+  const prevBtn = document.getElementById('popup-prev');
+  const nextBtn = document.getElementById('popup-next');
+  
+  if (prevBtn) {
+    prevBtn.addEventListener('click', popupPrev);
+  }
+  
+  if (nextBtn) {
+    nextBtn.addEventListener('click', popupNext);
+  }
+  
+  // Close on overlay click
+  const popup = document.getElementById('image-popup');
+  const overlay = popup.querySelector('.popup-overlay');
+  
+  if (overlay) {
+    overlay.addEventListener('click', closePopup);
+  }
+};
 
 // Auto-scroll functionality completely removed

@@ -264,20 +264,25 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   function showToast(message) {
-    const toast = document.getElementById('toast');
-    const toastMessage = document.getElementById('toast-message');
-    
-    toastMessage.textContent = message;
-    toast.style.display = 'flex';
-    
-    setTimeout(() => {
-      toast.classList.add('show');
-    }, 10);
-    
-    setTimeout(() => {
-      toast.classList.remove('show');
-      setTimeout(() => { toast.style.display = 'none'; }, 300);
-    }, 3000);
+    // Use global toast manager
+    if (window.toastManager) {
+      window.toastManager.show(message, 'info');
+    } else {
+      // Fallback to legacy method
+      const toast = document.getElementById('toast');
+      const toastMessage = document.getElementById('toast-message');
+      if (toast && toastMessage) {
+        toastMessage.textContent = message;
+        toast.style.display = 'flex';
+        setTimeout(() => {
+          toast.classList.add('show');
+        }, 10);
+        setTimeout(() => {
+          toast.classList.remove('show');
+          setTimeout(() => { toast.style.display = 'none'; }, 300);
+        }, 3500);
+      }
+    }
   }
   
   const topNavbar = document.querySelector('.navbar');

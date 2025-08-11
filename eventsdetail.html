@@ -154,6 +154,40 @@
 
     <div data-include="footer.html"></div>
 
+    <!-- Image Popup Modal -->
+    <div id="image-popup" class="image-popup">
+        <div class="popup-overlay"></div>
+        <div class="popup-content">
+            <button class="popup-close" id="popup-close">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+            </button>
+            
+            <div class="popup-image-container">
+                <img id="popup-image" class="popup-image" src="" alt="Event Image">
+            </div>
+            
+            <div class="popup-navigation">
+                <button class="popup-nav-btn popup-prev" id="popup-prev">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="15,18 9,12 15,6"></polyline>
+                    </svg>
+                </button>
+                <button class="popup-nav-btn popup-next" id="popup-next">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="9,18 15,12 9,6"></polyline>
+                    </svg>
+                </button>
+            </div>
+            
+            <div class="popup-counter">
+                <span id="popup-counter">1 / 1</span>
+            </div>
+        </div>
+    </div>
+
     <!-- Firebase SDK -->
     <script type="module" src="eventsdetail.js"></script>
     <script src="include.js"></script>

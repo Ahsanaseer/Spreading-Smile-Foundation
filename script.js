@@ -84,6 +84,15 @@ const createCaseCard = (caseData, caseId) => {
   
   // Load real image in background
   const img = card.querySelector('.Cases-img');
+  
+  // Add click functionality to image
+  img.style.cursor = 'pointer';
+  img.addEventListener('click', () => {
+    const finalImageSrc = imageSrc !== createPlaceholderImage() ? imageSrc : createPlaceholderImage();
+    const imageAlt = title || 'Case Image';
+    openImageModal(finalImageSrc, imageAlt);
+  });
+  
   if (imageSrc !== createPlaceholderImage()) {
     const realImg = new Image();
     realImg.src = imageSrc;
@@ -327,3 +336,43 @@ document.addEventListener('DOMContentLoaded', function() {
 function bloodformfunc() {
   window.location.href = "bloodDonorForm.html";
 }
+
+// Image Modal Functionality
+const imageModal = document.getElementById('image-modal');
+const modalImage = document.getElementById('modal-image');
+const modalClose = document.querySelector('.image-modal-close');
+
+// Function to open modal with image
+function openImageModal(imageSrc, imageAlt) {
+  modalImage.src = imageSrc;
+  modalImage.alt = imageAlt;
+  imageModal.classList.add('show');
+  document.body.style.overflow = 'hidden'; // Prevent background scrolling
+}
+
+// Function to close modal
+function closeImageModal() {
+  imageModal.classList.remove('show');
+  document.body.style.overflow = ''; // Restore scrolling
+}
+
+// Event listeners for modal
+if (modalClose) {
+  modalClose.addEventListener('click', closeImageModal);
+}
+
+if (imageModal) {
+  imageModal.addEventListener('click', (e) => {
+    if (e.target === imageModal) {
+      closeImageModal();
+    }
+  });
+}
+
+// Close modal on Escape key
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape' && imageModal.classList.contains('show')) {
+    closeImageModal();
+  }
+});
+
