@@ -864,11 +864,11 @@ html, body {
 
 .popup-image-container {
     position: relative;
-    max-width: 95%;
-    max-height: 95%;
     display: flex;
     align-items: center;
     justify-content: center;
+    width: 100%;
+    height: 100%;
 }
 
 .popup-image {
@@ -982,8 +982,8 @@ html, body {
 
 @media (max-width: 480px) {
     .popup-image-container {
-        max-width: 98%;
-        max-height: 90%;
+        width: 100%;
+        height: 100%;
     }
     
     .popup-close {
