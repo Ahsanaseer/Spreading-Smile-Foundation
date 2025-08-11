@@ -875,10 +875,7 @@ html, body {
     width: 28px;
     height: 28px;
   }
-  .member-reviews-title {
-    text-align: center;
-    margin: 0 auto;
-  }
+
 }
 
 @media (max-width: 1024px) {
@@ -1410,6 +1407,9 @@ html, body {
     max-width: 95vw;
   }
 }
+
+/* =================================================MEMBER REVIEWS SECTION STYLES============================================================================== */
+/* Member Reviews styles are now using the original styles from style.css */
 
 /* =================================================ABOUT US STYLES============================================================================== */
 .about-main-container {

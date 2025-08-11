@@ -323,4 +323,19 @@
     min-width: 220px;
     max-width: 95vw;
   }
+  .footer-desc{
+    font-size: 1rem;
+  }
+  .footer-title{
+    font-size: 1.3rem;
+  }
+  .footer-link {
+    font-size: 1.1rem;
+  }
+  .footer-contact-label{
+    font-size: 0.9rem;
+  }
+  .footer-contact-value{
+    font-size: 1rem;
+  }
 }
