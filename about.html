@@ -9,13 +9,17 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
      <link rel="stylesheet" href="about.css">
      <link rel="stylesheet" href="style.css">
-    <title>Spreading Smile Foundation</title>     
+    <title>Spreading Smile Foundation</title>
+    <script src="components.js"></script>
+    <script src="animations.js"></script>
 </head>
 
 
 
 <body>
-    <div data-include="navbar.html"></div>
+    <div id="nav-container"></div>
+    
+    <div class="main-content">
     
     
 
@@ -28,11 +32,11 @@
 
 
     <!-- Text Section Start -->
-    <div class="about-main-container">
+    <div class="about-main-container" data-animate="true" data-animation="fadeInUp">
         <div class="about-content-wrapper">
             <div class="about-text-section">
                 <div class="about-text-card">
-                    <h1 class="about-title">ABOUT US</h1>
+                    <h1 class="about-title" data-animate="true" data-animation="fadeInUp" data-delay="100">ABOUT US</h1>
                     <div class="about-text-content">
                         <p class="about-paragraph">
                         Spreading Smile Foundation is a charity-based organization that has been working since 2016 for the betterment of the less fortunate in our society. Founded by Mr. Haseeb ur Rehman, we support those in need  financially, educationally, and through skill development.
@@ -76,22 +80,22 @@
     <h1>Meet Our Directors</h1>
   </div>
 
-  <div class="director-cards">
-    <div class="director-card">
+  <div class="director-cards" data-stagger="true" data-stagger-delay="150">
+    <div class="director-card" data-stagger-item="true">
       <img src="Picrures All/hamzahbhai.jpeg" alt="M Hamzah Naseer" class="director-img-hamzah">
       <div class="director-card-body">
         <h2 class="director-name">M Hamzah Naseer</h2>
         <h3 class="director-role">General Secretary</h3>
       </div>
     </div>
-    <div class="director-card">
+    <div class="director-card" data-stagger-item="true">
       <img src="Picrures All/haseeb.jpeg" alt="Haseeb ur Rehman" class="director-img">
       <div class="director-card-body">
         <h2 class="director-name">Haseeb ur Rehman</h2>
         <h3 class="director-role">President</h3>
       </div>
     </div>
-    <div class="director-card">
+    <div class="director-card" data-stagger-item="true">
       <img src="Picrures All/Moeez.jpeg" alt="Moeez Ali" class="director-img">
       <div class="director-card-body">
         <h2 class="director-name">Moeez Ali</h2>
@@ -222,12 +226,10 @@
 
 
 
-<div data-include="footer.html"></div>
-
+        <div id="footer-container"></div>
+        <div id="modal-container"></div>
+    </div>
 
   <script src="about.js"></script>
-  <script src="include.js"></script>
-  <script src="navbar.js"></script>
-  <script src="footer.js"></script>
 </body>
 </html>

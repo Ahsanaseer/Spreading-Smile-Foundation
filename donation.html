@@ -6,17 +6,18 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+     <link rel="stylesheet" href="style.css">
      <link rel="stylesheet" href="donation.css">
     <title>Account Details</title>
+    <script src="components.js"></script>
+    <script src="animations.js"></script>
 </head>
 <body>
 
-    <div data-include="navbar.html"></div>
+    <div id="nav-container"></div>
 
-
-
-
-    <!-- Donation Page Start -->
+    <div class="main-content">
+        <!-- Donation Page Start -->
    <div class="donateus-content">
         <h1 class="donateus-title">Account Details</h1>
         <p class="donateus-desc">Choose any of the following payment methods for donation. Jazakallah!</p>
@@ -134,12 +135,12 @@
     <!-- Donation Page End -->
 
 
-    <div data-include="footer.html"></div>
 
 
+        <div id="footer-container"></div>
+        <div id="modal-container"></div>
+    </div>
+    
     <script src="donation.js"></script>
-    <script src="include.js"></script>
-    <script src="navbar.js"></script>
-    <script src="footer.js"></script>
 </body>
 </html>

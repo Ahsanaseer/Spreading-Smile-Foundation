@@ -8,12 +8,15 @@
     <link rel="icon" type="image/png" href="Picrures All/favicon.png">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="event.css" />
     <title>Our Events</title>
+    <script src="components.js"></script>
+    <script src="animations.js"></script>
 </head>
 <body>
 
-    <div data-include="navbar.html"></div>
+    <div id="nav-container"></div>
 
     <!-- Main Content Container -->
     <main class="main-content">
@@ -33,13 +36,11 @@
         <!-- Event Content End -->
     </main>
 
-    <div data-include="footer.html"></div>
     
     <script type="module" src="event.js"></script>
             
-    <script src="include.js"></script>
-    <script src="navbar.js"></script>
-    <script src="footer.js"></script>
+    <div id="footer-container"></div>
+    <div id="modal-container"></div>
 
 </body>
 </html>

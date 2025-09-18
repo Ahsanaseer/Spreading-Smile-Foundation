@@ -8,15 +8,17 @@
     <link rel="icon" type="image/png" href="Picrures All/favicon.png">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="eventsdetail.css">
-    <link rel="stylesheet" href="navbar.css">
-    <link rel="stylesheet" href="footer.css">
+    <link rel="stylesheet" href="style.css">
     <title>Event Details - Spreading Smile Foundation</title>
+    <script src="components.js"></script>
+    <script src="animations.js"></script>
 </head>
 <body>
 
-    <div data-include="navbar.html"></div>
+    <div id="nav-container"></div>
 
-    <!-- Loading Container -->
+    <div class="main-content">
+        <!-- Loading Container -->
     <div id="loading-container" class="loading-container">
         <div class="loader"></div>
         <p class="loading-text">Loading event details...</p>
@@ -152,7 +154,9 @@
         </div>
     </div>
 
-    <div data-include="footer.html"></div>
+        <div id="footer-container"></div>
+        <div id="modal-container"></div>
+    </div>
 
     <!-- Image Popup Modal -->
     <div id="image-popup" class="image-popup">
@@ -190,8 +194,5 @@
 
     <!-- Firebase SDK -->
     <script type="module" src="eventsdetail.js"></script>
-    <script src="include.js"></script>
-    <script src="navbar.js"></script>
-    <script src="footer.js"></script>
 </body>
 </html>
