@@ -37,7 +37,7 @@ const getProgressBarColor = (percentage) => {
 
 // Function to create a case card
 const createCaseCard = (caseData, caseId) => {
-  const { title, imagesPublic, collectedAmount, requiredAmount, status } = caseData;
+  const { title, imagesPublic, collectedAmount, requiredAmount, status, description } = caseData;
   
   // Convert string values to numbers
   const raisedStr = caseData.collectedAmount;    

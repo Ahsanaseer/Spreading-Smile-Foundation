@@ -148,7 +148,7 @@ function createFooter() {
           <li>
             <a href="https://www.linkedin.com/company/spreading-smile-foundation/" target="_blank" rel="noopener" aria-label="LinkedIn">
               <!-- LinkedIn Icon -->
-              <img src="Picrures All/icons8-linked-in.svg" alt="" class="manual" style="width: 25px; height: 25px; position: relative; top: -2px;">
+              <span style="font-size: 20px; font-weight: bold; color: #0077b5;">in</span>
             </a>
           </li>
           <li>
