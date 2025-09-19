@@ -1497,3 +1497,22 @@ html, body {
     height: 28px;
   }
 }
+
+/* Mobile font size adjustments for descriptions and headings */
+@media (max-width: 768px) {
+  /* Description text font size */
+  .contact-input,
+  .footer-desc,
+  .footer-link,
+  .footer-contact-label,
+  .footer-contact-value,
+  .footer-bottom {
+    font-size: 14px !important;
+  }
+  
+  /* Heading font size */
+  .contact-page-heading h1,
+  .footer-title {
+    font-size: 2rem !important;
+  }
+}

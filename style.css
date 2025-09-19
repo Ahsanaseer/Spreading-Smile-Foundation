@@ -467,6 +467,7 @@ display: block;
   font-family: 'Poppins', Arial, sans-serif;
   display: -webkit-box;
   -webkit-line-clamp: 2;
+  line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -721,6 +722,10 @@ display: block;
   border-radius: 50%;
   flex-shrink: 0;
 }
+
+.check-icon img {
+  filter: brightness(0) saturate(100%) invert(67%) sepia(95%) saturate(1352%) hue-rotate(45deg) brightness(101%) contrast(101%);
+}
 .check-green {
   color: var(--primary-color);
   background: #e6f4f1;
@@ -796,7 +801,6 @@ display: block;
   background-attachment: fixed;
   margin: 0;
   padding: 0;
-  overflow: hidden;
 }
 
 
@@ -808,25 +812,31 @@ display: block;
 }
 
 #video-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0,0,0,0.8);
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  background: rgba(0,0,0,0.8) !important;
+  backdrop-filter: blur(4px);
   display: none;
   justify-content: center;
   align-items: center;
-  z-index: 999;
+  z-index: 999999 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: none !important;
+  overflow: visible !important;
 }
 
 .video-container {
-  position: relative;
+  position: relative !important;
   width: 80%;
   max-width: 800px;
   background: #000;
   border-radius: 10px;
   overflow: hidden;
+  z-index: 1000000 !important;
 }
 
 #youtube-frame {
@@ -841,7 +851,7 @@ display: block;
   color: white;
   font-size: 2rem;
   cursor: pointer;
-  z-index: 1000;
+  z-index: 10000;
 }
 
 .play-content {
@@ -1173,6 +1183,14 @@ display: block;
   color: #222;
   background: transparent;
 }
+
+.member-nav-icon {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+  transition: filter 0.2s ease;
+  filter: brightness(0) saturate(100%) invert(0%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(0%) contrast(100%);
+}
 /* Style for both nav buttons by default */
 .member-nav-btn:last-child, .member-nav-btn:first-child {
   background: transparent;
@@ -1182,8 +1200,12 @@ display: block;
 /* Hover/focus effect for both nav buttons */
 .member-nav-btn:hover, .member-nav-btn:focus {
   border-color: var(--primary-color);
-  color: var(--primary-color);
   background: rgba(23,105,91,0.08);
+}
+
+.member-nav-btn:hover .member-nav-icon, 
+.member-nav-btn:focus .member-nav-icon {
+  filter: brightness(0) saturate(100%) invert(67%) sepia(95%) saturate(1352%) hue-rotate(45deg) brightness(101%) contrast(101%);
 }
 .member-reviews-title {
   text-align: center;
@@ -2643,4 +2665,44 @@ body.navbar-loaded .main-content {
 .footer-contact-value{
   font-size: 1rem;
 }
+}
+
+/* Mobile font size adjustments for descriptions and headings */
+@media (max-width: 768px) {
+  /* Description text font size */
+  .hero-desc,
+  .service-card-desc,
+  .member-desc,
+  .footer-desc,
+  .description-text,
+  .about-paragraph,
+  .contact-input,
+  .donateus-desc,
+  .event-address,
+  .event-description .description-text,
+  .info-value,
+  .contact-details p,
+  .cta-section p,
+  .footer-link,
+  .footer-contact-label,
+  .footer-contact-value,
+  .footer-bottom {
+    font-size: 14px !important;
+  }
+  
+  /* Heading font size */
+  .hero-text h1,
+  .services-title,
+  .member-reviews-title,
+  .footer-title,
+  .about-title,
+  .donateus-title,
+  .page-title,
+  .event-info h2,
+  .event-description h2,
+  .cta-section h2,
+  .director-heading h1,
+  .contact-page-heading h1 {
+    font-size: 2.1 rem !important;
+  }
 }

@@ -684,4 +684,32 @@ html, body {
   }
 }
 
+/* Mobile font size adjustments for descriptions and headings */
+@media (max-width: 768px) {
+  /* Description text font size */
+  .form-description,
+  .contact-input,
+  .minimal-input,
+  .radio-text,
+  .checkbox-text,
+  .last-checkbox-text,
+  .toast-content,
+  .footer-desc,
+  .footer-link,
+  .footer-contact-label,
+  .footer-contact-value,
+  .footer-bottom {
+    font-size: 14px !important;
+  }
+  
+  /* Heading font size */
+  .contact-page-heading h1,
+  .minimal-input-label,
+  .radio-label,
+  .checkbox-label,
+  .footer-title {
+    font-size: 2rem !important;
+  }
+}
+
 

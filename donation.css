@@ -1430,3 +1430,24 @@ html, body {
   }
 }
 
+/* Mobile font size adjustments for descriptions and headings */
+@media (max-width: 768px) {
+  /* Description text font size */
+  .donateus-desc,
+  .donateus-details-value,
+  .footer-desc,
+  .footer-link,
+  .footer-contact-label,
+  .footer-contact-value,
+  .footer-bottom {
+    font-size: 14px !important;
+  }
+  
+  /* Heading font size */
+  .donateus-title,
+  .donateus-header-title,
+  .footer-title {
+    font-size: 2rem !important;
+  }
+}
+

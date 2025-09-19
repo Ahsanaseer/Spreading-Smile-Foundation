@@ -1006,3 +1006,32 @@ html, body {
         height: 18px;
     }
 }
+
+/* Mobile font size adjustments for descriptions and headings */
+@media (max-width: 768px) {
+    /* Description text font size */
+    .description-text,
+    .info-value,
+    .contact-details p,
+    .page-subtitle,
+    .loading-text,
+    .error-container p,
+    .footer-desc,
+    .footer-link,
+    .footer-contact-label,
+    .footer-contact-value,
+    .footer-bottom {
+        font-size: 14px !important;
+    }
+    
+    /* Heading font size */
+    .page-title,
+    .event-info h2,
+    .event-description h2,
+    .cta-section h2,
+    .contact-info h3,
+    .error-container h2,
+    .footer-title {
+        font-size: 2rem !important;
+    }
+}

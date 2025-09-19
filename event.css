@@ -295,6 +295,29 @@
       min-height: 50vh;
     }
   }
+
+  /* Mobile font size adjustments for descriptions and headings */
+  @media (max-width: 768px) {
+    /* Description text font size */
+    .event-address,
+    .card p,
+    .loading-text,
+    .footer-desc,
+    .footer-link,
+    .footer-contact-label,
+    .footer-contact-value,
+    .footer-bottom {
+      font-size: 14px !important;
+    }
+    
+    /* Heading font size */
+    .events-header h1,
+    .event-title,
+    .card h3,
+    .footer-title {
+      font-size: 2rem !important;
+    }
+  }
   
 
   
