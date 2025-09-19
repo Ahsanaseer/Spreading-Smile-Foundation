@@ -1,6 +1,10 @@
 :root {
   --primary-color: #46C0B2;
   --secondary-color: #EEBB1B;
+  --mobile-margin: 20px;
+  --desktop-margin: 50px;
+  --mobile-content-width: calc(100% - 40px); /* 20px left + 20px right */
+  --desktop-content-width: calc(100% - 100px); /* 50px left + 50px right */
 }
 
 * {
@@ -710,6 +714,49 @@ html, body {
   .footer-title {
     font-size: 2rem !important;
   }
+}
+
+/* =================================================UNIVERSAL ALIGNMENT SYSTEM============================================================================== */
+
+/* Blood donation form page specific alignment */
+.page-container {
+  width: 100% !important;
+  max-width: none !important;
+  margin: 0 !important;
+  padding-left: var(--mobile-margin) !important;
+  padding-right: var(--mobile-margin) !important;
+  box-sizing: border-box !important;
+}
+
+@media (min-width: 1025px) {
+  .page-container {
+    padding-left: var(--desktop-margin) !important;
+    padding-right: var(--desktop-margin) !important;
+  }
+}
+
+/* Contact page heading */
+.contact-page-heading {
+  width: 100% !important;
+  max-width: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.contact-page-heading h1 {
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+  width: 100% !important;
+}
+
+/* Contact form */
+.contact-form {
+  width: 100% !important;
+  max-width: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
 }
 
 

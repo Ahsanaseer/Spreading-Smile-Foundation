@@ -1,6 +1,10 @@
 :root {
     --primary-color: #46C0B2;
     --secondary-color: #EEBB1B;
+    --mobile-margin: 20px;
+    --desktop-margin: 50px;
+    --mobile-content-width: calc(100% - 40px); /* 20px left + 20px right */
+    --desktop-content-width: calc(100% - 100px); /* 50px left + 50px right */
   }
   
   
@@ -36,20 +40,9 @@
   }
 
   /* Events Header */
-  .events-header {
-    text-align: center;
-    padding: 0px 20px 20px 20px;
-    background: #fff;
-    margin-top: -30px;
-  }
 
-  .events-header h1 {
-    font-size: 2.5rem;
-    font-weight: 700;
-    color: #222;
-    margin: 0;
-    text-shadow: 0 2px 4px rgba(0,0,0,0.1);
-  }
+
+  
 
   /* Loader Container */
   .loader-container {
@@ -266,10 +259,7 @@
     .main-content {
       padding-top: 100px;
     }
-    
-    .events-header h1 {
-      font-size: 2rem;
-    }
+
     
     .events-grid {
       gap: 20px;
@@ -283,14 +273,9 @@
   }
 
   @media (max-width: 480px) {
-    .events-header {
-      padding: 30px 15px 15px 15px;
-    }
+
     
-    .events-header h1 {
-      font-size: 1.8rem;
-    }
-    
+
     .loader-container {
       min-height: 50vh;
     }
@@ -311,13 +296,31 @@
     }
     
     /* Heading font size */
-    .events-header h1,
     .event-title,
     .card h3,
     .footer-title {
-      font-size: 2rem !important;
+      font-size: 2 rem !important;
     }
+  }
+
+  /* =================================================UNIVERSAL ALIGNMENT SYSTEM============================================================================== */
+
+  /* Events page specific alignment */
+
+
+  @media (min-width: 1025px) {
+ 
+
+  /* Events header title */
+ 
+
+  /* Events grid */
+  .events-grid {
+    width: 100% !important;
+    max-width: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
   }
   
 
-  
+}

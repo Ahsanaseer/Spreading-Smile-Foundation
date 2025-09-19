@@ -190,7 +190,6 @@ function createFooter() {
           <li><a href="events.html" class="footer-link"><span class="footer-link-arrow">↗</span> Our Events</a></li>
           <li><a href="index.html#cases-section" class="footer-link"><span class="footer-link-arrow">↗</span> Current Cases</a></li>
           <li><a href="bloodDonorForm.html" class="footer-link"><span class="footer-link-arrow">↗</span> Donate Blood Now</a></li>
-          <li><a href="#" class="footer-link"><span class="footer-link-arrow">↗</span> Our Campaign</a></li>
         </ul>
       </div>
       <div class="footer-col footer-contact">

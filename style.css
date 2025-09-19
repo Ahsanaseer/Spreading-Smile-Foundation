@@ -1,6 +1,10 @@
 :root {
   --primary-color: #46C0B2;
   --secondary-color: #EEBB1B;
+  --mobile-margin: 30px;
+  --desktop-margin: 50px;
+  --mobile-content-width: calc(100% - 40px); /* 20px left + 20px right */
+  --desktop-content-width: calc(100% - 100px); /* 50px left + 50px right */
 }
 
 
@@ -47,11 +51,11 @@ html, body {
   text-align: center;
   font-size: 2.7rem;
   font-weight: 700;
-  max-width: 900px;
-  margin: 0 auto 40px auto;  /* Center alignment instead of margin-left: 250px */
+  margin: 0 auto;
+  margin-bottom: 40px;
   font-family: 'Poppins', Arial, sans-serif;
   letter-spacing: 1px;
-  padding: 0 15px; /* Small padding for mobile screens */
+  padding: 0 15px; 
   line-height: 1.3;
 }
 .services-cards {
@@ -328,7 +332,7 @@ display: block;
 .Cases-cards-wrapper {
   display: flex;
   gap: 24px;
-  padding: 8px 20px;
+  padding: 8px 0 !important;
   overflow-x: auto;
   scroll-behavior: smooth;
   scrollbar-width: none; /* Firefox */
@@ -974,30 +978,13 @@ display: block;
   background-size: cover;
   background-position: center;
   filter: grayscale(1) brightness(0.7);
+  opacity: 0.4;
 }
 .volunteer-card-bg-1 {
-  background-image: url('Picrures All/volunteer-1.jpg');
+  background-image: url('Picrures All/become-a-donor.jpg');
 }
 .volunteer-card-bg-2 {
-  background-image: url('Picrures All/volunteer-2.avif');
-}
-.volunteer-card::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  z-index: 2;
-  background-image: url('Picrures All/brush-stroke.png');
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-  opacity: 0.7;
-  pointer-events: none;
-  transition: background 0.3s, background-color 0.3s, opacity 0.3s;
-}
-.volunteer-card:hover::after,
-.volunteer-card:focus-within::after {
-  background-image: linear-gradient(rgba(23,105,91,0.55), rgba(23,105,91,0.55)), url('Picrures All/brush-stroke.png');
-  opacity: 0.85;
+  background-image: url('Picrures All/become-a-volunteer.jpg');
 }
 
 .volunteer-card-content {
@@ -1235,10 +1222,11 @@ display: block;
   .hero-content {
     flex-direction: column;
     gap: 24px;
-    padding: 0 2vw;
+    padding: 0 !important;
     align-items: center;
     justify-content: center;
-    max-width: 100vw;
+    max-width: none !important;
+    width: 100% !important;
   }
   .hero-image {
     width: 100%;
@@ -1288,9 +1276,10 @@ display: block;
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    padding: 0 2vw;
+    padding: 0 !important;
     gap: 16px;
-    max-width: 100vw;
+    max-width: none !important;
+    width: 100% !important;
   }
   .play-content h1 {
     font-size: 1.3rem;
@@ -1299,6 +1288,7 @@ display: block;
     flex: 1 1 0;
     text-align: left;
     word-break: break-word;
+    margin-left: 20px;
   }
   .play-btn {
     width: 64px;
@@ -1316,7 +1306,8 @@ display: block;
   .services-title {
     font-size: 1.7rem;
     text-align: center;
-    margin: 0 20px 30px 20px; 
+    margin: 0 0 30px 0 !important; 
+    padding: 0 !important;
   }
   .volunteer-cards-section {
     width: 100%;
@@ -1328,17 +1319,17 @@ display: block;
   .volunteer-cards-container {
     flex-direction: column;
     gap: 24px;
-    max-width: 95vw;
-    width: 100%;
+    max-width: none !important;
+    width: 100% !important;
     align-items: center;
-    margin-top: 16px;
-    margin-bottom: 16px;
+    margin: 16px 0 !important;
+    padding: 0 !important;
   }
   .volunteer-card {
-    width: 95vw;
+    width: 100% !important;
     max-width: 420px;
     min-width: unset;
-    margin: 0 auto;
+    margin: 0 !important;
   }
   .member-reviews-section {
     width: 100%;
@@ -1349,11 +1340,12 @@ display: block;
     padding: 24px 0 32px 0;
   }
   .member-reviews-container {
-    width: 98vw;
-    max-width: 98vw;
+    width: 100% !important;
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin: 0 !important;
+    padding: 0 !important;
   }
   .member-review-card {
     flex-direction: column;
@@ -1375,23 +1367,20 @@ display: block;
   .member-review-right {
     flex: none;
     width: 100%;
+    height: auto;
     display: flex;
     align-items: center;
     justify-content: center;
     background: #fff;
-    border-radius: 0 0 18px 18px;
     overflow: hidden;
-    padding: 0 0 18px 0;
+    padding: 0;
   }
   .member-img {
     width: 100%;
-    max-width: 320px;
     height: auto;
-    max-height: 320px;
-    object-fit: contain;
+    object-fit: cover;
     border-radius: 0 0 18px 18px;
-    box-shadow: 0 2px 16px rgba(23,105,91,0.10);
-    margin: 0 auto;
+    margin: 0;
     display: block;
   }
   .member-reviews-nav{
@@ -2689,6 +2678,9 @@ body.navbar-loaded .main-content {
   .footer-bottom {
     font-size: 14px !important;
   }
+  .service-card-desc{
+    padding-top: 15px;
+  }
   
   /* Heading font size */
   .hero-text h1,
@@ -2704,5 +2696,269 @@ body.navbar-loaded .main-content {
   .director-heading h1,
   .contact-page-heading h1 {
     font-size: 2.1 rem !important;
+  }
+}
+
+/* =================================================UNIVERSAL ALIGNMENT SYSTEM============================================================================== */
+
+/* Universal container class for all content */
+.content-container {
+  width: var(--mobile-content-width);
+  margin: 0 auto;
+  padding: 0;
+}
+
+/* Desktop breakpoint - apply desktop margins */
+@media (min-width: 1025px) {
+  .content-container {
+    width: var(--desktop-content-width);
+  }
+}
+
+/* =================================================SECTION ALIGNMENT OVERRIDES============================================================================== */
+
+/* Override existing section styles to use consistent margins */
+.services-section,
+.Cases-section,
+.hero-section,
+.play,
+.volunteer-cards-section,
+.member-reviews-section {
+  width: 100% !important;
+  padding-left: var(--mobile-margin) !important;
+  padding-right: var(--mobile-margin) !important;
+  box-sizing: border-box !important;
+}
+
+/* Cases section - remove right padding only */
+.Cases-section {
+  padding-right: 0 !important;
+}
+
+@media (min-width: 1025px) {
+  .services-section,
+  .Cases-section,
+  .hero-section,
+  .play,
+  .volunteer-cards-section,
+  .member-reviews-section {
+    padding-left: var(--desktop-margin) !important;
+    padding-right: var(--desktop-margin) !important;
+  }
+  
+  /* Cases section - remove right padding only on desktop */
+  .Cases-section {
+    padding-right: 0 !important;
+  }
+}
+
+
+/* =================================================FOOTER ALIGNMENT============================================================================== */
+
+/* Footer alignment */
+.footer-main {
+  padding-left: var(--mobile-margin) !important;
+  padding-right: var(--mobile-margin) !important;
+}
+
+@media (min-width: 1025px) {
+  .footer-main {
+    padding-left: var(--desktop-margin) !important;
+    padding-right: var(--desktop-margin) !important;
+  }
+}
+
+/* =================================================SPECIFIC COMPONENT ALIGNMENT============================================================================== */
+
+/* Services cards container */
+.services-cards {
+  width: 100% !important;
+  max-width: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* Hero content */
+.hero-content {
+  width: 100% !important;
+  max-width: none !important;
+  padding: 0 !important;
+}
+
+/* Cases container */
+.Cases-container {
+  width: 100% !important;
+  max-width: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* Cases cards wrapper */
+.Cases-cards-wrapper {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+/* Play content */
+.play-content {
+  width: 100% !important;
+  max-width: none !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+/* Volunteer cards container */
+.volunteer-cards-container {
+  width: 100% !important;
+  max-width: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* Member reviews container */
+.member-reviews-container {
+  width: 100% !important;
+  max-width: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* =================================================TITLE ALIGNMENT============================================================================== */
+
+/* All titles should follow the margin system */
+.services-title,
+.member-reviews-title {
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+  width: 100% !important;
+}
+
+/* =================================================RESPONSIVE ADJUSTMENTS============================================================================== */
+
+/* Mobile specific adjustments */
+@media (max-width: 1024px) {
+  /* Ensure mobile margins are applied */
+  .hero-text h1,
+  .hero-desc,
+  .hero-checks,
+  .about-more-btn {
+    margin-left: 0 !important;
+  }
+  
+  .play-content h1 {
+    margin-left: 0 !important;
+  }
+  
+
+  
+  .member-reviews-nav {
+    margin-left: 0 !important;
+  }
+  
+  /* Force consistent margins for all cards and containers */
+  .service-card,
+  .Cases-card,
+  .volunteer-card,
+  .member-review-card,
+  .director-card,
+  .event-box,
+  .donateus-card,
+  .donateus-card-detail-pair,
+  .question-card {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    width: 100% !important;
+  }
+  
+  /* Ensure all containers respect the margin system */
+  .services-cards,
+  .Cases-cards-wrapper,
+  .volunteer-cards-container,
+  .member-reviews-container,
+  .director-cards,
+  .director-cards-mobile,
+  .events-grid,
+  .donateus-cards-row,
+  .donateus-details-row,
+  .contact-form,
+  .container {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    width: 100% !important;
+  }
+}
+
+/* =================================================BACKGROUND IMAGES============================================================================== */
+
+/* Background images should not be affected by margins */
+.background {
+  width: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* =================================================CAROUSEL NAVIGATION============================================================================== */
+
+/* Carousel navigation buttons positioning */
+.carousel-prev {
+  left: var(--mobile-margin) !important;
+}
+
+.carousel-next {
+  right: var(--mobile-margin) !important;
+}
+
+@media (min-width: 1025px) {
+  .carousel-prev {
+    left: var(--desktop-margin) !important;
+  }
+  
+  .carousel-next {
+    right: var(--desktop-margin) !important;
+  }
+}
+
+/* =================================================MODAL AND OVERLAY ALIGNMENT============================================================================== */
+
+/* Modals should not be affected by content margins */
+.image-modal,
+#video-overlay {
+  width: 100vw !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+}
+
+/* =================================================UTILITY CLASSES============================================================================== */
+
+/* Utility class for elements that should ignore the margin system */
+.full-width {
+  width: 100vw !important;
+  margin-left: calc(-1 * var(--mobile-margin)) !important;
+  margin-right: calc(-1 * var(--mobile-margin)) !important;
+}
+
+@media (min-width: 1025px) {
+  .full-width {
+    margin-left: calc(-1 * var(--desktop-margin)) !important;
+    margin-right: calc(-1 * var(--desktop-margin)) !important;
+  }
+}
+
+/* Utility class for elements that should respect the margin system */
+.content-margin {
+  margin-left: var(--mobile-margin) !important;
+  margin-right: var(--mobile-margin) !important;
+}
+
+@media (min-width: 1025px) {
+  .content-margin {
+    margin-left: var(--desktop-margin) !important;
+    margin-right: var(--desktop-margin) !important;
   }
 }
