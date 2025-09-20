@@ -1,13 +1,3 @@
-:root {
-  --primary-color: #46C0B2;
-  --secondary-color: #EEBB1B;
-  --mobile-margin: 20px;
-  --desktop-margin: 50px;
-  --mobile-content-width: calc(100% - 40px); /* 20px left + 20px right */
-  --desktop-content-width: calc(100% - 100px); /* 50px left + 50px right */
-}
-
-
 * {
   box-sizing: border-box;
   margin: 0;
@@ -31,7 +21,7 @@ html, body {
 
 
   .donateus-header-title {
-    font-size: 2rem;
+    font-size: var(--desktop-heading-font-size);
     font-weight: 700;
     color: #e6c12a;
     text-align: right;
@@ -523,13 +513,13 @@ html, body {
   /* Description text font size */
   .donateus-desc,
   .donateus-details-value {
-    font-size: 14px !important;
+    font-size: var(--mobile-description-font-size) !important;
   }
   
   /* Heading font size */
   .donateus-title,
   .donateus-header-title {
-    font-size: 2rem !important;
+    font-size: var(--desktop-heading-font-size) !important;
   }
 }
 

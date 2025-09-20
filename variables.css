@@ -1,0 +1,21 @@
+:root {
+  /* Color Variables */
+  --primary-color: #46C0B2;
+  --secondary-color: #EEBB1B;
+  
+  /* Layout Variables */
+  --mobile-margin: 20px;
+  --desktop-margin: 50px;
+  --mobile-content-width: calc(100% - 40px); /* 20px left + 20px right */
+  --desktop-content-width: calc(100% - 100px); /* 50px left + 50px right */
+  
+  /* Typography Variables */
+  --mobile-heading-font-size: 20px;
+  --mobile-description-font-size: 14px;
+ 
+  --desktop-heading-font-size: 2.5rem;
+  --desktop-description-font-size: 16px;
+}
+
+  
+  
