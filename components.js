@@ -52,7 +52,7 @@ function createNavigation(currentPage = '') {
                     </span>
                     <div class="info-text">
                         <span class="info-label">Call us any time:</span>
-                        <span class="info-value">+923213214884</span>
+                        <span class="info-value"><a href="tel:+923213214884" class="navbar-contact-link">+923213214884</a></span>
                     </div>
                 </div>
             </div>
@@ -202,7 +202,7 @@ function createFooter() {
               </span>
               <div>
                 <div class="footer-contact-label">Call us any time:</div>
-                <div class="footer-contact-value">+923213214884</div>
+                <div class="footer-contact-value"><a href="tel:+923213214884" class="footer-contact-link">+923213214884</a></div>
               </div>
             </div>
             <div class="footer-contact-row">
@@ -215,7 +215,7 @@ function createFooter() {
               </span>
               <div>
                 <div class="footer-contact-label">Email us any time:</div>
-                <div class="footer-contact-value">spreadingsmile<br>foundation@gmail.com</div>
+                <div class="footer-contact-value"><a href="mailto:spreadingsmilefoundation@gmail.com" class="footer-contact-link">spreadingsmile<br>foundation@gmail.com</a></div>
               </div>
             </div>
           </div>
