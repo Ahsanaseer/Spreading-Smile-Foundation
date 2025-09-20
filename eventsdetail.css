@@ -1024,12 +1024,7 @@ html, body {
     .contact-details p,
     .page-subtitle,
     .loading-text,
-    .error-container p,
-    .footer-desc,
-    .footer-link,
-    .footer-contact-label,
-    .footer-contact-value,
-    .footer-bottom {
+    .error-container p {
         font-size: 14px !important;
     }
     
@@ -1039,8 +1034,7 @@ html, body {
     .event-description h2,
     .cta-section h2,
     .contact-info h3,
-    .error-container h2,
-    .footer-title {
+    .error-container h2 {
         font-size: 2rem !important;
     }
 }

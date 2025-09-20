@@ -286,19 +286,13 @@
     /* Description text font size */
     .event-address,
     .card p,
-    .loading-text,
-    .footer-desc,
-    .footer-link,
-    .footer-contact-label,
-    .footer-contact-value,
-    .footer-bottom {
+    .loading-text {
       font-size: 14px !important;
     }
     
     /* Heading font size */
     .event-title,
-    .card h3,
-    .footer-title {
+    .card h3 {
       font-size: 2 rem !important;
     }
   }
