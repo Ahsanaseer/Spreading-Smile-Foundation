@@ -977,8 +977,15 @@ display: block;
   z-index: 1;
   background-size: cover;
   background-position: center;
-  filter: grayscale(1) brightness(0.7);
-  opacity: 0.4;
+}
+
+.volunteer-card-bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.85);
+  z-index: 2;
+  
 }
 .volunteer-card-bg-1 {
   background-image: url('Picrures All/become-a-donor.jpg');
@@ -1479,6 +1486,8 @@ display: block;
 
 /* Mobile responsive styles for modal */
 @media (max-width: 768px) {
+
+
   .image-modal-content {
     max-width: 95vw;
     max-height: 95vh;
@@ -1518,7 +1527,18 @@ body:not(.navbar-loaded) .main-content {
   visibility: hidden;
 }
 
+body:not(.navbar-loaded) .navbar {
+  opacity: 0;
+  visibility: hidden;
+}
+
 body.navbar-loaded .main-content {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.3s ease-in-out;
+}
+
+body.navbar-loaded .navbar {
   opacity: 1;
   visibility: visible;
   transition: opacity 0.3s ease-in-out;
@@ -2677,6 +2697,16 @@ body.navbar-loaded .main-content {
   .footer-contact-value,
   .footer-bottom {
     font-size: 14px !important;
+  }
+
+  /* Volunteer cards mobile font adjustments */
+  .volunteer-card-content p {
+    font-size: 13px !important;
+  }
+  
+  .volunteer-card-content h2 {
+    font-size: 2 rem !important;
+    margin-bottom: 10px;
   }
   .service-card-desc{
     padding-top: 15px;

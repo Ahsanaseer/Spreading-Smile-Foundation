@@ -683,8 +683,34 @@ function loadNavbarImmediately() {
     navContainer.innerHTML = createNavigation(currentPage);
     initializeNavigation();
     
-    // Add class to show all content once navbar is loaded
-    document.body.classList.add('navbar-loaded');
+    // Wait for logo to load before showing navbar and content
+    const logoImg = navContainer.querySelector('.logo');
+    if (logoImg) {
+      if (logoImg.complete && logoImg.naturalHeight !== 0) {
+        // Logo already loaded
+        document.body.classList.add('navbar-loaded');
+      } else {
+        // Wait for logo to load
+        logoImg.addEventListener('load', function() {
+          document.body.classList.add('navbar-loaded');
+        });
+        
+        // Fallback: if logo fails to load, show content after timeout
+        logoImg.addEventListener('error', function() {
+          document.body.classList.add('navbar-loaded');
+        });
+        
+        // Safety timeout: show content after 3 seconds regardless
+        setTimeout(function() {
+          if (!document.body.classList.contains('navbar-loaded')) {
+            document.body.classList.add('navbar-loaded');
+          }
+        }, 3000);
+      }
+    } else {
+      // No logo found, show content immediately
+      document.body.classList.add('navbar-loaded');
+    }
   }
 }
 
