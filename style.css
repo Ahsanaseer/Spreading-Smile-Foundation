@@ -2099,33 +2099,6 @@ display: block;
 }
 
 /* =================================================NAVBAR STYLES============================================================================== */
-/* Keep navbar hidden until fully loaded */
-#nav-container {
-  opacity: 0;
-  visibility: hidden;
-}
-
-/* Animate upper navbar and green bar together */
-body:not(.navbar-loaded) .navbar,
-body:not(.navbar-loaded) .main-navbar-row {
-  opacity: 0;
-  visibility: hidden;
-  transform: translateY(10px);
-}
-
-body.navbar-loaded #nav-container {
-  opacity: 1;
-  visibility: visible;
-}
-
-body.navbar-loaded .navbar,
-body.navbar-loaded .main-navbar-row {
-  opacity: 1;
-  visibility: visible;
-  transform: translateY(0);
-  transition: opacity 0.35s ease, transform 0.35s ease;
-}
-
 /* Hide all content until navbar loads */
 body:not(.navbar-loaded) .main-content {
   opacity: 0;
