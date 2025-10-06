@@ -28,7 +28,7 @@ const db = getFirestore(app);
 
 // Placeholder image path (your downloaded image)
 const createPlaceholderImage = () => {
-  return "Picrures All/placeholder-img.png"; // 🟢 Change this if your image path is different
+  return "Picrures All/placeholder-img.png"; // Change this if your image path is different
 };
 
 // Navigate to event details page

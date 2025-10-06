@@ -94,14 +94,14 @@ function showCopyToast(message) {
         position: fixed;
         top: 20px;
         right: 20px;
-        background: #2AAE5B;
+        background: var(--primary-color);
         color: white;
         padding: 12px 20px;
         border-radius: 8px;
         font-size: 14px;
         font-weight: 500;
         z-index: 10000;
-        box-shadow: 0 4px 12px rgba(42, 174, 91, 0.3);
+        box-shadow: 0 4px 12px rgba(23, 105, 91, 0.3);
         transform: translateX(100%);
         transition: transform 0.3s ease;
         font-family: 'Poppins', sans-serif;
@@ -131,9 +131,16 @@ document.addEventListener('DOMContentLoaded', function() {
     const copyButtons = document.querySelectorAll('.copy-btn');
     
     copyButtons.forEach(button => {
+        let tooltip = null;
+        
         // Add tooltip on hover
         button.addEventListener('mouseenter', function() {
-            const tooltip = document.createElement('div');
+            // Remove any existing tooltip first
+            if (tooltip && tooltip.parentNode) {
+                tooltip.parentNode.removeChild(tooltip);
+            }
+            
+            tooltip = document.createElement('div');
             tooltip.className = 'copy-tooltip';
             tooltip.textContent = this.getAttribute('title');
             tooltip.style.cssText = `
@@ -151,25 +158,36 @@ document.addEventListener('DOMContentLoaded', function() {
                 pointer-events: none;
                 opacity: 0;
                 transition: opacity 0.2s ease;
+                margin-bottom: 4px;
             `;
             
             this.style.position = 'relative';
             this.appendChild(tooltip);
             
             setTimeout(() => {
-                tooltip.style.opacity = '1';
+                if (tooltip && tooltip.parentNode) {
+                    tooltip.style.opacity = '1';
+                }
             }, 10);
         });
         
         button.addEventListener('mouseleave', function() {
-            const tooltip = this.querySelector('.copy-tooltip');
-            if (tooltip) {
+            if (tooltip && tooltip.parentNode) {
                 tooltip.style.opacity = '0';
                 setTimeout(() => {
-                    if (tooltip.parentNode) {
+                    if (tooltip && tooltip.parentNode) {
                         tooltip.parentNode.removeChild(tooltip);
+                        tooltip = null;
                     }
                 }, 200);
+            }
+        });
+        
+        // Remove tooltip when button is clicked
+        button.addEventListener('click', function() {
+            if (tooltip && tooltip.parentNode) {
+                tooltip.parentNode.removeChild(tooltip);
+                tooltip = null;
             }
         });
     });

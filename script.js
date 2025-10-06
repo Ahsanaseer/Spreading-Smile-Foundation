@@ -77,7 +77,7 @@ const createCaseCard = (caseData, caseId) => {
       </div>
       <a href="donation.html" class="donate-btn">
         <span>Donate Now</span>
-        <span class="donate-arrow">→</span>
+        <span class="donate-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
       </a>
     </div>
   `;
@@ -112,8 +112,8 @@ const createCaseCard = (caseData, caseId) => {
 
 
 
-// Function to fetch and render processing cases
-const fetchAndRenderProcessingCases = async () => {
+// Function to fetch and render processing cases with cache busting
+const fetchAndRenderProcessingCases = async (forceRefresh = false) => {
   const casesCardsWrapper = document.getElementById('cases-cards-wrapper');
   const loaderContainer = document.getElementById('loader-container');
   
@@ -122,6 +122,11 @@ const fetchAndRenderProcessingCases = async () => {
   casesCardsWrapper.style.display = 'none';
   
   try {
+    // Add cache busting timestamp
+    const cacheBuster = `?t=${Date.now()}&r=${Math.random()}`;
+    console.log(`Fetching cases with cache buster: ${cacheBuster}`);
+    
+    // Force fresh data by disabling cache and using timestamp
     const querySnapshot = await getDocs(collection(db, "allCases"));
     
     if (querySnapshot.empty) {
@@ -136,15 +141,35 @@ const fetchAndRenderProcessingCases = async () => {
     // Clear existing cards
     casesCardsWrapper.innerHTML = '';
     
-    // Filter and render processing cases
+    // Collect all processing cases with their percentages for sorting
+    const processingCases = [];
     querySnapshot.forEach((doc) => {
       const caseData = doc.data();
       const caseId = doc.id;
     
       if (caseData.status === "processing") {
-        const card = createCaseCard(caseData, caseId);
-        casesCardsWrapper.appendChild(card);
+        // Calculate percentage for sorting
+        const raisedStr = caseData.collectedAmount;    
+        const goalStr = caseData.requiredAmount;       
+        const raised = Number(raisedStr.replace(/,/g, ""));
+        const goal = Number(goalStr.replace(/,/g, ""));
+        const percentage = goal > 0 ? (raised / goal) * 100 : 0;
+        
+        processingCases.push({
+          caseData,
+          caseId,
+          percentage
+        });
       }
+    });
+    
+    // Sort cases by percentage (0% to 100%)
+    processingCases.sort((a, b) => a.percentage - b.percentage);
+    
+    // Render sorted cases
+    processingCases.forEach(({ caseData, caseId }) => {
+      const card = createCaseCard(caseData, caseId);
+      casesCardsWrapper.appendChild(card);
     });
     
     // Hide loader and show cards wrapper
@@ -228,9 +253,82 @@ const createPlaceholderImage = () => {
     return "Picrures All/placeholder-img.png";
 };
 
+// Cache busting and refresh mechanisms
+let lastRefreshTime = 0;
+const REFRESH_INTERVAL = 30000; // 30 seconds minimum between refreshes
+
+// Function to check if we should refresh data
+const shouldRefreshData = () => {
+  const now = Date.now();
+  return (now - lastRefreshTime) > REFRESH_INTERVAL;
+};
+
+// Function to force refresh cases data
+const forceRefreshCases = () => {
+  if (shouldRefreshData()) {
+    console.log('Force refreshing cases data...');
+    lastRefreshTime = Date.now();
+    fetchAndRenderProcessingCases(true);
+  }
+};
+
+// Page visibility API - refresh when page becomes visible
+document.addEventListener('visibilitychange', () => {
+  if (!document.hidden) {
+    console.log('Page became visible, refreshing cases...');
+    forceRefreshCases();
+  }
+});
+
+// Refresh on page focus
+window.addEventListener('focus', () => {
+  console.log('Window focused, refreshing cases...');
+  forceRefreshCases();
+});
+
+// Refresh on page load/reload
+window.addEventListener('load', () => {
+  console.log('Page loaded, refreshing cases...');
+  forceRefreshCases();
+});
+
+// Additional mobile-specific refresh triggers
+if ('ontouchstart' in window) {
+  // Mobile device detected - add touch refresh
+  document.addEventListener('touchstart', () => {
+    if (shouldRefreshData()) {
+      console.log('Mobile touch detected, refreshing cases...');
+      forceRefreshCases();
+    }
+  });
+}
+
+// Refresh when user scrolls to cases section
+const casesSection = document.getElementById('cases-section');
+if (casesSection) {
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting && shouldRefreshData()) {
+        console.log('Cases section visible, refreshing...');
+        forceRefreshCases();
+      }
+    });
+  }, { threshold: 0.1 });
+  
+  observer.observe(casesSection);
+}
+
+// Periodic refresh every 2 minutes
+setInterval(() => {
+  if (shouldRefreshData()) {
+    console.log('Periodic refresh triggered');
+    forceRefreshCases();
+  }
+}, 120000); // 2 minutes
+
 document.addEventListener('DOMContentLoaded', function() {
-  // Fetch and render processing cases
-  fetchAndRenderProcessingCases();
+  // Fetch and render processing cases with cache busting
+  fetchAndRenderProcessingCases(true);
   
   let currentMember = 0;
   const memberName = document.getElementById('member-name');

@@ -176,20 +176,20 @@ function createFooter() {
         <h3 class="footer-title">Quick Links</h3>
         <div class="footer-underline"></div>
         <ul class="footer-quicklinks-list" style="list-style: none; padding-left: 0;">
-          <li><a href="/" class="footer-link"><span class="footer-link-arrow">↗</span> Home</a></li>
-          <li><a href="about.html" class="footer-link"><span class="footer-link-arrow">↗</span> About Us</a></li>
-          <li><a href="https://drive.google.com/file/d/12Zm9fDo8LpN6B6ZZqCCZPBcf278xRp6_/view?usp=drivesdk" class="footer-link" target="_blank"><span class="footer-link-arrow">↗</span> Privacy policy</a></li>
-          <li><a href="contact.html" class="footer-link"><span class="footer-link-arrow">↗</span> Contact Us</a></li>
+          <li><a href="/" class="footer-link"><span class="footer-link-arrow"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg></span> Home</a></li>
+          <li><a href="about.html" class="footer-link"><span class="footer-link-arrow"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg></span> About Us</a></li>
+          <li><a href="privacy.html" class="footer-link"><span class="footer-link-arrow"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg></span> Privacy Policy</a></li>
+          <li><a href="contact.html" class="footer-link"><span class="footer-link-arrow"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg></span> Contact Us</a></li>
         </ul>
       </div>
       <div class="footer-col footer-links">
         <h3 class="footer-title">Our Service</h3>
         <div class="footer-underline"></div>
         <ul>
-          <li><a href="donation.html" class="footer-link"><span class="footer-link-arrow">↗</span> Give Donation</a></li>
-          <li><a href="events.html" class="footer-link"><span class="footer-link-arrow">↗</span> Our Events</a></li>
-          <li><a href="index.html#cases-section" class="footer-link"><span class="footer-link-arrow">↗</span> Current Cases</a></li>
-          <li><a href="bloodDonorForm.html" class="footer-link"><span class="footer-link-arrow">↗</span> Donate Blood Now</a></li>
+          <li><a href="donation.html" class="footer-link"><span class="footer-link-arrow"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg></span> Give Donation</a></li>
+          <li><a href="events.html" class="footer-link"><span class="footer-link-arrow"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg></span> Our Events</a></li>
+          <li><a href="index.html#cases-section" class="footer-link"><span class="footer-link-arrow"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg></span> Current Cases</a></li>
+          <li><a href="bloodDonorForm.html" class="footer-link"><span class="footer-link-arrow"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg></span> Donate Blood Now</a></li>
         </ul>
       </div>
       <div class="footer-col footer-contact">
@@ -667,6 +667,8 @@ function getCurrentPage() {
     currentPage = 'donation.html';
   } else if (currentPath.includes('events') || currentPath.includes('events.html') || currentPath.includes('eventsdetail.html')) {
     currentPage = 'events.html';
+  } else if (currentPath.includes('privacy') || currentPath.includes('privacy.html')) {
+    currentPage = 'privacy.html';
   } else {
     const pathParts = currentPath.split('/');
     currentPage = pathParts[pathParts.length - 1] || 'index.html';
