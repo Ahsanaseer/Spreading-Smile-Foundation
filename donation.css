@@ -392,7 +392,7 @@ html, body {
 
     
     .donateus-title {
-      font-size: 1.1rem;
+      font-size: 0.8rem;
       margin-top: 20px;
     }
     .donateus-desc {
@@ -519,7 +519,7 @@ html, body {
   /* Heading font size */
   .donateus-title,
   .donateus-header-title {
-    font-size: var(--desktop-heading-font-size) !important;
+    font-size: var(--mobile-heading-font-size) !important;
   }
 }
 
