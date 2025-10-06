@@ -67,7 +67,7 @@ html, body {
     padding: 0;
   }
   .donateus-card-silkbank {
-    background: #88023F;
+    background: #264cf7;
   }
   .donateus-card-jazzcash {
     background: #FFD028;
@@ -82,8 +82,8 @@ html, body {
     margin-bottom: 8px;
   }
   .silkbank-logo {
-    width: 350px;
-    height: 215px;
+    width: 250px;
+    height: 155px;
     margin-left: -5px;
     margin-top: 5px;
   }
@@ -549,30 +549,6 @@ html, body {
   width: 100% !important;
 }
 
-/* Donation cards row */
-.donateus-cards-row {
-  width: 100% !important;
-  max-width: none !important;
-  margin: 0 !important;
-  padding: 0 !important;
-}
-
-/* Donation details row */
-.donateus-details-row {
-  width: 100% !important;
-  max-width: none !important;
-  margin: 0 !important;
-  padding: 0 !important;
-}
-
-/* Donation card detail pairs */
-.donateus-card-detail-pair {
-  width: 100% !important;
-  max-width: none !important;
-  margin: 0 !important;
-  padding: 0 !important;
-}
-
 /* Navbar alignment */
 .navbar {
   padding-left: var(--mobile-margin) !important;
@@ -587,5 +563,93 @@ html, body {
 }
 
 /* Footer alignment */
+
+/* ===================== COPY BUTTON STYLES ===================== */
+.donateus-details-value {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.copy-text {
+  flex: 1;
+  font-weight: 400;
+  color: #222;
+  font-size: 1.08rem;
+}
+
+.copy-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  color: #666;
+  opacity: 0.7;
+}
+
+.copy-btn:hover {
+  background: rgba(23, 105, 91, 0.1);
+  color: var(--primary-color);
+  opacity: 1;
+  transform: scale(1.1);
+}
+
+.copy-btn:active {
+  transform: scale(0.95);
+}
+
+.copy-btn svg {
+  transition: all 0.2s ease;
+}
+
+.copy-btn:hover svg {
+  stroke: var(--primary-color);
+}
+
+.copy-btn.copied {
+  color: #2AAE5B;
+  background: rgba(42, 174, 91, 0.1);
+}
+
+.copy-btn.copied svg {
+  stroke: #2AAE5B;
+}
+
+/* Mobile responsive adjustments */
+@media (max-width: 1024px) {
+  .donateus-details-value {
+    gap: 6px;
+  }
+  
+  .copy-btn {
+    padding: 3px;
+  }
+  
+  .copy-btn svg {
+    width: 14px;
+    height: 14px;
+  }
+}
+
+@media (max-width: 600px) {
+  .donateus-details-value {
+    gap: 4px;
+  }
+  
+  .copy-btn {
+    padding: 2px;
+  }
+  
+  .copy-btn svg {
+    width: 12px;
+    height: 12px;
+  }
+}
 
   
