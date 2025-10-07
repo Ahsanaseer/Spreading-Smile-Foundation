@@ -628,7 +628,7 @@ html, body {
 
 /* =================================================SERVICES SECTION STYLES============================================================================== */
 .services-section {
-  background: url("/Picrures All/bgpaper-3.jpg");
+  background: url("../Picrures All/bgpaper-3.jpg");
   padding: 60px 0 80px 0;
   width: 100%;
 }
@@ -768,13 +768,13 @@ html, body {
 .poster {
     width: 600px;
     height: 500px;
-    background-image: url('Picrures All/kid 1.jpg');
+    background-image: url('../Picrures All/kid 1.jpg');
     background-size: cover;
     background-position: center;
-    -webkit-mask-image: url('Picrures All/brush-stroke.png');
+    -webkit-mask-image: url('../Picrures All/brush-stroke.png');
     -webkit-mask-repeat: no-repeat;
     -webkit-mask-size: cover;
-    mask-image: url('Picrures All/brush-stroke.png');
+    mask-image: url('../Picrures All/brush-stroke.png');
     mask-repeat: no-repeat;
     mask-size: cover;
     max-width: 100%;
@@ -1384,7 +1384,7 @@ display: block;
   min-height: 350px;
   height: 400px;
   width: 100%;
-  background-image: url('Picrures All/beggar.png');
+  background-image: url('../Picrures All/beggar.png');
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
@@ -1573,10 +1573,10 @@ display: block;
   
 }
 .volunteer-card-bg-1 {
-  background-image: url('Picrures All/become-a-donor.jpg');
+  background-image: url('../Picrures All/become-a-donor.jpg');
 }
 .volunteer-card-bg-2 {
-  background-image: url('Picrures All/become-a-volunteer.jpg');
+  background-image: url('../Picrures All/become-a-volunteer.jpg');
 }
 
 .volunteer-card-content {

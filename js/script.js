@@ -134,7 +134,7 @@ const fetchAndRenderProcessingCases = async (forceRefresh = false) => {
       // Hide loader and show cards wrapper
       loaderContainer.style.display = 'none';
       casesCardsWrapper.style.display = 'flex';
-      casesCardsWrapper.innerHTML = '<p style="text-align: center; color: #666; padding: 40px;">No processing cases found.</p>';
+      casesCardsWrapper.innerHTML = '<div style="display: flex; justify-content: center; align-items: center; min-height: 200px; width: 100%;"><p style="text-align: center; color: #666; padding: 40px; font-size: 1.1rem;">No processing cases found!</p></div>';
       return;
     }
     
@@ -178,7 +178,7 @@ const fetchAndRenderProcessingCases = async (forceRefresh = false) => {
     
     // If no processing cases found
     if (casesCardsWrapper.children.length === 0) {
-      casesCardsWrapper.innerHTML = '<p style="text-align: center; color: #666; padding: 40px;">No processing cases found.</p>';
+      casesCardsWrapper.innerHTML = '<div style="display: flex; justify-content: center; align-items: center; min-height: 200px; width: 100%;"><p style="text-align: center; color: #666; padding: 40px; font-size: 1.1rem;">No processing cases found!</p></div>';
     }
     
   } catch (error) {
@@ -186,7 +186,7 @@ const fetchAndRenderProcessingCases = async (forceRefresh = false) => {
     // Hide loader and show cards wrapper
     loaderContainer.style.display = 'none';
     casesCardsWrapper.style.display = 'flex';
-    casesCardsWrapper.innerHTML = '<p style="text-align: center; color: #e74c3c; padding: 40px;">Error loading cases. Please try again later.</p>';
+    casesCardsWrapper.innerHTML = '<div style="display: flex; justify-content: center; align-items: center; min-height: 200px; width: 100%;"><p style="text-align: center; color: #e74c3c; padding: 40px; font-size: 1.1rem;">Error loading cases! Please try again later.</p></div>';
   }
 };
 
