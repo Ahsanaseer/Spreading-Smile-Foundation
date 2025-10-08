@@ -1,6 +1,6 @@
 // Firebase imports
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-import { getFirestore, collection, addDoc, updateDoc } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+import { getFirestore, collection, addDoc, updateDoc, doc, getDoc, setDoc } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
 // Firebase config
 const firebaseConfig = {
@@ -20,6 +20,58 @@ const db = getFirestore(app);
 const form = document.getElementById('volunteerForm');
 const submitBtn = document.querySelector('.send-msg-btn');
 const submitBtnText = document.querySelector('.send-msg-btn-text');
+
+// ===================== DEADLINE SETUP FUNCTION =====================
+async function setVolunteerDeadline(deadlineDate) {
+    try {
+        console.log("🔄 Setting volunteer deadline...");
+        
+        // Convert to timestamp
+        const deadlineTimestamp = deadlineDate.getTime();
+        
+        console.log("📅 Deadline date:", deadlineDate);
+        console.log("⏰ Deadline timestamp:", deadlineTimestamp);
+        
+        // Create/update the deadline document
+        await setDoc(doc(db, "config", "volunteerDeadline"), {
+            deadline: deadlineTimestamp,
+            deadlineDate: deadlineDate.toISOString(),
+            description: "Volunteer registration deadline",
+            createdAt: new Date().toISOString()
+        });
+        
+        console.log("✅ Deadline set successfully!");
+        alert(`✅ Deadline set successfully!\nDate: ${deadlineDate.toLocaleString()}\nTimestamp: ${deadlineTimestamp}`);
+        
+        return true;
+        
+    } catch (error) {
+        console.error("❌ Error setting deadline:", error);
+        alert(`❌ Error setting deadline: ${error.message}`);
+        return false;
+    }
+}
+
+// Make function available globally for console use
+window.setVolunteerDeadline = setVolunteerDeadline;
+
+// Quick setup function for common deadlines
+window.setDeadlineTo = {
+    // Set deadline to January 1, 2025 at 11:59 PM
+    jan2025: () => setVolunteerDeadline(new Date('2025-01-01T23:59:59')),
+    
+    // Set deadline to February 1, 2025 at 11:59 PM
+    feb2025: () => setVolunteerDeadline(new Date('2025-02-01T23:59:59')),
+    
+    // Set deadline to March 1, 2025 at 11:59 PM
+    mar2025: () => setVolunteerDeadline(new Date('2025-03-01T23:59:59')),
+    
+    // Set deadline to December 31, 2024 at 11:59 PM
+    dec2024: () => setVolunteerDeadline(new Date('2024-12-31T23:59:59')),
+    
+    // Set deadline to a specific date (pass date string)
+    custom: (dateString) => setVolunteerDeadline(new Date(dateString))
+};
 
 // Helper functions
 const getRadioValue = (name) => {
@@ -92,6 +144,53 @@ if (form) {
     form.addEventListener('submit', async (e) => {
         e.preventDefault();
         
+        // Check deadline before allowing submission
+        try {
+            console.log("🔄 Checking deadline from Firestore...");
+            
+            // Get deadline from Firestore config document
+            const configDoc = await getDoc(doc(db, "config", "volunteerDeadline"));
+            
+            if (configDoc.exists()) {
+                const deadlineData = configDoc.data();
+                const deadline = deadlineData.deadline; // timestamp in milliseconds
+                
+                console.log("📅 Deadline from Firestore:", deadline);
+                
+                if (deadline && deadline !== 0) {
+                    const now = Date.now();
+                    console.log("🕐 Current time:", new Date(now));
+                    console.log("⏰ Deadline time:", new Date(deadline));
+                    
+                    // Compare current time with deadline
+                    if (now > deadline) {
+                        console.log("⏰ Deadline has passed!");
+                        // Show error toast and stop submission
+                        if (window.toastManager) {
+                            window.toastManager.show("❌ Registration deadline has passed!", "error", 5000);
+                        } else {
+                            alert("❌ Registration deadline has passed!");
+                        }
+                        return;
+                    } else {
+                        console.log("✅ Deadline is still open!");
+                        // Show success alert
+                        alert("Form is Open ✅");
+                    }
+                }
+            } else {
+                console.log("⚠️ No deadline configured, allowing form submission");
+                // Show success alert when no deadline is set
+                alert("Form is Open ✅");
+            }
+            
+        } catch (err) {
+            console.error("❌ Error checking deadline:", err);
+            console.log("⚠️ Allowing form submission due to error");
+            // Show success alert when there's an error checking deadline
+            alert("Form is Open ✅");
+        }
+  
         showLoading();
 
         try {
