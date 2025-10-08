@@ -3649,10 +3649,52 @@ body.navbar-loaded .navbar {
 }
 
 .join-now-btn {
-  /* Inherits styles from about-more-btn */
-  margin: 0;
+  background-color: var(--primary-color);
+  color: #fff;
+  font-weight: 600;
   font-size: 0.9rem;
+  border: none;
+  border-radius: 30px;
   padding: 8px 20px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: color 0.2s;
+  box-shadow: 0 2px 8px rgba(23,105,91,0.08);
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.join-now-btn::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--secondary-color);
+  border-radius: 30px;
+  z-index: 0;
+  transition: transform 0.35s cubic-bezier(0.4,0,0.2,1);
+  transform: translateY(100%);
+}
+
+.join-now-btn:hover::before,
+.join-now-btn:focus::before {
+  transform: translateY(0);
+}
+
+.join-now-btn span,
+.join-now-btn .btn-arrow {
+  position: relative;
+  z-index: 1;
+}
+
+.join-now-btn:hover,
+.join-now-btn:focus {
+  color: #fff;
 }
 
 .btn-arrow {
@@ -3696,18 +3738,18 @@ body.navbar-loaded .navbar {
     font-size: 0.9rem;
   }
   
-  .join-now-btn {
-    font-size: 0.9rem;
-  }
+
 }
 
 @media (max-width: 480px) {
   .announcement-title {
-    font-size: 0.8rem;
+    font-size: 0.7rem;
   }
   
   .join-now-btn {
-    font-size: 0.8rem;
+    margin-left: -10px;
+    width: 120px;
+    font-size: 0.65rem;
   }
   
   .announcement-content {
