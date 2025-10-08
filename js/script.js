@@ -437,7 +437,7 @@ function bloodformfunc() {
 
 // Volunteer form function
 function volunteerFormFunc() {
-  window.location.href = "becomeVolunteer.html";
+  window.location.href = "become-a-volunteer.html";
 }
 
 // Make functions globally accessible

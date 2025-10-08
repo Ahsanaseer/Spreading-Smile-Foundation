@@ -90,6 +90,7 @@ function createNavigation(currentPage = '') {
                 <li><a href="events.html" class="nav-link ${currentPage === 'events.html' ? 'active' : ''}">Events</a></li>
                 <li><a href="about.html" class="nav-link ${currentPage === 'about.html' ? 'active' : ''}">About Us</a></li>
                 <li><a href="contact.html" class="nav-link ${currentPage === 'contact.html' ? 'active' : ''}">Contact Us</a></li>
+                <li><a href="privacy-policy.html" class="nav-link ${currentPage === 'privacy-policy.html' ? 'active' : ''}">Privacy Policy</a></li>
             </ul>
         </div>
         <div class="main-nav-actions">
@@ -178,7 +179,7 @@ function createFooter() {
         <ul class="footer-quicklinks-list" style="list-style: none; padding-left: 0;">
           <li><a href="/" class="footer-link"><span class="footer-link-arrow"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg></span> Home</a></li>
           <li><a href="about.html" class="footer-link"><span class="footer-link-arrow"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg></span> About Us</a></li>
-          <li><a href="privacy.html" class="footer-link"><span class="footer-link-arrow"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg></span> Privacy Policy</a></li>
+          <li><a href="privacy-policy.html" class="footer-link"><span class="footer-link-arrow"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg></span> Privacy Policy</a></li>
           <li><a href="contact.html" class="footer-link"><span class="footer-link-arrow"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg></span> Contact Us</a></li>
         </ul>
       </div>
@@ -189,7 +190,7 @@ function createFooter() {
           <li><a href="donation.html" class="footer-link"><span class="footer-link-arrow"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg></span> Give Donation</a></li>
           <li><a href="events.html" class="footer-link"><span class="footer-link-arrow"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg></span> Our Events</a></li>
           <li><a href="index.html#cases-section" class="footer-link"><span class="footer-link-arrow"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg></span> Current Cases</a></li>
-          <li><a href="becomeVolunteer.html" class="footer-link"><span class="footer-link-arrow"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg></span> Become a Volunteer</a></li>
+          <li><a href="become-a-volunteer.html" class="footer-link"><span class="footer-link-arrow"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg></span> Become a Volunteer</a></li>
           <li><a href="bloodDonorForm.html" class="footer-link"><span class="footer-link-arrow"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg></span> Donate Blood Now</a></li>
 
         </ul>
@@ -669,8 +670,8 @@ function getCurrentPage() {
     currentPage = 'donation.html';
   } else if (currentPath.includes('events') || currentPath.includes('events.html') || currentPath.includes('eventsdetail.html')) {
     currentPage = 'events.html';
-  } else if (currentPath.includes('privacy') || currentPath.includes('privacy.html')) {
-    currentPage = 'privacy.html';
+  } else if (currentPath.includes('privacy') || currentPath.includes('privacy-policy.html')) {
+    currentPage = 'privacy-policy.html';
   } else {
     const pathParts = currentPath.split('/');
     currentPage = pathParts[pathParts.length - 1] || 'index.html';
@@ -750,4 +751,12 @@ if (document.readyState === 'loading') {
 } else {
   // DOM is already loaded, load navbar immediately
   loadNavbarImmediately();
+}
+
+// Close announcement banner function
+function closeAnnouncement() {
+  const announcement = document.getElementById('volunteer-announcement');
+  if (announcement) {
+    announcement.style.display = 'none';
+  }
 }

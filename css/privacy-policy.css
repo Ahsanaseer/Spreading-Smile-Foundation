@@ -44,7 +44,7 @@
 .privacy-heading h1 {
   font-size: 3rem;
   font-weight: 700;
-  color: var(--primary-color);
+  color: #222;
   margin-bottom: 16px;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
 }
@@ -81,7 +81,7 @@
 .privacy-section-item h2 {
   font-size: 1.8rem;
   font-weight: 600;
-  color: var(--primary-color);
+  color: #222;
   margin-bottom: 20px;
   padding-left: 0;
   border-left: none;

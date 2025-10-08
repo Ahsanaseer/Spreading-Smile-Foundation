@@ -167,7 +167,7 @@ function initAccessibility() {
     document.addEventListener('keydown', function(e) {
         if (e.key === 'Escape') {
             // Close any open modals or return to home
-            if (window.location.pathname.includes('privacy.html')) {
+            if (window.location.pathname.includes('privacy-policy.html')) {
                 window.location.href = 'index.html';
             }
         }
