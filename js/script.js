@@ -435,6 +435,15 @@ function bloodformfunc() {
   window.location.href = "bloodDonorForm.html";
 }
 
+// Volunteer form function
+function volunteerFormFunc() {
+  window.location.href = "becomeVolunteer.html";
+}
+
+// Make functions globally accessible
+window.volunteerFormFunc = volunteerFormFunc;
+window.bloodformfunc = bloodformfunc;
+
 // Image Modal Functionality
 const imageModal = document.getElementById('image-modal');
 const modalImage = document.getElementById('modal-image');

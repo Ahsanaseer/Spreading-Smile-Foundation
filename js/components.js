@@ -189,7 +189,9 @@ function createFooter() {
           <li><a href="donation.html" class="footer-link"><span class="footer-link-arrow"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg></span> Give Donation</a></li>
           <li><a href="events.html" class="footer-link"><span class="footer-link-arrow"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg></span> Our Events</a></li>
           <li><a href="index.html#cases-section" class="footer-link"><span class="footer-link-arrow"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg></span> Current Cases</a></li>
+          <li><a href="becomeVolunteer.html" class="footer-link"><span class="footer-link-arrow"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg></span> Become a Volunteer</a></li>
           <li><a href="bloodDonorForm.html" class="footer-link"><span class="footer-link-arrow"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg></span> Donate Blood Now</a></li>
+
         </ul>
       </div>
       <div class="footer-col footer-contact">
