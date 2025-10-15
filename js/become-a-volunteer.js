@@ -1,6 +1,7 @@
 // Firebase imports
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-import { getFirestore, collection, addDoc, updateDoc, doc, getDoc, setDoc } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+import { getFirestore, collection, addDoc, updateDoc, doc, getDoc } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
 
 // Firebase config
 const firebaseConfig = {
@@ -13,65 +14,210 @@ const firebaseConfig = {
     measurementId: "G-ZC6Y3KJMLY"
 };
 
-// Init Firebase
+// Initialize Firebase
 const app = initializeApp(firebaseConfig);
+
+// Initialize Firestore
 const db = getFirestore(app);
 
+// Function to parse deadline string and convert to Date object
+function parseDeadlineString(deadlineStr) {
+    try {
+        // Expected format: "09/10/2025 12:45" (Day/Month/Year Time in 24-hour format)
+        const [datePart, timePart] = deadlineStr.split(' ');
+        const [day, month, year] = datePart.split('/');
+        const [hours, minutes] = timePart.split(':');
+        
+        // Create date in Pakistan timezone (UTC+5)
+        // Note: JavaScript Date constructor uses local timezone, so we need to adjust
+        const deadlineDate = new Date(year, month - 1, day, hours, minutes);
+        
+        // Convert to Pakistan timezone (UTC+5)
+        const pakistanOffset = 5 * 60; // 5 hours in minutes
+        const utcTime = deadlineDate.getTime() + (deadlineDate.getTimezoneOffset() * 60000);
+        const pakistanTime = new Date(utcTime + (pakistanOffset * 60000));
+        
+        return pakistanTime;
+    } catch (error) {
+        console.error('Error parsing deadline string:', error);
+        return null;
+    }
+}
+
+// Function to get current Pakistan time
+function getCurrentPakistanTime() {
+    const now = new Date();
+    const pakistanOffset = 5 * 60; // 5 hours in minutes
+    const utcTime = now.getTime() + (now.getTimezoneOffset() * 60000);
+    const pakistanTime = new Date(utcTime + (pakistanOffset * 60000));
+    return pakistanTime;
+}
+
+// Function to check deadline from Firestore
+async function checkDeadlineFromFirestore() {
+    try {
+        console.log('--- Checking Deadline from Firestore ---');
+        
+        // Fetch deadline from Firestore
+        const configDoc = await getDoc(doc(db, 'config', 'volunteerDeadline'));
+        
+        if (!configDoc.exists()) {
+            console.log('No deadline document found in Firestore');
+            return { isDeadlinePassed: false, error: 'No deadline document found' };
+        }
+        
+        const deadlineStr = configDoc.data().deadline;
+        console.log('Fetched deadline string:', deadlineStr);
+        
+        if (!deadlineStr) {
+            console.log('No deadline field found in document');
+            return { isDeadlinePassed: false, error: 'No deadline field found' };
+        }
+        
+        // Parse deadline string
+        const deadlineDate = parseDeadlineString(deadlineStr);
+        if (!deadlineDate) {
+            console.log('Failed to parse deadline string');
+            return { isDeadlinePassed: false, error: 'Failed to parse deadline' };
+        }
+        
+        // Get current Pakistan time
+        const currentTime = getCurrentPakistanTime();
+        
+        console.log('Deadline Date (Pakistan time):', deadlineDate.toLocaleString());
+        console.log('Current Time (Pakistan time):', currentTime.toLocaleString());
+        
+        // Compare times
+        const isDeadlinePassed = currentTime.getTime() > deadlineDate.getTime();
+        
+        if (isDeadlinePassed) {
+            console.log('❌ Deadline has passed!');
+        } else {
+            console.log('✅ Deadline is not passed, you have time to submit.');
+        }
+        
+        return { isDeadlinePassed, deadlineDate, currentTime };
+        
+    } catch (error) {
+        console.error('Error checking deadline from Firestore:', error);
+        return { isDeadlinePassed: false, error: error.message };
+    }
+}
+
+// Function to show deadline passed message
+function showDeadlinePassedMessage() {
+    const mainContent = document.querySelector('.main-content');
+    if (mainContent) {
+        mainContent.innerHTML = `
+            <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; font-family: 'Poppins', Arial, sans-serif; text-align: center; background: #f8f9fa; padding: 20px;">
+                <h1 style="color: #dc3545; margin-bottom: 20px; font-size: 2.5rem; font-weight: 600;">Deadline is passed</h1>
+                <p style="color: #6c757d; font-size: 1.2rem; margin-bottom: 15px; max-width: 600px;">The volunteer program registration deadline has already passed.</p>
+                <p style="color: #6c757d; font-size: 1.1rem; max-width: 600px;">We are no longer accepting new applications for this program.</p>
+            </div>
+        `;
+    }
+}
+
+// Function to show success message after form submission
+function showSuccessMessage() {
+    const mainContent = document.querySelector('.main-content');
+    if (mainContent) {
+        mainContent.innerHTML = `
+            <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; font-family: 'Poppins', Arial, sans-serif; text-align: center; background: #f8f9fa; padding: 20px;">
+                <h1 style="color: #28a745; margin-bottom: 20px; font-size: 2.5rem; font-weight: 600;">Thank you for applying</h1>
+                <p style="color: #6c757d; font-size: 1.2rem; margin-bottom: 15px; max-width: 600px;">Your volunteer application has been submitted successfully.</p>
+                <p style="color: #6c757d; font-size: 1.1rem; max-width: 600px;">We will review your application and get back to you soon.</p>
+            </div>
+        `;
+    }
+}
+
+// Main function to check deadline on page load
+async function checkDeadlineOnLoad() {
+    const result = await checkDeadlineFromFirestore();
+    
+    if (result.isDeadlinePassed) {
+        showDeadlinePassedMessage();
+        return false; // Don't load the form
+    } else {
+        return true; // Load the form normally
+    }
+}
+
+// Get form elements
 const form = document.getElementById('volunteerForm');
 const submitBtn = document.querySelector('.send-msg-btn');
 const submitBtnText = document.querySelector('.send-msg-btn-text');
 
-// ===================== DEADLINE SETUP FUNCTION =====================
-async function setVolunteerDeadline(deadlineDate) {
-    try {
-        console.log("🔄 Setting volunteer deadline...");
-        
-        // Convert to timestamp
-        const deadlineTimestamp = deadlineDate.getTime();
-        
-        console.log("📅 Deadline date:", deadlineDate);
-        console.log("⏰ Deadline timestamp:", deadlineTimestamp);
-        
-        // Create/update the deadline document
-        await setDoc(doc(db, "config", "volunteerDeadline"), {
-            deadline: deadlineTimestamp,
-            deadlineDate: deadlineDate.toISOString(),
-            description: "Volunteer registration deadline",
-            createdAt: new Date().toISOString()
+// Call the deadline check when the page loads
+document.addEventListener('DOMContentLoaded', async () => {
+    const shouldLoadForm = await checkDeadlineOnLoad();
+    if (!shouldLoadForm) {
+        return; // Stop here if deadline has passed
+    }
+    
+    // Continue with normal form initialization if deadline hasn't passed
+    initializeFormInteractions();
+});
+
+// Function to initialize form interactions
+function initializeFormInteractions() {
+    // Add interactive functionality for conditional fields
+    // Show/hide institute and education fields based on student selection
+    const isStudentInputs = document.querySelectorAll('input[name="isStudent"]');
+    const instituteCard = document.getElementById('instituteCard');
+    const educationCard = document.getElementById('educationCard');
+    
+    isStudentInputs.forEach(input => {
+        input.addEventListener('change', function() {
+            if (this.value === 'Yes') {
+                instituteCard.style.display = 'block';
+                educationCard.style.display = 'block';
+                document.getElementById('instituteName').required = true;
+                document.getElementById('educationDetails').required = true;
+            } else {
+                instituteCard.style.display = 'none';
+                educationCard.style.display = 'none';
+                document.getElementById('instituteName').required = false;
+                document.getElementById('educationDetails').required = false;
+                document.getElementById('instituteName').value = '';
+                document.getElementById('educationDetails').value = '';
+            }
         });
-        
-        console.log("✅ Deadline set successfully!");
-        alert(`✅ Deadline set successfully!\nDate: ${deadlineDate.toLocaleString()}\nTimestamp: ${deadlineTimestamp}`);
-        
-        return true;
-        
-    } catch (error) {
-        console.error("❌ Error setting deadline:", error);
-        alert(`❌ Error setting deadline: ${error.message}`);
-        return false;
+    });
+
+    // Show/hide past experience details based on past experience selection
+    const pastExperienceInputs = document.querySelectorAll('input[name="pastExperience"]');
+    const pastExperienceDetailsCard = document.getElementById('pastExperienceDetailsCard');
+    
+    pastExperienceInputs.forEach(input => {
+        input.addEventListener('change', function() {
+            if (this.value === 'Yes') {
+                pastExperienceDetailsCard.style.display = 'block';
+                document.getElementById('pastExperienceDetails').required = true;
+            } else {
+                pastExperienceDetailsCard.style.display = 'none';
+                document.getElementById('pastExperienceDetails').required = false;
+                document.getElementById('pastExperienceDetails').value = '';
+            }
+        });
+    });
+
+    // Clear form functionality (enhanced version)
+    const clearFormBtn = document.getElementById('clearFormBtn');
+    if (clearFormBtn) {
+        clearFormBtn.addEventListener('click', function() {
+            document.getElementById('volunteerForm').reset();
+            instituteCard.style.display = 'none';
+            educationCard.style.display = 'none';
+            pastExperienceDetailsCard.style.display = 'none';
+            document.getElementById('instituteName').required = false;
+            document.getElementById('educationDetails').required = false;
+            document.getElementById('pastExperienceDetails').required = false;
+        });
     }
 }
 
-// Make function available globally for console use
-window.setVolunteerDeadline = setVolunteerDeadline;
-
-// Quick setup function for common deadlines
-window.setDeadlineTo = {
-    // Set deadline to January 1, 2025 at 11:59 PM
-    jan2025: () => setVolunteerDeadline(new Date('2025-01-01T23:59:59')),
-    
-    // Set deadline to February 1, 2025 at 11:59 PM
-    feb2025: () => setVolunteerDeadline(new Date('2025-02-01T23:59:59')),
-    
-    // Set deadline to March 1, 2025 at 11:59 PM
-    mar2025: () => setVolunteerDeadline(new Date('2025-03-01T23:59:59')),
-    
-    // Set deadline to December 31, 2024 at 11:59 PM
-    dec2024: () => setVolunteerDeadline(new Date('2024-12-31T23:59:59')),
-    
-    // Set deadline to a specific date (pass date string)
-    custom: (dateString) => setVolunteerDeadline(new Date(dateString))
-};
 
 // Helper functions
 const getRadioValue = (name) => {
@@ -144,53 +290,13 @@ if (form) {
     form.addEventListener('submit', async (e) => {
         e.preventDefault();
         
-        // Check deadline before allowing submission
-        try {
-            console.log("🔄 Checking deadline from Firestore...");
-            
-            // Get deadline from Firestore config document
-            const configDoc = await getDoc(doc(db, "config", "volunteerDeadline"));
-            
-            if (configDoc.exists()) {
-                const deadlineData = configDoc.data();
-                const deadline = deadlineData.deadline; // timestamp in milliseconds
-                
-                console.log("📅 Deadline from Firestore:", deadline);
-                
-                if (deadline && deadline !== 0) {
-                    const now = Date.now();
-                    console.log("🕐 Current time:", new Date(now));
-                    console.log("⏰ Deadline time:", new Date(deadline));
-                    
-                    // Compare current time with deadline
-                    if (now > deadline) {
-                        console.log("⏰ Deadline has passed!");
-                        // Show error toast and stop submission
-                        if (window.toastManager) {
-                            window.toastManager.show("❌ Registration deadline has passed!", "error", 5000);
-                        } else {
-                            alert("❌ Registration deadline has passed!");
-                        }
-                        return;
-                    } else {
-                        console.log("✅ Deadline is still open!");
-                        // Show success alert
-                        alert("Form is Open ✅");
-                    }
-                }
-            } else {
-                console.log("⚠️ No deadline configured, allowing form submission");
-                // Show success alert when no deadline is set
-                alert("Form is Open ✅");
-            }
-            
-        } catch (err) {
-            console.error("❌ Error checking deadline:", err);
-            console.log("⚠️ Allowing form submission due to error");
-            // Show success alert when there's an error checking deadline
-            alert("Form is Open ✅");
+        // First check deadline before processing form
+        const deadlineResult = await checkDeadlineFromFirestore();
+        if (deadlineResult.isDeadlinePassed) {
+            showDeadlinePassedMessage();
+            return;
         }
-  
+        
         showLoading();
 
         try {
@@ -302,11 +408,8 @@ if (form) {
             const docRef = await addDoc(collection(db, "allVolunteersSummer25"), volunteerData);
             await updateDoc(docRef, { id: docRef.id });
             
-            // Show success toast
-            showToast('Form Submitted Successfully!');
-            
-            // Reset form
-            resetForm();
+            // Show success message instead of toast
+            showSuccessMessage();
             
         } catch (error) {
             if (error.message.includes('Please')) {
@@ -321,60 +424,3 @@ if (form) {
         }
     });
 }
-
-// Add interactive functionality for conditional fields
-document.addEventListener('DOMContentLoaded', function() {
-    // Show/hide institute and education fields based on student selection
-    const isStudentInputs = document.querySelectorAll('input[name="isStudent"]');
-    const instituteCard = document.getElementById('instituteCard');
-    const educationCard = document.getElementById('educationCard');
-    
-    isStudentInputs.forEach(input => {
-        input.addEventListener('change', function() {
-            if (this.value === 'Yes') {
-                instituteCard.style.display = 'block';
-                educationCard.style.display = 'block';
-                document.getElementById('instituteName').required = true;
-                document.getElementById('educationDetails').required = true;
-            } else {
-                instituteCard.style.display = 'none';
-                educationCard.style.display = 'none';
-                document.getElementById('instituteName').required = false;
-                document.getElementById('educationDetails').required = false;
-                document.getElementById('instituteName').value = '';
-                document.getElementById('educationDetails').value = '';
-            }
-        });
-    });
-
-    // Show/hide past experience details based on past experience selection
-    const pastExperienceInputs = document.querySelectorAll('input[name="pastExperience"]');
-    const pastExperienceDetailsCard = document.getElementById('pastExperienceDetailsCard');
-    
-    pastExperienceInputs.forEach(input => {
-        input.addEventListener('change', function() {
-            if (this.value === 'Yes') {
-                pastExperienceDetailsCard.style.display = 'block';
-                document.getElementById('pastExperienceDetails').required = true;
-            } else {
-                pastExperienceDetailsCard.style.display = 'none';
-                document.getElementById('pastExperienceDetails').required = false;
-                document.getElementById('pastExperienceDetails').value = '';
-            }
-        });
-    });
-
-    // Clear form functionality (enhanced version)
-    const clearFormBtn = document.getElementById('clearFormBtn');
-    if (clearFormBtn) {
-        clearFormBtn.addEventListener('click', function() {
-            document.getElementById('volunteerForm').reset();
-            instituteCard.style.display = 'none';
-            educationCard.style.display = 'none';
-            pastExperienceDetailsCard.style.display = 'none';
-            document.getElementById('instituteName').required = false;
-            document.getElementById('educationDetails').required = false;
-            document.getElementById('pastExperienceDetails').required = false;
-        });
-    }
-});

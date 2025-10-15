@@ -435,8 +435,9 @@ function bloodformfunc() {
   window.location.href = "bloodDonorForm.html";
 }
 
-// Volunteer form function
+// Volunteer form function - simple redirect (deadline check is now handled on the volunteer page itself)
 function volunteerFormFunc() {
+  console.log("🔄 Redirecting to volunteer form...");
   window.location.href = "become-a-volunteer.html";
 }
 
