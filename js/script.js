@@ -1,6 +1,6 @@
 // Firebase imports from CDN
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+import { getFirestore, collection, getDocs, doc, getDoc } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
 // Firebase config
 const firebaseConfig = {
@@ -19,6 +19,111 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
+
+// Function to parse deadline string and convert to Date object
+function parseDeadlineString(deadlineStr) {
+    try {
+        // Expected format: "09/10/2025 12:45" (Day/Month/Year Time in 24-hour format)
+        const [datePart, timePart] = deadlineStr.split(' ');
+        const [day, month, year] = datePart.split('/');
+        const [hours, minutes] = timePart.split(':');
+        
+        // Create date in Pakistan timezone (UTC+5)
+        // Note: JavaScript Date constructor uses local timezone, so we need to adjust
+        const deadlineDate = new Date(year, month - 1, day, hours, minutes);
+        
+        // Convert to Pakistan timezone (UTC+5)
+        const pakistanOffset = 5 * 60; // 5 hours in minutes
+        const utcTime = deadlineDate.getTime() + (deadlineDate.getTimezoneOffset() * 60000);
+        const pakistanTime = new Date(utcTime + (pakistanOffset * 60000));
+        
+        return pakistanTime;
+    } catch (error) {
+        console.error('Error parsing deadline string:', error);
+        return null;
+    }
+}
+
+// Function to get current Pakistan time
+function getCurrentPakistanTime() {
+    const now = new Date();
+    const pakistanOffset = 5 * 60; // 5 hours in minutes
+    const utcTime = now.getTime() + (now.getTimezoneOffset() * 60000);
+    const pakistanTime = new Date(utcTime + (pakistanOffset * 60000));
+    return pakistanTime;
+}
+
+// Function to check deadline from Firestore
+async function checkDeadlineFromFirestore() {
+    try {
+        console.log('--- Checking Deadline from Firestore for Banner ---');
+        
+        // Fetch deadline from Firestore
+        const configDoc = await getDoc(doc(db, 'config', 'volunteerDeadline'));
+        
+        if (!configDoc.exists()) {
+            console.log('No deadline document found in Firestore');
+            return { isDeadlinePassed: false, error: 'No deadline document found' };
+        }
+        
+        const deadlineStr = configDoc.data().deadline;
+        console.log('Fetched deadline string:', deadlineStr);
+        
+        if (!deadlineStr) {
+            console.log('No deadline field found in document');
+            return { isDeadlinePassed: false, error: 'No deadline field found' };
+        }
+        
+        // Parse deadline string
+        const deadlineDate = parseDeadlineString(deadlineStr);
+        if (!deadlineDate) {
+            console.log('Failed to parse deadline string');
+            return { isDeadlinePassed: false, error: 'Failed to parse deadline' };
+        }
+        
+        // Get current Pakistan time
+        const currentTime = getCurrentPakistanTime();
+        
+        console.log('Deadline Date (Pakistan time):', deadlineDate.toLocaleString());
+        console.log('Current Time (Pakistan time):', currentTime.toLocaleString());
+        
+        // Compare times
+        const isDeadlinePassed = currentTime.getTime() > deadlineDate.getTime();
+        
+        if (isDeadlinePassed) {
+            console.log('❌ Deadline has passed! Banner should be hidden.');
+        } else {
+            console.log('✅ Deadline is not passed, banner should be shown.');
+        }
+        
+        return { isDeadlinePassed, deadlineDate, currentTime };
+        
+    } catch (error) {
+        console.error('Error checking deadline from Firestore:', error);
+        return { isDeadlinePassed: false, error: error.message };
+    }
+}
+
+// Function to control banner visibility based on deadline
+async function controlBannerVisibility() {
+    const banner = document.getElementById('volunteer-announcement');
+    if (!banner) {
+        console.log('Banner element not found');
+        return;
+    }
+    
+    const result = await checkDeadlineFromFirestore();
+    
+    if (result.isDeadlinePassed) {
+        // Hide banner if deadline has passed
+        banner.style.display = 'none';
+        console.log('Banner hidden - deadline has passed');
+    } else {
+        // Show banner if deadline hasn't passed (use flex to match original CSS)
+        banner.style.display = 'flex';
+        console.log('Banner shown - deadline has not passed');
+    }
+}
 
 
 
@@ -326,7 +431,16 @@ setInterval(() => {
   }
 }, 120000); // 2 minutes
 
+// Periodic banner visibility check every 5 minutes
+setInterval(() => {
+  console.log('Periodic banner visibility check triggered');
+  controlBannerVisibility();
+}, 300000); // 5 minutes
+
 document.addEventListener('DOMContentLoaded', function() {
+  // Control banner visibility based on deadline
+  controlBannerVisibility();
+  
   // Fetch and render processing cases with cache busting
   fetchAndRenderProcessingCases(true);
   
@@ -435,10 +549,41 @@ function bloodformfunc() {
   window.location.href = "bloodDonorForm.html";
 }
 
-// Volunteer form function - simple redirect (deadline check is now handled on the volunteer page itself)
-function volunteerFormFunc() {
-  console.log("🔄 Redirecting to volunteer form...");
-  window.location.href = "become-a-volunteer.html";
+// Volunteer form function with deadline check
+async function volunteerFormFunc() {
+  try {
+    console.log("🔄 Checking deadline before redirecting to volunteer form...");
+    
+    const result = await checkDeadlineFromFirestore();
+    
+    if (result.isDeadlinePassed) {
+      console.log("❌ Deadline has passed! Cannot access volunteer form.");
+      // Show error message
+      if (window.toastManager) {
+        window.toastManager.show("❌ Deadline has passed! Cannot access volunteer form.", "error", 5000);
+      } else {
+        alert("❌ Deadline has passed! Cannot access volunteer form.");
+      }
+      return; // Don't redirect
+    } else {
+      console.log("✅ Deadline is not passed, redirecting to volunteer form...");
+      window.location.href = "become-a-volunteer.html";
+    }
+    
+  } catch (error) {
+    console.error("❌ Error checking deadline:", error);
+    console.log("⚠️ Allowing form access due to error");
+    // Show warning but still allow navigation
+    if (window.toastManager) {
+      window.toastManager.show("⚠️ Unable to check deadline. Proceeding to volunteer form...", "warning", 3000);
+    } else {
+      alert("⚠️ Unable to check deadline. Proceeding to volunteer form...");
+    }
+    // Small delay then redirect
+    setTimeout(() => {
+      window.location.href = "become-a-volunteer.html";
+    }, 1000);
+  }
 }
 
 // Make functions globally accessible
