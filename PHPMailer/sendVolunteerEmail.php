@@ -53,7 +53,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <title>Thank You - Spreading Smile Foundation</title>
             <style>
                 body {
-                    font-family: 'Arial', sans-serif;
+                    font-family: 'Poppins', Arial, sans-serif;
                     line-height: 1.6;
                     color: #333;
                     max-width: 600px;
