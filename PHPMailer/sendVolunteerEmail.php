@@ -131,7 +131,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <div class='greeting'>Dear $fullName,</div>
                 
                 <div class='content'>
-                    <p>Thank you for your interest in joining our <strong>Volunteer Program Summer 25'</strong>! We are thrilled that you've taken the first step towards making a positive impact in your community.</p>
+                    <p>Thank you for your interest in joining our <strong>Volunteer Program Winter 25'</strong>! We are thrilled that you've taken the first step towards making a positive impact in your community.</p>
                     
                     <div class='highlight'>
                         <p><strong>Your application has been received successfully!</strong></p>

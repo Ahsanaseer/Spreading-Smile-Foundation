@@ -409,8 +409,8 @@ if (form) {
                 timestamp: rawData.timestamp
             };
 
-            // Submit to Firebase - Collection: "allVolunteersSummer25"
-            const docRef = await addDoc(collection(db, "allVolunteersSummer25"), volunteerData);
+            // Submit to Firebase - Collection: "allVolunteersWinter25"
+            const docRef = await addDoc(collection(db, "allVolunteersWinter25"), volunteerData);
             await updateDoc(docRef, { id: docRef.id });
             
             // Send thank you email to the volunteer
