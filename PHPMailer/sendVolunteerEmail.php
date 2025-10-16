@@ -78,7 +78,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     margin-bottom: 10px;
                 }
                 .greeting {
-                    color: #46C0B2;
+                    color: #f6f6f6;
                     font-size: 24px;
                     font-weight: 600;
                     margin-bottom: 20px;
@@ -124,7 +124,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <body>
             <div class='email-container'>
                 <div class='header'>
-                    <div class='logo'>😊 Spreading Smile Foundation</div>
+                    <div class='logo'>Spreading Smile Foundation</div>
                 </div>
                 
                 <div class='greeting'>Dear $fullName,</div>
@@ -137,7 +137,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <p>We have received your volunteer application and our team will review it carefully. We appreciate the time and effort you've put into completing the application form.</p>
                     </div>
                     
-                    <h3 style='color: #46C0B2;'>What happens next?</h3>
+                    <h3 style='color: #f6f6f6;'>What happens next?</h3>
                     <ul>
                         <li>Our team will review your application within <strong>3-5 business days</strong></li>
                         <li>If selected, you will receive an email with further instructions</li>
@@ -145,13 +145,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <li>Final selections will be announced via email</li>
                     </ul>
                     
-                    <h3 style='color: #46C0B2;'>Program Highlights:</h3>
+                    <h3 style='color: #f6f6f6;'>Program Highlights:</h3>
                     <ul>
-                        <li>📅 <strong>Duration:</strong> 5-6 weeks of meaningful volunteer work</li>
-                        <li>🏠 <strong>Activities:</strong> Visits to orphanages, old age homes, and special needs centers</li>
-                        <li>📜 <strong>Certificate:</strong> Globally recognized certificate upon completion</li>
-                        <li>🤝 <strong>Networking:</strong> Connect with like-minded individuals</li>
-                        <li>💼 <strong>Opportunity:</strong> Chance to join our permanent team</li>
+                        <li><strong>Duration:</strong> 5-6 weeks of meaningful volunteer work</li>
+                        <li><strong>Activities:</strong> Visits to orphanages, old age homes, and special needs centers</li>
+                        <li><strong>Certificate:</strong> Globally recognized certificate upon completion</li>
+                        <li><strong>Networking:</strong> Connect with like-minded individuals</li>
+                        <li><strong>Opportunity:</strong> Chance to join our permanent team</li>
                     </ul>
                     
                     <p>We believe in the power of youth to bring positive change to society. Your willingness to volunteer shows your commitment to making a difference, and we're excited about the possibility of working together.</p>
