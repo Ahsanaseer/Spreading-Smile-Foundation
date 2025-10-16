@@ -3609,7 +3609,8 @@ body.navbar-loaded .navbar {
 .toast-container {
   position: fixed;
   top: 20px;
-  right: 20px;
+  left: 50%;
+  transform: translateX(-50%);
   z-index: 10000;
   display: flex;
   flex-direction: column;
@@ -3628,15 +3629,17 @@ body.navbar-loaded .navbar {
   align-items: center;
   gap: 12px;
   opacity: 0;
-  transform: translateX(100%);
+  transform: translateX(-50%) translateY(-100px);
   transition: all 0.3s ease-in-out;
   pointer-events: auto;
   border-left: 4px solid #007bff;
+  position: relative;
+  left: 50%;
 }
 
 .toast.show {
   opacity: 1;
-  transform: translateX(0);
+  transform: translateX(-50%) translateY(0);
 }
 
 .toast-content {
@@ -3645,6 +3648,7 @@ body.navbar-loaded .navbar {
   font-weight: 500;
   color: #333;
   line-height: 1.4;
+  font-family: 'Poppins', Arial, sans-serif;
 }
 
 .toast-icon {
@@ -3726,14 +3730,16 @@ body.navbar-loaded .navbar {
 @media (max-width: 768px) {
   .toast-container {
     top: 10px;
-    right: 10px;
-    left: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    right: auto;
   }
   
   .toast {
     min-width: auto;
-    max-width: none;
+    max-width: calc(100vw - 40px);
     width: 100%;
+    margin: 0 20px;
   }
 }
 
