@@ -124,9 +124,14 @@ function showSuccessMessage() {
     if (mainContent) {
         mainContent.innerHTML = `
             <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; font-family: 'Poppins', Arial, sans-serif; text-align: center; background: #f8f9fa; padding: 20px;">
-                <h1 style="color: #28a745; margin-bottom: 20px; font-size: 2.5rem; font-weight: 600;">Thank you for applying</h1>
+                <h1 style="color: #28a745; margin-bottom: 20px; font-size: 2.5rem; font-weight: 600;">Thank you for applying!</h1>
                 <p style="color: #6c757d; font-size: 1.2rem; margin-bottom: 15px; max-width: 600px;">Your volunteer application has been submitted successfully.</p>
-                <p style="color: #6c757d; font-size: 1.1rem; max-width: 600px;">We will review your application and get back to you soon.</p>
+                <p style="color: #46C0B2; font-size: 1.1rem; margin-bottom: 15px; max-width: 600px; font-weight: 500;">📧 A confirmation email has been sent to your email address.</p>
+                <p style="color: #6c757d; font-size: 1.1rem; max-width: 600px;">We will review your application and get back to you within 3-5 business days.</p>
+                <div style="margin-top: 30px; padding: 20px; background: #f0f8f7; border-radius: 10px; border-left: 4px solid #46C0B2; max-width: 500px;">
+                    <p style="color: #333; font-size: 1rem; margin: 0;"><strong>What's next?</strong></p>
+                    <p style="color: #666; font-size: 0.9rem; margin: 10px 0 0 0;">Check your email for detailed information about the program and next steps.</p>
+                </div>
             </div>
         `;
     }
@@ -407,6 +412,29 @@ if (form) {
             // Submit to Firebase - Collection: "allVolunteersSummer25"
             const docRef = await addDoc(collection(db, "allVolunteersSummer25"), volunteerData);
             await updateDoc(docRef, { id: docRef.id });
+            
+            // Send thank you email to the volunteer
+            try {
+                const emailResponse = await fetch('PHPMailer/sendVolunteerEmail.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                    },
+                    body: `email=${encodeURIComponent(volunteerData.email)}&fullName=${encodeURIComponent(volunteerData.fullName)}`
+                });
+                
+                const emailResult = await emailResponse.text();
+                console.log('Email result:', emailResult);
+                
+                if (emailResult.includes('successfully')) {
+                    console.log('✅ Thank you email sent successfully');
+                } else {
+                    console.log('⚠️ Email sending failed:', emailResult);
+                }
+            } catch (emailError) {
+                console.error('Email sending error:', emailError);
+                // Don't fail the entire process if email fails
+            }
             
             // Show success message instead of toast
             showSuccessMessage();
