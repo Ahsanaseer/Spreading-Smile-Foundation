@@ -78,7 +78,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     margin-bottom: 10px;
                 }
                 .greeting {
-                    color: #f6f6f6;
+                    color: #46C0B2;
                     font-size: 24px;
                     font-weight: 600;
                     margin-bottom: 20px;
@@ -137,7 +137,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <p>We have received your volunteer application and our team will review it carefully. We appreciate the time and effort you've put into completing the application form.</p>
                     </div>
                     
-                    <h3 style='color: #f6f6f6;'>What happens next?</h3>
+                    <h3 style='color: #46C0B2;'>What happens next?</h3>
                     <ul>
                         <li>Our team will review your application within <strong>3-5 business days</strong></li>
                         <li>If selected, you will receive an email with further instructions</li>
@@ -145,7 +145,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <li>Final selections will be announced via email</li>
                     </ul>
                     
-                    <h3 style='color: #f6f6f6;'>Program Highlights:</h3>
+                    <h3 style='color: #46C0B2;'>Program Highlights:</h3>
                     <ul>
                         <li><strong>Duration:</strong> 5-6 weeks of meaningful volunteer work</li>
                         <li><strong>Activities:</strong> Visits to orphanages, old age homes, and special needs centers</li>
