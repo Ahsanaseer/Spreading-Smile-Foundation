@@ -3947,6 +3947,65 @@ body.navbar-loaded .navbar {
   }
 }
 
+/* =================================================NGO REGISTRATION BANNER STYLES============================================================================== */
+.ngo-registration-banner {
+  background: var(--secondary-color);
+  padding: 8px 0;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.registration-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 5vw;
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.registration-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  flex: 1;
+}
+
+.registration-text {
+  font-size: 0.9rem;
+  font-weight: 500;
+  margin: 0;
+  line-height: 1.3;
+  text-align: center;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+/* Responsive Design for NGO Registration Banner */
+@media (max-width: 768px) {
+  .ngo-registration-banner {
+    padding: 6px 0;
+  }
+  
+  .registration-text {
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .registration-text {
+    font-size: 0.7rem;
+    line-height: 1.2;
+  }
+}
+
 /* =================================================LOGO LINK STYLES============================================================================== */
 .navbar-center a {
   display: block;
