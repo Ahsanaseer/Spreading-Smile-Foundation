@@ -159,7 +159,7 @@ function showDeadlinePassedMessage() {
     if (mainContent) {
         mainContent.innerHTML = `
             <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; font-family: 'Poppins', Arial, sans-serif; text-align: center; background: #f8f9fa; padding: 20px;">
-                <h1 style="color: #dc3545; margin-bottom: 20px; font-size: 2.5rem; font-weight: 600;">Deadline is passed</h1>
+                <h1 style="color: #dc3545; margin-bottom: 20px; font-size: 2.5rem; font-weight: 600;">Deadline has passed</h1>
                 <p style="color: #6c757d; font-size: 1.2rem; margin-bottom: 15px; max-width: 600px;">The volunteer program registration deadline has already passed.</p>
                 <p style="color: #6c757d; font-size: 1.1rem; max-width: 600px;">We are no longer accepting new applications for this program.</p>
             </div>

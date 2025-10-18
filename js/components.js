@@ -14,7 +14,9 @@ function createNavigation(currentPage = '') {
             </button>
         </div>
         <div class="navbar-center">
-            <img src="Picrures All/logo-wob.png" alt="Spreading Smile Foundation Logo" class="logo">
+            <a href="/">
+                <img src="Picrures All/logo-wob.png" alt="Spreading Smile Foundation Logo" class="logo">
+            </a>
         </div>
         <div class="navbar-mobile-right">
             <button class="main-search-btn-mobile" id="main-search-btn">
@@ -131,7 +133,9 @@ function createFooter() {
    <footer class="footer">
     <div class="footer-main">
       <div class="footer-col footer-brand">
-        <img src="Picrures All/logo-wob.png" alt="Spreading Smile Foundation Logo" class="footer-logo">
+        <a href="/">
+          <img src="Picrures All/logo-wob.png" alt="Spreading Smile Foundation Logo" class="footer-logo">
+        </a>
         <p class="footer-desc">This Foundation basically targets the needy people who are not begging but working hard for their family and self respect.</p>
         <button href="#" class="js button" style="--clr: #7808d0">
           <span class="button__icon-wrapper">
@@ -238,12 +242,14 @@ function createFooter() {
                   <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" stroke="#fff" stroke-width="1.5" fill="none"/>
                 </svg>
               </span>
-              <div class="footer-address-text">
-                Office number 1, 3rd floor,<br>
-                Imtiaz Chamber, Temple Rd,<br>
-                Mozang Chungi, Lahore,<br>
-                54000, Pakistan
-              </div>
+              <a href="https://google.com/maps/place/Spreading+Smile+Foundation/@31.5517245,74.3128644,17z/data=!3m1!4b1!4m6!3m5!1s0x3919052c9a21d93f:0x9e2d20e292dc1f49!8m2!3d31.55172!4d74.3154393!16s%2Fg%2F11swkfgvc_?entry=ttu&g_ep=EgoyMDI1MTAxNC4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener noreferrer" class="footer-address-link">
+                <div class="footer-address-text">
+                  Office number 1, 3rd floor,<br>
+                  Imtiaz Chamber, Temple Rd,<br>
+                  Mozang Chungi, Lahore,<br>
+                  54000, Pakistan
+                </div>
+              </a>
             </div>
           </div>
         </div>

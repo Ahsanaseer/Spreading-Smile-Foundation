@@ -3946,3 +3946,34 @@ body.navbar-loaded .navbar {
     gap: 10px;
   }
 }
+
+/* =================================================LOGO LINK STYLES============================================================================== */
+.navbar-center a {
+  display: block;
+  text-decoration: none;
+}
+.navbar-center a:hover {
+  opacity: 0.8;
+  transition: opacity 0.2s ease;
+}
+.footer-brand a {
+  display: inline-block;
+  text-decoration: none;
+}
+.footer-brand a:hover {
+  opacity: 0.8;
+  transition: opacity 0.2s ease;
+}
+.footer-address-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+.footer-address-link:hover {
+  opacity: 0.8;
+  transition: opacity 0.2s ease;
+}
+.footer-address-link:hover .footer-address-text {
+  color: #eee;
+  transition: color 0.2s ease;
+}
