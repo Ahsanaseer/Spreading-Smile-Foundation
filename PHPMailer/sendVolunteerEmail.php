@@ -13,10 +13,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Get form data
     $email = htmlspecialchars($_POST['email']);
     $fullName = htmlspecialchars($_POST['fullName']);
+    $volunteerProgramTitle = htmlspecialchars($_POST['volunteerProgramTitle'] ?? 'Winter Volunteer program 2025');
+    
+    // Debug: Check what data we received
+    error_log("Received POST data: " . print_r($_POST, true));
+    error_log("Email: " . $email);
+    error_log("Full Name: " . $fullName);
+    error_log("Volunteer Program Title: " . $volunteerProgramTitle);
     
     // Validate required fields
-    if (empty($email) || empty($fullName)) {
-        echo "Error: Email and full name are required.";
+    if (empty($email)) {
+        echo "Error: Email is required.";
+        exit;
+    }
+    
+    if (empty($fullName)) {
+        echo "Error: Full name is required. Received: '" . ($_POST['fullName'] ?? 'null') . "'";
         exit;
     }
     
@@ -128,10 +140,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <div class='logo'>Spreading Smile Foundation</div>
                 </div>
                 
-                <div class='greeting'>Dear $fullName,</div>
+                <div class='greeting'>Dear " . (!empty($fullName) ? $fullName : 'Volunteer') . ",</div>
                 
                 <div class='content'>
-                    <p>We are writing this email to inform you that we have received your application for our Winter Volunteer program 2025. You will soon receive a call from our team in which they will guide you about the selection criteria.</p>
+                    <p>We are writing this email to inform you that we have received your application for our " . $volunteerProgramTitle . ". You will soon receive a call from our team in which they will guide you about the selection criteria.</p>
                 </div>
                 
                 <div class='footer'>

@@ -465,12 +465,43 @@ if (form) {
             
             // Send thank you email to the volunteer
             try {
+                // Fetch volunteer program title from Firebase
+                let volunteerProgramTitle = 'Winter Volunteer program 2025'; // fallback
+                try {
+                    const configDoc = await getDoc(doc(db, 'config', 'volunteerDeadline'));
+                    if (configDoc.exists()) {
+                        const configData = configDoc.data();
+                        if (configData.title) {
+                            volunteerProgramTitle = configData.title;
+                            console.log('Fetched volunteer program title for email:', volunteerProgramTitle);
+                        }
+                    }
+                } catch (titleError) {
+                    console.error('Error fetching volunteer program title:', titleError);
+                    // Use fallback title
+                }
+                
+                console.log('Sending email with data:', {
+                    email: volunteerData.email,
+                    fullName: volunteerData.fullName,
+                    volunteerProgramTitle: volunteerProgramTitle
+                });
+                
+                // Validate that we have the required data for email
+                if (!volunteerData.email || !volunteerData.fullName) {
+                    console.error('Missing email or fullName for sending email:', {
+                        email: volunteerData.email,
+                        fullName: volunteerData.fullName
+                    });
+                    throw new Error('Missing email or fullName data');
+                }
+                
                 const emailResponse = await fetch('PHPMailer/sendVolunteerEmail.php', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/x-www-form-urlencoded',
                     },
-                    body: `email=${encodeURIComponent(volunteerData.email)}&fullName=${encodeURIComponent(volunteerData.fullName)}`
+                    body: `email=${encodeURIComponent(volunteerData.email)}&fullName=${encodeURIComponent(volunteerData.fullName)}&volunteerProgramTitle=${encodeURIComponent(volunteerProgramTitle)}`
                 });
                 
                 const emailResult = await emailResponse.text();

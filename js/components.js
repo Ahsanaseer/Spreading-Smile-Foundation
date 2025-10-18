@@ -226,6 +226,28 @@ function createFooter() {
           
         </div>
       </div>
+      <div class="footer-col footer-address-section">
+        <div class="footer-address-box">
+          <h3 class="footer-title">Visit Us</h3>
+          <div class="footer-underline"></div>
+          <div class="footer-address-content">
+            <div class="footer-address-row">
+              <span class="footer-address-icon">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
+                  <circle cx="12" cy="12" r="12" fill="var(--primary-color)"/>
+                  <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" stroke="#fff" stroke-width="1.5" fill="none"/>
+                </svg>
+              </span>
+              <div class="footer-address-text">
+                Office number 1, 3rd floor,<br>
+                Imtiaz Chamber, Temple Rd,<br>
+                Mozang Chungi, Lahore,<br>
+                54000, Pakistan
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
     <div class="footer-bottom">
       <span>&copy; 2024 Spreading Smile Foundation. All rights reserved.</span>
