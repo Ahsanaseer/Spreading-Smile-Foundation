@@ -53,6 +53,55 @@ function getCurrentPakistanTime() {
     return pakistanTime;
 }
 
+// Function to fetch volunteer program title and update page heading
+async function fetchAndUpdateVolunteerPageTitle() {
+    try {
+        console.log('--- Fetching Volunteer Program Title for Page ---');
+        
+        // Fetch config document from Firestore
+        const configDoc = await getDoc(doc(db, 'config', 'volunteerDeadline'));
+        
+        if (!configDoc.exists()) {
+            console.log('No config document found in Firestore');
+            // Set fallback title
+            updatePageTitle('Volunteer Program Winter 25\'');
+            return;
+        }
+        
+        const configData = configDoc.data();
+        const title = configData.title;
+        
+        if (!title) {
+            console.log('No title field found in document');
+            // Set fallback title
+            updatePageTitle('Volunteer Program Winter 25\'');
+            return;
+        }
+        
+        console.log('Fetched title for page:', title);
+        
+        // Update the page title
+        updatePageTitle(title);
+        
+    } catch (error) {
+        console.error('Error fetching volunteer title for page:', error);
+        // Set fallback title on error
+        updatePageTitle('Volunteer Program Winter 25\'');
+    }
+}
+
+// Helper function to update page title
+function updatePageTitle(title) {
+    const pageHeading = document.querySelector('.contact-page-heading h1');
+    if (pageHeading) {
+        // Update the heading with the fetched title
+        pageHeading.textContent = title;
+        console.log('✅ Page title updated successfully:', title);
+    } else {
+        console.log('❌ Page heading element not found');
+    }
+}
+
 // Function to check deadline from Firestore
 async function checkDeadlineFromFirestore() {
     try {
@@ -156,6 +205,9 @@ const submitBtnText = document.querySelector('.send-msg-btn-text');
 
 // Call the deadline check when the page loads
 document.addEventListener('DOMContentLoaded', async () => {
+    // First, fetch and update the volunteer program title
+    await fetchAndUpdateVolunteerPageTitle();
+    
     const shouldLoadForm = await checkDeadlineOnLoad();
     if (!shouldLoadForm) {
         return; // Stop here if deadline has passed
@@ -410,7 +462,7 @@ if (form) {
             };
 
             // Submit to Firebase - Collection: "allVolunteersWinter25"
-            const docRef = await addDoc(collection(db, "allVolunteersWinter25"), volunteerData);
+            const docRef = await addDoc(collection(db, "allVolunteersSummer25"), volunteerData);
             await updateDoc(docRef, { id: docRef.id });
             
             // Send thank you email to the volunteer

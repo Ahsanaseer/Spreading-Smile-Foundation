@@ -53,6 +53,55 @@ function getCurrentPakistanTime() {
     return pakistanTime;
 }
 
+// Function to fetch volunteer program title and update banner
+async function fetchAndUpdateVolunteerTitle() {
+    try {
+        console.log('--- Fetching Volunteer Program Title from Firestore ---');
+        
+        // Fetch config document from Firestore
+        const configDoc = await getDoc(doc(db, 'config', 'volunteerDeadline'));
+        
+        if (!configDoc.exists()) {
+            console.log('No config document found in Firestore');
+            // Set fallback title
+            updateBannerTitle('Winter 2025 Volunteer Program');
+            return;
+        }
+        
+        const configData = configDoc.data();
+        const title = configData.title;
+        
+        if (!title) {
+            console.log('No title field found in document');
+            // Set fallback title
+            updateBannerTitle('Winter 2025 Volunteer Program');
+            return;
+        }
+        
+        console.log('Fetched title:', title);
+        
+        // Update the banner title
+        updateBannerTitle(title);
+        
+    } catch (error) {
+        console.error('Error fetching volunteer title:', error);
+        // Set fallback title on error
+        updateBannerTitle('Winter 2025 Volunteer Program');
+    }
+}
+
+// Helper function to update banner title
+function updateBannerTitle(title) {
+    const announcementTitle = document.querySelector('.announcement-title');
+    if (announcementTitle) {
+        // Format: "Our [title] is Live!"
+        announcementTitle.textContent = `Our ${title} is Live!`;
+        console.log('✅ Banner title updated successfully:', `Our ${title} is Live!`);
+    } else {
+        console.log('❌ Banner title element not found');
+    }
+}
+
 // Function to check deadline from Firestore
 async function checkDeadlineFromFirestore() {
     try {
@@ -111,6 +160,9 @@ async function controlBannerVisibility() {
         console.log('Banner element not found');
         return;
     }
+    
+    // First, fetch and update the volunteer program title
+    await fetchAndUpdateVolunteerTitle();
     
     const result = await checkDeadlineFromFirestore();
     
