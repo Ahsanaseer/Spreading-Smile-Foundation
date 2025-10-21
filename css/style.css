@@ -2098,51 +2098,51 @@ display: block;
   }
 }
 
-/* =================================================UNIFIED LOADING SYSTEM============================================================================== */
-/* Hide ALL content until everything is ready */
-body:not(.all-content-loaded) {
+/* =================================================UNIFIED LOADING SYSTEM (HOME PAGE ONLY)============================================================================== */
+/* Only apply unified loading system to home page */
+body.home-page:not(.all-content-loaded) {
   overflow: hidden;
 }
 
-body:not(.all-content-loaded) .volunteer-announcement,
-body:not(.all-content-loaded) .ngo-registration-banner,
-body:not(.all-content-loaded) .main-content,
-body:not(.all-content-loaded) .navbar,
-body:not(.all-content-loaded) .main-navbar-row {
+body.home-page:not(.all-content-loaded) .volunteer-announcement,
+body.home-page:not(.all-content-loaded) .ngo-registration-banner,
+body.home-page:not(.all-content-loaded) .main-content,
+body.home-page:not(.all-content-loaded) .navbar,
+body.home-page:not(.all-content-loaded) .main-navbar-row {
   opacity: 0;
   visibility: hidden;
   transform: translateY(-20px);
 }
 
-body.all-content-loaded .volunteer-announcement,
-body.all-content-loaded .ngo-registration-banner,
-body.all-content-loaded .main-content,
-body.all-content-loaded .navbar,
-body.all-content-loaded .main-navbar-row {
+body.home-page.all-content-loaded .volunteer-announcement,
+body.home-page.all-content-loaded .ngo-registration-banner,
+body.home-page.all-content-loaded .main-content,
+body.home-page.all-content-loaded .navbar,
+body.home-page.all-content-loaded .main-navbar-row {
   opacity: 1;
   visibility: visible;
   transform: translateY(0);
   transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
 }
 
-/* Stagger the appearance for smooth loading */
-body.all-content-loaded .volunteer-announcement {
+/* Stagger the appearance for smooth loading (home page only) */
+body.home-page.all-content-loaded .volunteer-announcement {
   transition-delay: 0.1s;
 }
 
-body.all-content-loaded .ngo-registration-banner {
+body.home-page.all-content-loaded .ngo-registration-banner {
   transition-delay: 0.2s;
 }
 
-body.all-content-loaded .navbar {
+body.home-page.all-content-loaded .navbar {
   transition-delay: 0.3s;
 }
 
-body.all-content-loaded .main-navbar-row {
+body.home-page.all-content-loaded .main-navbar-row {
   transition-delay: 0.4s;
 }
 
-body.all-content-loaded .main-content {
+body.home-page.all-content-loaded .main-content {
   transition-delay: 0.5s;
 }
 

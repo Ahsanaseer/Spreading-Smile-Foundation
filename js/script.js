@@ -561,38 +561,45 @@ function waitForImages() {
 }
 
 document.addEventListener('DOMContentLoaded', function() {
-  console.log('🚀 Starting unified loading system...');
+  // Check if this is the home page
+  const isHomePage = document.body.classList.contains('home-page');
   
-  // Mark navbar as loaded (it's already in DOM)
-  markComponentLoaded('navbarLoaded');
-  
-  // Control banner visibility based on deadline
-  controlBannerVisibility().then(() => {
-    markComponentLoaded('bannerVisibility');
-  }).catch(() => {
-    // Fallback if banner control fails
-    markComponentLoaded('bannerVisibility');
-  });
-  
-  // Fetch and render processing cases with cache busting
-  fetchAndRenderProcessingCases(true).then(() => {
-    markComponentLoaded('casesLoaded');
-  }).catch(() => {
-    // Fallback if cases fail to load
-    markComponentLoaded('casesLoaded');
-  });
-  
-  // Wait for images to load
-  waitForImages();
-  
-  // Fallback timeout - show content after 5 seconds regardless
-  setTimeout(() => {
-    console.log('⏰ Fallback timeout reached - showing content');
-    Object.keys(loadingComponents).forEach(key => {
-      loadingComponents[key] = true;
+  if (isHomePage) {
+    console.log('🚀 Starting unified loading system for home page...');
+    
+    // Mark navbar as loaded (it's already in DOM)
+    markComponentLoaded('navbarLoaded');
+    
+    // Control banner visibility based on deadline
+    controlBannerVisibility().then(() => {
+      markComponentLoaded('bannerVisibility');
+    }).catch(() => {
+      // Fallback if banner control fails
+      markComponentLoaded('bannerVisibility');
     });
-    checkAllComponentsLoaded();
-  }, 5000);
+    
+    // Fetch and render processing cases with cache busting
+    fetchAndRenderProcessingCases(true).then(() => {
+      markComponentLoaded('casesLoaded');
+    }).catch(() => {
+      // Fallback if cases fail to load
+      markComponentLoaded('casesLoaded');
+    });
+    
+    // Wait for images to load
+    waitForImages();
+    
+    // Fallback timeout - show content after 5 seconds regardless
+    setTimeout(() => {
+      console.log('⏰ Fallback timeout reached - showing content');
+      Object.keys(loadingComponents).forEach(key => {
+        loadingComponents[key] = true;
+      });
+      checkAllComponentsLoaded();
+    }, 5000);
+  } else {
+    console.log('📄 Non-home page detected - loading normally');
+  }
   
   let currentMember = 0;
   const memberName = document.getElementById('member-name');
