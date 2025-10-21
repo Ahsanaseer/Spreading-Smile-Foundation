@@ -158,22 +158,26 @@ async function controlBannerVisibility() {
     const banner = document.getElementById('volunteer-announcement');
     if (!banner) {
         console.log('Banner element not found');
-        return;
+        return Promise.resolve();
     }
     
-    // First, fetch and update the volunteer program title
-    await fetchAndUpdateVolunteerTitle();
-    
-    const result = await checkDeadlineFromFirestore();
-    
-    if (result.isDeadlinePassed) {
-        // Hide banner if deadline has passed
-        banner.style.display = 'none';
-        console.log('Banner hidden - deadline has passed');
-    } else {
-        // Show banner if deadline hasn't passed (use flex to match original CSS)
-        banner.style.display = 'flex';
-        console.log('Banner shown - deadline has not passed');
+    try {
+        // First, fetch and update the volunteer program title
+        await fetchAndUpdateVolunteerTitle();
+        
+        const result = await checkDeadlineFromFirestore();
+        
+        if (result.isDeadlinePassed) {
+            // Hide banner if deadline has passed
+            banner.style.display = 'none';
+            console.log('Banner hidden - deadline has passed');
+        } else {
+            // Show banner if deadline hasn't passed (use flex to match original CSS)
+            banner.style.display = 'flex';
+            console.log('Banner shown - deadline has not passed');
+        }
+    } catch (error) {
+        console.error('Error controlling banner visibility:', error);
     }
 }
 
@@ -292,7 +296,7 @@ const fetchAndRenderProcessingCases = async (forceRefresh = false) => {
       loaderContainer.style.display = 'none';
       casesCardsWrapper.style.display = 'flex';
       casesCardsWrapper.innerHTML = '<div style="display: flex; justify-content: center; align-items: center; min-height: 200px; width: 100%;"><p style="text-align: center; color: #666; padding: 40px; font-size: 1.1rem;">No processing cases found!</p></div>';
-      return;
+      return Promise.resolve();
     }
     
     // Clear existing cards
@@ -338,12 +342,15 @@ const fetchAndRenderProcessingCases = async (forceRefresh = false) => {
       casesCardsWrapper.innerHTML = '<div style="display: flex; justify-content: center; align-items: center; min-height: 200px; width: 100%;"><p style="text-align: center; color: #666; padding: 40px; font-size: 1.1rem;">No processing cases found!</p></div>';
     }
     
+    return Promise.resolve();
+    
   } catch (error) {
     console.error("Error fetching cases:", error);
     // Hide loader and show cards wrapper
     loaderContainer.style.display = 'none';
     casesCardsWrapper.style.display = 'flex';
     casesCardsWrapper.innerHTML = '<div style="display: flex; justify-content: center; align-items: center; min-height: 200px; width: 100%;"><p style="text-align: center; color: #e74c3c; padding: 40px; font-size: 1.1rem;">Error loading cases! Please try again later.</p></div>';
+    return Promise.resolve();
   }
 };
 
@@ -489,12 +496,103 @@ setInterval(() => {
   controlBannerVisibility();
 }, 300000); // 5 minutes
 
+// Unified loading system
+let loadingComponents = {
+  bannerVisibility: false,
+  casesLoaded: false,
+  navbarLoaded: false,
+  imagesLoaded: false
+};
+
+// Function to check if all components are loaded
+function checkAllComponentsLoaded() {
+  const allLoaded = Object.values(loadingComponents).every(loaded => loaded === true);
+  if (allLoaded) {
+    console.log('🎉 All components loaded! Showing content...');
+    
+    // Add a small delay to ensure smooth transition
+    setTimeout(() => {
+      document.body.classList.add('all-content-loaded');
+      document.body.style.overflow = ''; // Restore scrolling
+    }, 200);
+  }
+}
+
+// Function to mark component as loaded
+function markComponentLoaded(componentName) {
+  loadingComponents[componentName] = true;
+  console.log(`✅ ${componentName} loaded`);
+  checkAllComponentsLoaded();
+}
+
+// Function to wait for all images to load
+function waitForImages() {
+  const images = document.querySelectorAll('img');
+  let loadedCount = 0;
+  const totalImages = images.length;
+  
+  if (totalImages === 0) {
+    markComponentLoaded('imagesLoaded');
+    return;
+  }
+  
+  images.forEach(img => {
+    if (img.complete) {
+      loadedCount++;
+    } else {
+      img.addEventListener('load', () => {
+        loadedCount++;
+        if (loadedCount === totalImages) {
+          markComponentLoaded('imagesLoaded');
+        }
+      });
+      img.addEventListener('error', () => {
+        loadedCount++;
+        if (loadedCount === totalImages) {
+          markComponentLoaded('imagesLoaded');
+        }
+      });
+    }
+  });
+  
+  if (loadedCount === totalImages) {
+    markComponentLoaded('imagesLoaded');
+  }
+}
+
 document.addEventListener('DOMContentLoaded', function() {
+  console.log('🚀 Starting unified loading system...');
+  
+  // Mark navbar as loaded (it's already in DOM)
+  markComponentLoaded('navbarLoaded');
+  
   // Control banner visibility based on deadline
-  controlBannerVisibility();
+  controlBannerVisibility().then(() => {
+    markComponentLoaded('bannerVisibility');
+  }).catch(() => {
+    // Fallback if banner control fails
+    markComponentLoaded('bannerVisibility');
+  });
   
   // Fetch and render processing cases with cache busting
-  fetchAndRenderProcessingCases(true);
+  fetchAndRenderProcessingCases(true).then(() => {
+    markComponentLoaded('casesLoaded');
+  }).catch(() => {
+    // Fallback if cases fail to load
+    markComponentLoaded('casesLoaded');
+  });
+  
+  // Wait for images to load
+  waitForImages();
+  
+  // Fallback timeout - show content after 5 seconds regardless
+  setTimeout(() => {
+    console.log('⏰ Fallback timeout reached - showing content');
+    Object.keys(loadingComponents).forEach(key => {
+      loadingComponents[key] = true;
+    });
+    checkAllComponentsLoaded();
+  }, 5000);
   
   let currentMember = 0;
   const memberName = document.getElementById('member-name');

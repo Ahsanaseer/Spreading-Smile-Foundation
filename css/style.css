@@ -2098,28 +2098,52 @@ display: block;
   }
 }
 
-/* =================================================NAVBAR STYLES============================================================================== */
-/* Hide all content until navbar loads */
-body:not(.navbar-loaded) .main-content {
+/* =================================================UNIFIED LOADING SYSTEM============================================================================== */
+/* Hide ALL content until everything is ready */
+body:not(.all-content-loaded) {
+  overflow: hidden;
+}
+
+body:not(.all-content-loaded) .volunteer-announcement,
+body:not(.all-content-loaded) .ngo-registration-banner,
+body:not(.all-content-loaded) .main-content,
+body:not(.all-content-loaded) .navbar,
+body:not(.all-content-loaded) .main-navbar-row {
   opacity: 0;
   visibility: hidden;
+  transform: translateY(-20px);
 }
 
-body:not(.navbar-loaded) .navbar {
-  opacity: 0;
-  visibility: hidden;
-}
-
-body.navbar-loaded .main-content {
+body.all-content-loaded .volunteer-announcement,
+body.all-content-loaded .ngo-registration-banner,
+body.all-content-loaded .main-content,
+body.all-content-loaded .navbar,
+body.all-content-loaded .main-navbar-row {
   opacity: 1;
   visibility: visible;
-  transition: opacity 0.3s ease-in-out;
+  transform: translateY(0);
+  transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
 }
 
-body.navbar-loaded .navbar {
-  opacity: 1;
-  visibility: visible;
-  transition: opacity 0.3s ease-in-out;
+/* Stagger the appearance for smooth loading */
+body.all-content-loaded .volunteer-announcement {
+  transition-delay: 0.1s;
+}
+
+body.all-content-loaded .ngo-registration-banner {
+  transition-delay: 0.2s;
+}
+
+body.all-content-loaded .navbar {
+  transition-delay: 0.3s;
+}
+
+body.all-content-loaded .main-navbar-row {
+  transition-delay: 0.4s;
+}
+
+body.all-content-loaded .main-content {
+  transition-delay: 0.5s;
 }
 
 .navbar {

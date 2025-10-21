@@ -92,7 +92,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 }
                 .greeting {
                     color: #46C0B2;
-                    font-size: 24px;
+                    font-size: 20px;
                     font-weight: 600;
                     margin-bottom: 20px;
                 }
