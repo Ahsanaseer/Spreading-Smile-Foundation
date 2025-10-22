@@ -96,6 +96,34 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     font-weight: 600;
                     margin-bottom: 20px;
                 }
+                
+                /* Dark mode support */
+                @media (prefers-color-scheme: dark) {
+                    body {
+                        background-color: #ffffff !important;
+                        color: #000000 !important;
+                    }
+                    .email-container {
+                        background-color: #ffffff !important;
+                        color: #000000 !important;
+                    }
+                    .greeting {
+                        color: #000000 !important;
+                    }
+                    .content {
+                        color: #000000 !important;
+                    }
+                    .content p {
+                        color: #000000 !important;
+                    }
+                    .footer {
+                        color: #000000 !important;
+                    }
+                    .highlight {
+                        background-color: #f0f8f7 !important;
+                        color: #000000 !important;
+                    }
+                }
                 .content {
                     margin-bottom: 25px;
                 }
