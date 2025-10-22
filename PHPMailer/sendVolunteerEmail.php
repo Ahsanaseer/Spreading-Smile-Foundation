@@ -143,7 +143,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <div class='greeting'>Dear " . (!empty($fullName) ? $fullName : 'Volunteer') . ",</div>
                 
                 <div class='content'>
-                    <p>We are writing this email to inform you that we have received your application for our " . $volunteerProgramTitle . ". You will soon receive a call from our team in which they will guide you about the selection criteria.</p>
+                    <p>Our team is carefully assessing your and other respondents application, we'll be contacting the shortlisting candidate soon.
+                       For any queries feel free to contact at <a href='tel:03213214884'>03213214884</a></p>
                 </div>
                 
                 <div class='footer'>
