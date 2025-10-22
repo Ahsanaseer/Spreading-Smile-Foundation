@@ -68,11 +68,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 body {
                     font-family: 'Poppins', Arial, sans-serif;
                     line-height: 1.6;
-                    color: #333;
+                    color: #000000;
                     max-width: 600px;
                     margin: 0 auto;
                     padding: 20px;
-                    background-color: #f8f9fa;
+                    background-color: #ffffff;
                 }
                 .email-container {
                     background-color: #ffffff;
@@ -91,41 +91,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     margin-bottom: 10px;
                 }
                 .greeting {
-                    color: #46C0B2;
+                    color: #000000;
                     font-size: 20px;
                     font-weight: 600;
                     margin-bottom: 20px;
                 }
-                
-                /* Dark mode support */
-                @media (prefers-color-scheme: dark) {
-                    body {
-                        background-color: #ffffff !important;
-                        color: #000000 !important;
-                    }
-                    .email-container {
-                        background-color: #ffffff !important;
-                        color: #000000 !important;
-                    }
-                    .greeting {
-                        color: #000000 !important;
-                    }
-                    .content {
-                        color: #000000 !important;
-                    }
-                    .content p {
-                        color: #000000 !important;
-                    }
-                    .footer {
-                        color: #000000 !important;
-                    }
-                    .highlight {
-                        background-color: #f0f8f7 !important;
-                        color: #000000 !important;
-                    }
-                }
                 .content {
                     margin-bottom: 25px;
+                    color: #000000;
                 }
                 .highlight {
                     background-color: #f0f8f7;
@@ -139,7 +112,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     margin-top: 30px;
                     padding-top: 20px;
                     border-top: 2px solid #e9ecef;
-                    color: #6c757d;
+                    color: #000000;
                     font-size: 14px;
                 }
                 .social-links {
@@ -165,7 +138,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <body>
             <div class='email-container'>
                 <div class='header'>
-                    <div class='logo'>Spreading Smile Foundation</div>
+                    <img src='PICS/logo-wob.png' alt='Spreading Smile Foundation' style='max-width: 200px; height: auto; margin-bottom: 10px;' />
                 </div>
                 
                 <div class='greeting'>Dear " . (!empty($fullName) ? $fullName : 'Volunteer') . ",</div>
