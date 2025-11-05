@@ -78,6 +78,7 @@ function createNavigation(currentPage = '') {
             <li><a href="/" class="nav-link ${currentPage === 'index.html' ? 'active' : ''}">Home</a></li>
             <li><a href="events.html" class="nav-link ${currentPage === 'events.html' ? 'active' : ''}">Events</a></li>
             <li><a href="about.html" class="nav-link ${currentPage === 'about.html' ? 'active' : ''}">About Us</a></li>
+            <li><a href="ourTeam.html" class="nav-link ${currentPage === 'ourTeam.html' ? 'active' : ''}">Our Team</a></li>
             <li><a href="contact.html" class="nav-link ${currentPage === 'contact.html' ? 'active' : ''}">Contact Us</a></li>
             <li><a href="privacy-policy.html" class="nav-link ${currentPage === 'privacy-policy.html' ? 'active' : ''}">Privacy Policy</a></li>
             <li><a href="donation.html" class="js nav-link ${currentPage === 'donation.html' ? 'active' : ''}">Donate Now</a></li>
@@ -92,6 +93,7 @@ function createNavigation(currentPage = '') {
                 <li><a href="/" class="nav-link ${currentPage === 'index.html' ? 'active' : ''}">Home</a></li>
                 <li><a href="events.html" class="nav-link ${currentPage === 'events.html' ? 'active' : ''}">Events</a></li>
                 <li><a href="about.html" class="nav-link ${currentPage === 'about.html' ? 'active' : ''}">About Us</a></li>
+                <li><a href="ourTeam.html" class="nav-link ${currentPage === 'ourTeam.html' ? 'active' : ''}">Our Team</a></li>
                 <li><a href="contact.html" class="nav-link ${currentPage === 'contact.html' ? 'active' : ''}">Contact Us</a></li>
                 <li><a href="privacy-policy.html" class="nav-link ${currentPage === 'privacy-policy.html' ? 'active' : ''}">Privacy Policy</a></li>
             </ul>
