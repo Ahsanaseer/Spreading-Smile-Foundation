@@ -224,16 +224,23 @@
 <!-- Member Reviews Section Start -->
 <section class="member-reviews-section" data-animate="true" data-animation="fadeInUp">
   <div class="member-reviews-container">
-    <div class="member-review-card" id="member-review-card">
+    <!-- Loader Container -->
+    <div class="loader-container" id="member-reviews-loader-container" style="display: none;">
+      <div class="loader" id="member-reviews-loader"></div>
+      <p class="loading-text">Loading reviews...</p>
+    </div>
+
+    <!-- Dynamic Member Review Card -->
+    <div class="member-review-card" id="member-review-card" style="display: none !important;">
       <div class="member-review-left">
-        <h2 class="member-name" id="member-name">Kashmala</h2>
-        <p class="member-desc" id="member-desc">Spreading Smile Foundation holds a special place in my heart for the incredible work they do in uplifting underprivileged communities. Their commitment to education, healthcare, and social support has a profound impact, transforming lives and offering a brighter future. They bring hope to those who need it most, ensuring that everyone has access to essential resources. Witnessing their work firsthand is both humbling and inspiring.</p>
+        <h2 class="member-name" id="member-name"></h2>
+        <p class="member-desc" id="member-desc"></p>
       </div>
       <div class="member-review-right">
-        <img src="Picrures All/kashmala.jpeg" alt="Kashmala" class="member-img" id="member-img">
+        <img src="Picrures All/placeholder-img.png" alt="" class="member-img" id="member-img">
       </div>
     </div>
-    <div class="member-reviews-nav">
+    <div class="member-reviews-nav" id="member-reviews-nav" style="display: none !important;">
       <button class="member-nav-btn" id="member-prev-btn"><img src="Picrures All/left-arrow.svg" alt="Previous" class="member-nav-icon"></button>
       <button class="member-nav-btn member-nav-btn-active" id="member-next-btn"><img src="Picrures All/right-arrow.svg" alt="Next" class="member-nav-icon"></button>
     </div>

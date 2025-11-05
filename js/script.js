@@ -384,37 +384,215 @@ const fetchAndRenderProcessingCases = async (forceRefresh = false) => {
 
 
 // Member Reviews slider logic
-const members = [
-    {
-        name: 'Kashmala',
-        img: 'Picrures All/kashmala.jpeg',
-        desc: `Spreading Smile Foundation holds a special place in my heart for the incredible work they do in uplifting underprivileged communities. Their commitment to education, healthcare, and social support has a profound impact, transforming lives and offering a brighter future. They bring hope to those who need it most, ensuring that everyone has access to essential resources. Witnessing their work firsthand is both humbling and inspiring.`
-    },
-    {
-        name: 'Ghusharib',
-        img: 'Picrures All/ghusharib.jpeg',
-        desc: `Spreading Smile Foundation is committed to creating lasting change for those who need it the most. Focused on supporting specially-abled children, the elderly in care homes, and families in need, the organization works relentlessly to provide education, healthcare, and community empowerment. Their programs are designed to be sustainable and tailored to the specific needs of each group they serve.`
-    },
-    {
-        name: 'Hamnah',
-        img: 'Picrures All/hamnah.jpeg',
-        desc: `I am Hamna Irfan, a psychologist and a proud member of this incredible NGO. What makes this organization special is its commitment to transforming lives, spreading positivity, and restoring hope to those who need it most. One of its most inspiring initiatives is the volunteer program, which empowers youth by boosting their skills, confidence, and helping them achieve their dreams. It brings together passionate individuals dedicated to serving humanity.`
-    },
-    {
-        name: 'Esha',
-        img: 'Picrures All/Esha.jpg',
-        desc: 'Spreading Smile Foundation has profoundly impacted me. Working with them, I\'ve realized that hope still exists. Despite the challenges we face, there are good people in society who are eager to make a difference. This belief in humanity gives me hope. The NGO truly cares for its donors and takes responsibility for delivering aid to those in genuine need. My experience with this organization has been transformative, helping me grow personally.'
-    },
-    {
-        name: 'Hamza',
-        img: 'Picrures All/Hamza.jpeg',
-        desc: `Being part of Spreading Smiles Foundation for two years has been incredibly rewarding. I started as a volunteer in the 2023 Ramadan Program, inspired by the organization's dedication and transparency. This led me to join the team, where I've seen passionate individuals working hard to bring joy. The team welcomed me from the start, and the selection process was merit-based. Volunteering has allowed me to make a real difference, whether through outreach or simple acts of kindness.`
-    }
-];
+// Members array - will be populated dynamically from Firebase
+let members = [];
 
 // Placeholder image path
 const createPlaceholderImage = () => {
     return "Picrures All/placeholder-img.png";
+};
+
+// Function to fetch and populate members from Firebase
+const fetchAndPopulateMembers = async () => {
+  const loaderContainer = document.getElementById('member-reviews-loader-container');
+  const memberReviewCard = document.getElementById('member-review-card');
+  const memberReviewsNav = document.getElementById('member-reviews-nav');
+  
+  // Show loader and hide content
+  if (loaderContainer) loaderContainer.style.display = 'flex';
+  if (memberReviewCard) memberReviewCard.style.display = 'none';
+  if (memberReviewsNav) memberReviewsNav.style.display = 'none';
+  
+  try {
+    console.log('Fetching volunteers data from Firebase...');
+    
+    // Fetch volunteersData document from config collection
+    const volunteerDataDoc = await getDoc(doc(db, 'config', 'volunteersData'));
+    
+    if (!volunteerDataDoc.exists()) {
+      console.log('No volunteersData document found');
+      if (loaderContainer) loaderContainer.style.display = 'none';
+      if (memberReviewCard) memberReviewCard.style.display = 'flex';
+      return;
+    }
+    
+    const volunteerData = volunteerDataDoc.data();
+    console.log('Volunteer data fetched:', volunteerData);
+    
+    // Clear existing members
+    members = [];
+    
+    // Iterate through all fields in the document
+    Object.keys(volunteerData).forEach((key) => {
+      const fieldValue = volunteerData[key];
+      
+      // Check if the field is an array with at least 4 elements (0-3 indices)
+      // Structure: 0: picture URL, 1: name, 2: quote, 3: position
+      if (Array.isArray(fieldValue) && fieldValue.length >= 4) {
+        const pictureUrl = fieldValue[0] || '';
+        const name = fieldValue[1] || '';
+        const quote = fieldValue[2] || '';
+        const position = fieldValue[3] !== undefined ? Number(fieldValue[3]) : 999; // Default to 999 if position not provided
+        
+        // Only add if we have at least a name
+        if (name && name.trim() !== '') {
+          members.push({
+            name,
+            img: pictureUrl && pictureUrl.trim() !== '' ? pictureUrl : createPlaceholderImage(),
+            desc: quote,
+            position: position
+          });
+        }
+      }
+    });
+    
+    if (members.length === 0) {
+      console.log('No valid volunteers found in data');
+      if (loaderContainer) loaderContainer.style.display = 'none';
+      if (memberReviewCard) memberReviewCard.style.display = 'flex';
+      return;
+    }
+    
+    // Sort by position number (ascending order)
+    members.sort((a, b) => a.position - b.position);
+    
+    console.log(`Loaded ${members.length} volunteers`);
+    console.log('Members data:', members);
+    
+    // Hide loader and show content
+    if (loaderContainer) loaderContainer.style.display = 'none';
+    if (memberReviewCard) {
+      memberReviewCard.removeAttribute('style');
+    }
+    if (memberReviewsNav) {
+      memberReviewsNav.removeAttribute('style');
+    }
+    
+    // Small delay to ensure DOM is ready
+    setTimeout(() => {
+      // Initialize the slider with first member
+      initializeMemberSlider();
+    }, 100);
+    
+  } catch (error) {
+    console.error('Error fetching volunteers:', error);
+    console.error('Error details:', error.message, error.stack);
+    if (loaderContainer) loaderContainer.style.display = 'none';
+    if (memberReviewCard) {
+      memberReviewCard.removeAttribute('style');
+    }
+    if (memberReviewsNav) {
+      memberReviewsNav.removeAttribute('style');
+    }
+    
+    // Fallback: initialize with empty array or default
+    setTimeout(() => {
+      initializeMemberSlider();
+    }, 100);
+  }
+};
+
+// Current member index for slider (scoped outside function)
+let currentMember = 0;
+let sliderInitialized = false;
+
+// Function to initialize member slider
+const initializeMemberSlider = () => {
+  if (members.length === 0) {
+    console.log('No members to display');
+    return;
+  }
+  
+  const memberName = document.getElementById('member-name');
+  const memberDesc = document.getElementById('member-desc');
+  const memberImg = document.getElementById('member-img');
+  const prevBtn = document.getElementById('member-prev-btn');
+  const nextBtn = document.getElementById('member-next-btn');
+
+  if (!memberName || !memberDesc || !memberImg) {
+    console.log('Member review elements not found');
+    return;
+  }
+
+  // Reset to first member
+  currentMember = 0;
+
+  // Display first member
+  memberName.textContent = members[0].name;
+  memberDesc.textContent = members[0].desc || '';
+  
+  // Load first image
+  const firstImg = new Image();
+  firstImg.onload = () => {
+    memberImg.src = members[0].img;
+    memberImg.alt = members[0].name;
+    memberImg.classList.remove('loading');
+    memberImg.classList.add('slide-in');
+  };
+  firstImg.onerror = () => {
+    memberImg.src = createPlaceholderImage();
+    memberImg.alt = members[0].name;
+    memberImg.classList.remove('loading');
+    memberImg.classList.add('slide-in');
+  };
+  memberImg.src = createPlaceholderImage();
+  memberImg.alt = members[0].name;
+  memberImg.classList.add('loading');
+  firstImg.src = members[0].img;
+
+  function updateMember(idx, direction = 'right') {
+    if (!memberImg || !memberName || !memberDesc || members.length === 0) return;
+    
+    // Animate out
+    memberImg.classList.remove('slide-in');
+    memberImg.classList.add(direction === 'right' ? 'slide-left' : 'slide-right');
+    
+    setTimeout(() => {
+      // Update text content immediately
+      memberName.textContent = members[idx].name;
+      memberDesc.textContent = members[idx].desc || '';
+      
+      // Show placeholder while loading new image
+      memberImg.src = createPlaceholderImage();
+      memberImg.alt = members[idx].name;
+      memberImg.classList.add('loading');
+      
+      // Load the actual image in background
+      const realImg = new Image();
+      realImg.src = members[idx].img;
+      
+      realImg.onload = () => {
+        // Smoothly replace placeholder with actual image
+        memberImg.src = members[idx].img;
+        memberImg.classList.remove('loading');
+      };
+      
+      realImg.onerror = () => {
+        // Fallback to placeholder if image fails to load
+        memberImg.src = createPlaceholderImage();
+        memberImg.classList.remove('loading');
+      };
+      
+      // Animate in
+      memberImg.classList.remove('slide-left', 'slide-right');
+      memberImg.classList.add('slide-in');
+    }, 400);
+  }
+
+  // Only add event listeners once
+  if (!sliderInitialized && prevBtn && nextBtn && members.length > 0) {
+    prevBtn.addEventListener('click', () => {
+      currentMember = (currentMember - 1 + members.length) % members.length;
+      updateMember(currentMember, 'left');
+    });
+    
+    nextBtn.addEventListener('click', () => {
+      currentMember = (currentMember + 1) % members.length;
+      updateMember(currentMember, 'right');
+    });
+    
+    sliderInitialized = true;
+  }
 };
 
 // Cache busting and refresh mechanisms
@@ -601,63 +779,9 @@ document.addEventListener('DOMContentLoaded', function() {
     console.log('📄 Non-home page detected - loading normally');
   }
   
-  let currentMember = 0;
-  const memberName = document.getElementById('member-name');
-  const memberDesc = document.getElementById('member-desc');
-  const memberImg = document.getElementById('member-img');
-  const prevBtn = document.getElementById('member-prev-btn');
-  const nextBtn = document.getElementById('member-next-btn');
-
-  function updateMember(idx, direction = 'right') {
-      // Animate out
-      memberImg.classList.remove('slide-in');
-      memberImg.classList.add(direction === 'right' ? 'slide-left' : 'slide-right');
-      
-      setTimeout(() => {
-          // Update text content immediately
-          memberName.textContent = members[idx].name;
-          memberDesc.textContent = members[idx].desc;
-          
-          // Show placeholder while loading new image
-          memberImg.src = createPlaceholderImage();
-          memberImg.alt = members[idx].name;
-          memberImg.classList.add('loading');
-          
-          // Load the actual image in background
-          const realImg = new Image();
-          realImg.src = members[idx].img;
-          
-          realImg.onload = () => {
-              // Smoothly replace placeholder with actual image
-              memberImg.src = members[idx].img;
-              memberImg.classList.remove('loading');
-          };
-          
-          realImg.onerror = () => {
-              // Fallback to placeholder if image fails to load
-              memberImg.src = createPlaceholderImage();
-              memberImg.classList.remove('loading');
-          };
-          
-          // Animate in
-          memberImg.classList.remove('slide-left', 'slide-right');
-          memberImg.classList.add('slide-in');
-      }, 400);
-  }
-
-  if (memberImg && prevBtn && nextBtn) {
-      prevBtn.addEventListener('click', () => {
-          currentMember = (currentMember - 1 + members.length) % members.length;
-          updateMember(currentMember, 'left');
-      });
-      
-      nextBtn.addEventListener('click', () => {
-          currentMember = (currentMember + 1) % members.length;
-          updateMember(currentMember, 'right');
-      });
-      
-      // Initial state
-      memberImg.classList.add('slide-in');
+  // Fetch and populate members from Firebase (only on home page)
+  if (isHomePage) {
+    fetchAndPopulateMembers();
   }
 
   // Video modal functionality

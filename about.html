@@ -100,16 +100,23 @@
 <!-- Member Reviews Section Start -->
 <section class="member-reviews-section">
   <div class="member-reviews-container">
-    <div class="member-review-card" id="member-review-card">
+    <!-- Loader Container -->
+    <div class="loader-container" id="member-reviews-loader-container" style="display: none;">
+      <div class="loader" id="member-reviews-loader"></div>
+      <p class="loading-text">Loading reviews...</p>
+    </div>
+
+    <!-- Dynamic Member Review Card -->
+    <div class="member-review-card" id="member-review-card" style="display: none !important;">
       <div class="member-review-left">
-        <h2 class="member-name" id="member-name">Ume Habiba</h2>
-        <p class="member-desc" id="member-desc">Working for humanity is a noble pursuit that transcends borders and boundaries. It's about dedicating oneself to the greater good, promoting equality, and protecting human rights that i have seen while working with spreading amile foundation. By serving humanity, we can create a brighter future for generations to come.</p>
+        <h2 class="member-name" id="member-name"></h2>
+        <p class="member-desc" id="member-desc"></p>
       </div>
       <div class="member-review-right">
-        <img src="Picrures All/umehabiba.jpg" alt="Ume Habiba" class="member-img" id="member-img">
+        <img src="Picrures All/placeholder-img.png" alt="" class="member-img" id="member-img">
       </div>
     </div>
-    <div class="member-reviews-nav">
+    <div class="member-reviews-nav" id="member-reviews-nav" style="display: none !important;">
       <button class="member-nav-btn" id="member-prev-btn"><img src="Picrures All/left-arrow.svg" alt="Previous" class="member-nav-icon"></button>
       <button class="member-nav-btn member-nav-btn-active" id="member-next-btn"><img src="Picrures All/right-arrow.svg" alt="Next" class="member-nav-icon"></button>
     </div>
