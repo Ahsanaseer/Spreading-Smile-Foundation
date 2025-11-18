@@ -127,13 +127,23 @@ html, body {
 }
 
 .director-description {
-  font-size: var(--mobile-description-font-size);
+  font-size: 1rem;
   color: #666;
   line-height: 1.6;
   font-weight: 400;
   margin-bottom: 0;
 }
 
+/* Mobile font sizes for director names and descriptions */
+@media (max-width: 768px) {
+  .director-name {
+    font-size: var(--mobile-heading-font-size) !important;
+  }
+
+  .director-description {
+    font-size: var(--mobile-description-font-size) !important;
+  }
+}
 
 /* =================================================DIRECTOR SECTION RESPONSIVE ============================================================================== */
 
@@ -633,7 +643,7 @@ html, body {
   
   /* Heading font size */
   .about-title {
-    font-size: var(--desktop-heading-font-size) !important;
+    font-size: var(--mobile-heading-font-size) !important;
   }
 }
 
@@ -720,6 +730,9 @@ html, body {
   .back-to-top-arrow {
     width: 28px;
     height: 28px;
+  }
+  .director-heading h1{
+    font-size: var(--mobile-heading-font-size) !important;
   }
 }
 
@@ -873,7 +886,7 @@ html, body {
 }
 
 .our-team-title {
-  font-size: 2.7rem;
+  font-size: var(--desktop-heading-font-size);
   font-weight: 700;
   color: #222;
   font-family: 'Poppins', Arial, sans-serif;
@@ -967,7 +980,7 @@ html, body {
 }
 
 .team-member-description {
-  font-size: var(--mobile-description-font-size);
+  font-size: 1rem;
   color: #666;
   line-height: 1.6;
   font-weight: 400;
@@ -976,15 +989,24 @@ html, body {
 /* Responsive Design */
 @media (max-width: 768px) {
   .our-team-title {
-    font-size: 2rem;
+    font-size: var(--mobile-heading-font-size);
   }
 
   .our-team-subtitle {
-    font-size: 1rem;
+    font-size: var(--mobile-description-font-size);
   }
 
   .team-member-card {
     max-width: 100%;
+  }
+
+  /* Mobile font sizes for team member names and descriptions */
+  .team-member-name {
+    font-size: var(--mobile-heading-font-size) !important;
+  }
+
+  .team-member-description {
+    font-size: var(--mobile-description-font-size) !important;
   }
 }
 

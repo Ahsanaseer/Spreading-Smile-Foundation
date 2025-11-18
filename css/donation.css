@@ -109,7 +109,6 @@ html, body {
   }
   .donateus-details-col {
     flex: 1 1 0;
-    min-width: 220px;
     max-width: 340px;
     padding: 0 32px;
     display: flex;
@@ -364,8 +363,8 @@ html, body {
     }
         
     .silkbank-logo {
-      width: 200px;
-      height: 700px;
+      width: 150px;
+      height: 150px;
     }
     .jazzcash-logo{
       width: 150px;
