@@ -3702,30 +3702,31 @@ body.home-page.all-content-loaded .main-content {
   padding: 16px 24px;
   border-radius: 8px;
   box-shadow: 0px 4px 12px rgba(70, 192, 178, 0.3);
-  display: none;
+  display: flex;
   align-items: center;
   justify-content: space-between;
   z-index: 10000;
   opacity: 0;
-  transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1), transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   max-width: 90vw;
   min-width: 300px;
   max-width: 500px;
   gap: 16px;
   pointer-events: auto;
   transform: translateY(-100px);
+  transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1), transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  visibility: hidden;
 }
 
 .toast.show {
-  display: flex;
+  visibility: visible;
   opacity: 1;
   transform: translateY(0);
 }
 
 .toast.swipe-out {
-  transform: translateX(100vw);
-  opacity: 0;
-  transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1), transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: translateX(100vw) translateY(0) !important;
+  opacity: 0 !important;
+  visibility: visible;
 }
 
 .toast-content {
@@ -3790,7 +3791,9 @@ body.home-page.all-content-loaded .main-content {
   }
   
   .toast.swipe-out {
-    transform: translateX(100vw);
+    transform: translateX(100vw) translateY(0) !important;
+    opacity: 0 !important;
+    visibility: visible;
   }
 }
 

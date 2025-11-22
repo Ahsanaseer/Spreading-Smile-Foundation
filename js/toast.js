@@ -22,9 +22,14 @@ class ToastManager {
         this.container.appendChild(toast);
         this.toasts.push(toast);
 
-        // Trigger animation
+        // Force reflow to ensure initial state is applied
+        void toast.offsetHeight;
+
+        // Trigger animation after a small delay to ensure display is set
         requestAnimationFrame(() => {
-            toast.classList.add('show');
+            requestAnimationFrame(() => {
+                toast.classList.add('show');
+            });
         });
 
         // Auto-dismiss
@@ -70,11 +75,30 @@ class ToastManager {
     hide(toast) {
         if (!toast) return;
 
-        // Add swipe-out animation class
-        toast.classList.add('swipe-out');
-        toast.classList.remove('show');
+        // Clear any existing timeout
+        if (toast.timeoutId) {
+            clearTimeout(toast.timeoutId);
+            toast.timeoutId = null;
+        }
+
+        // Don't hide if already hiding
+        if (toast.classList.contains('swipe-out')) {
+            return;
+        }
+
+        // Force reflow to ensure current state is applied
+        void toast.offsetHeight;
         
+        // Add swipe-out animation class (keep show class to maintain position)
+        requestAnimationFrame(() => {
+            requestAnimationFrame(() => {
+                toast.classList.add('swipe-out');
+            });
+        });
+        
+        // Remove element after animation completes
         setTimeout(() => {
+            toast.classList.remove('show');
             if (toast.parentNode) {
                 toast.parentNode.removeChild(toast);
             }
@@ -83,11 +107,6 @@ class ToastManager {
             const index = this.toasts.indexOf(toast);
             if (index > -1) {
                 this.toasts.splice(index, 1);
-            }
-
-            // Clear timeout
-            if (toast.timeoutId) {
-                clearTimeout(toast.timeoutId);
             }
         }, 400);
     }
