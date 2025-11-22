@@ -70,6 +70,8 @@ class ToastManager {
     hide(toast) {
         if (!toast) return;
 
+        // Add swipe-out animation class
+        toast.classList.add('swipe-out');
         toast.classList.remove('show');
         
         setTimeout(() => {
@@ -87,7 +89,7 @@ class ToastManager {
             if (toast.timeoutId) {
                 clearTimeout(toast.timeoutId);
             }
-        }, 300);
+        }, 400);
     }
 
     createToast(message, type) {
@@ -97,14 +99,16 @@ class ToastManager {
         toast.setAttribute('aria-live', 'polite');
         toast.setAttribute('data-type', type);
 
-        const icon = this.getIcon(type);
+        // SVG cross icon
+        const crossIcon = `<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 4L4 12M4 4L12 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>`;
         
         toast.innerHTML = `
             <div class="toast-content">
                 ${message}
             </div>
-            ${icon ? `<div class="toast-icon">${icon}</div>` : ''}
-            <button class="toast-close" aria-label="Close notification" tabindex="0">×</button>
+            <button class="toast-close" aria-label="Close notification" tabindex="0">${crossIcon}</button>
         `;
 
         return toast;

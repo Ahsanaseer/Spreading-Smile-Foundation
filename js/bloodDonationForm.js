@@ -211,7 +211,7 @@ if (form) {
             await updateDoc(docRef, { id: docRef.id });
             
             // Show success toast
-            showToast('Form Submitted Successfully!');
+            showToast('Thank You For Submitting.');
             
             // Reset form
             resetForm();
