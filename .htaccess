@@ -1,5 +1,12 @@
 RewriteEngine On
 
+# Cache Control for Blood Donation Form - Prevents browser caching
+<FilesMatch "bloodDonorForm\.html$">
+    Header set Cache-Control "no-cache, no-store, must-revalidate, max-age=0"
+    Header set Pragma "no-cache"
+    Header set Expires "0"
+</FilesMatch>
+
 # Redirect URLs with .html to extensionless (keep query strings)
 RewriteCond %{THE_REQUEST} ^[A-Z]{3,}\s/([^\s]+)\.html(\?[^\s]*)?\sHTTP/
 RewriteRule ^([^\s]+)\.html$ /$1 [R=301,L]
