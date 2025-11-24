@@ -43,6 +43,33 @@
     </div>
   </section>
 
+  <!-- News Banner -->
+  <section class="news-banner" id="news-banner" data-animate="true" data-animation="fadeInUp">
+    <div class="news-container">
+      <div class="news-content">
+        <div class="news-ticker-wrapper">
+          <h1 class="news-title" id="news-title">Latest News</h1>
+        </div>
+        <button onclick="openNewsPopup()" class="read-more-btn">
+          <span>Read More</span>
+          <span class="service-learn-arrow">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path d="M7 17L17 7M17 7H7M17 7V17" />
+            </svg>
+          </span>
+        </button>
+      </div>
+      <button class="news-close" onclick="closeNewsBanner()">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+  </section>
+
   <!-- NGO Registration Banner -->
   <section class="ngo-registration-banner" id="ngo-registration-banner">
     <div class="registration-container">
@@ -331,6 +358,21 @@
     <div class="video-container">
       <span id="close-btn">&times;</span>
       <iframe id="youtube-frame" src="" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+    </div>
+  </div>
+
+  <!-- News Popup Modal -->
+  <div id="news-modal" class="news-modal">
+    <div class="news-modal-content">
+      <button class="news-modal-close" onclick="closeNewsPopup()">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+      <div class="news-modal-body" id="news-modal-body">
+        <!-- News content will be injected here -->
+      </div>
     </div>
   </div>
 
