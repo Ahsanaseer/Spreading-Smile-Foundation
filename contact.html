@@ -1,8 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Cache Control Meta Tags - Prevents browser caching -->
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="icon" type="image/png" href="Picrures All/favicon.png">
@@ -19,30 +24,31 @@
 
 
 <body>
-    
+
     <div id="nav-container"></div>
 
     <div class="main-content">
         <!-- Contact Section Start -->
-     <div class="contact-main-container" >
-     <div class="contact-page-heading">
-            <h1>Contact Us</h1>
+        <div class="contact-main-container">
+            <div class="contact-page-heading">
+                <h1>Contact Us</h1>
+            </div>
+            <div class="container">
+                <div class="contact-image-side">
+                    <img src="Picrures All/contactimg.png" class="contact-main-img" alt="Your image" />
+                </div>
+                <div class="contact-form-side">
+                    <form class="contact-form" id="contactForm" method="POST">
+                        <input type="text" class="contact-input" name="name" placeholder="Your Name" required>
+                        <input type="email" class="contact-input" name="email" placeholder="Email Address" required>
+                        <textarea class="contact-input contact-message" name="message"
+                            placeholder="Type Your Message..." required></textarea>
+                        <button type="submit" class="send-msg-btn"><span>Send a message</span></button>
+                    </form>
+                </div>
+            </div>
         </div>
-    <div class="container">
-        <div class="contact-image-side">
-            <img src="Picrures All/contactimg.png" class="contact-main-img" alt="Your image" />
-        </div>
-        <div class="contact-form-side">
-            <form class="contact-form" id="contactForm" method="POST">
-                <input type="text" class="contact-input" name="name" placeholder="Your Name" required>
-                <input type="email" class="contact-input" name="email" placeholder="Email Address" required>
-                <textarea class="contact-input contact-message" name="message" placeholder="Type Your Message..." required></textarea>
-                <button type="submit" class="send-msg-btn"><span>Send a message</span></button>
-            </form>
-        </div>
-    </div>
-     </div>
-    <!-- Contact Section End -->
+        <!-- Contact Section End -->
 
 
 
@@ -84,7 +90,8 @@
 
 
 
-  <script src="js/toast.js"></script>
-  <script src="js/contact.js"></script>
+    <script src="js/toast.js"></script>
+    <script src="js/contact.js"></script>
 </body>
+
 </html>

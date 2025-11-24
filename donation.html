@@ -1,8 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Cache Control Meta Tags - Prevents browser caching -->
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -13,223 +18,240 @@
     <script src="js/components.js"></script>
     <script src="js/animations.js"></script>
 </head>
+
 <body>
 
     <div id="nav-container"></div>
 
     <div class="main-content">
         <!-- Donation Page Start -->
-   <div class="donateus-content">
-        <h1 class="donateus-title">Account Details</h1>
-        <p class="donateus-desc">Choose any of the following payment methods for donation. Jazakallah!</p>
-        
-        <!-- Desktop Layout -->
-        <div class="donateus-cards-row">
-            <div class="donateus-card donateus-card-silkbank">
-                <img src="Picrures All/ubl-logo-wob.png" alt="Silkbank" class="donateus-card-logo silkbank-logo">
+        <div class="donateus-content">
+            <h1 class="donateus-title">Account Details</h1>
+            <p class="donateus-desc">Choose any of the following payment methods for donation. Jazakallah!</p>
+
+            <!-- Desktop Layout -->
+            <div class="donateus-cards-row">
+                <div class="donateus-card donateus-card-silkbank">
+                    <img src="Picrures All/ubl-logo-wob.png" alt="Silkbank" class="donateus-card-logo silkbank-logo">
+                </div>
+                <div class="donateus-card donateus-card-jazzcash">
+                    <img src="Picrures All/JazzCashLogo-wob.png" alt="JazzCash"
+                        class="donateus-card-logo jazzcash-logo">
+                </div>
+                <div class="donateus-card donateus-card-easypaisa">
+                    <img src="Picrures All/eplw-removebg-preview.png" alt="Easypaisa"
+                        class="donateus-card-logo easypaisa-logo">
+                </div>
             </div>
-            <div class="donateus-card donateus-card-jazzcash">
-                <img src="Picrures All/JazzCashLogo-wob.png" alt="JazzCash" class="donateus-card-logo jazzcash-logo">
+            <div class="donateus-details-row">
+                <div class="donateus-details-col">
+                    <div class="donateus-details-label">Account Title:</div>
+                    <div class="donateus-details-value">Spreading Smile Foundation</div>
+                    <div class="donateus-details-label">Account No:</div>
+                    <div class="donateus-details-value">
+                        <span class="copy-text">PK72UNIL0110002010853675</span>
+                        <button class="copy-btn" data-copy="PK72UNIL0110002010853675" title="Copy Account Number">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                            </svg>
+                        </button>
+                    </div>
+                    <div class="donateus-details-label">IBAN:</div>
+                    <div class="donateus-details-value">
+                        <span class="copy-text">PK72UNIL0110002010853675</span>
+                        <button class="copy-btn" data-copy="PK72UNIL0110002010853675" title="Copy IBAN">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                            </svg>
+                        </button>
+                    </div>
+                    <div class="donateus-details-label">Bank:</div>
+                    <div class="donateus-details-value">United Bank Limited, Lahore</div>
+                </div>
+                <div class="donateus-details-col">
+                    <div class="donateus-details-label">Account Title:</div>
+                    <div class="donateus-details-value">Syed Moez Ali</div>
+                    <div class="donateus-details-label">Account No:</div>
+                    <div class="donateus-details-value">
+                        <span class="copy-text">0331 2339459</span>
+                        <button class="copy-btn" data-copy="0331 2339459" title="Copy Account Number">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                            </svg>
+                        </button>
+                    </div>
+                    <div class="donateus-details-label">IBAN:</div>
+                    <div class="donateus-details-value">
+                        <span class="copy-text">PK67JCMA1611923312339459</span>
+                        <button class="copy-btn" data-copy="PK67JCMA1611923312339459" title="Copy IBAN">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                            </svg>
+                        </button>
+                    </div>
+                    <div class="donateus-details-label">Bank:</div>
+                    <div class="donateus-details-value">Jazzcash</div>
+                </div>
+                <div class="donateus-details-col">
+                    <div class="donateus-details-label">Account Title:</div>
+                    <div class="donateus-details-value">Syed Moez Ali</div>
+                    <div class="donateus-details-label">Account No:</div>
+                    <div class="donateus-details-value">
+                        <span class="copy-text">0331 2339459</span>
+                        <button class="copy-btn" data-copy="0331 2339459" title="Copy Account Number">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                            </svg>
+                        </button>
+                    </div>
+                    <div class="donateus-details-label">IBAN:</div>
+                    <div class="donateus-details-value">
+                        <span class="copy-text">0331 2339459</span>
+                        <button class="copy-btn" data-copy="0331 2339459" title="Copy IBAN">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                            </svg>
+                        </button>
+                    </div>
+                    <div class="donateus-details-label">Bank:</div>
+                    <div class="donateus-details-value">Easypaisa</div>
+                </div>
             </div>
-            <div class="donateus-card donateus-card-easypaisa">
-                <img src="Picrures All/eplw-removebg-preview.png" alt="Easypaisa" class="donateus-card-logo easypaisa-logo">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <!-- Mobile Layout: Card-Detail Pairs -->
+            <div class="donateus-card-detail-pair">
+                <div class="donateus-card donateus-card-silkbank">
+                    <img src="Picrures All/ubl-logo-wob.png" alt="Silkbank" class="donateus-card-logo silkbank-logo">
+                </div>
+                <div class="donateus-details-col">
+                    <div class="donateus-details-label">Account Title:</div>
+                    <div class="donateus-details-value">Spreading Smile Foundation</div>
+                    <div class="donateus-details-label">Account No:</div>
+                    <div class="donateus-details-value">
+                        <span class="copy-text">PK72UNIL0110002010853675</span>
+                        <button class="copy-btn" data-copy="PK72UNIL0110002010853675" title="Copy Account Number">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                            </svg>
+                        </button>
+                    </div>
+                    <div class="donateus-details-label">IBAN:</div>
+                    <div class="donateus-details-value">
+                        <span class="copy-text">PK72UNIL0110002010853675</span>
+                        <button class="copy-btn" data-copy="PK72UNIL0110002010853675" title="Copy IBAN">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                            </svg>
+                        </button>
+                    </div>
+                    <div class="donateus-details-label">Bank:</div>
+                    <div class="donateus-details-value">United Bank Limited, Lahore</div>
+                </div>
+            </div>
+
+            <div class="donateus-card-detail-pair">
+                <div class="donateus-card donateus-card-jazzcash">
+                    <img src="Picrures All/JazzCashLogo-wob.png" alt="JazzCash"
+                        class="donateus-card-logo jazzcash-logo">
+                </div>
+                <div class="donateus-details-col">
+                    <div class="donateus-details-label">Account Title:</div>
+                    <div class="donateus-details-value">Syed Moez Ali</div>
+                    <div class="donateus-details-label">Account No:</div>
+                    <div class="donateus-details-value">
+                        <span class="copy-text">0331 2339459</span>
+                        <button class="copy-btn" data-copy="0331 2339459" title="Copy Account Number">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                            </svg>
+                        </button>
+                    </div>
+                    <div class="donateus-details-label">IBAN:</div>
+                    <div class="donateus-details-value">
+                        <span class="copy-text">PK67JCMA1611923312339459</span>
+                        <button class="copy-btn" data-copy="PK67JCMA1611923312339459" title="Copy IBAN">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                            </svg>
+                        </button>
+                    </div>
+                    <div class="donateus-details-label">Bank:</div>
+                    <div class="donateus-details-value">Jazzcash</div>
+                </div>
+            </div>
+
+            <div class="donateus-card-detail-pair">
+                <div class="donateus-card donateus-card-easypaisa">
+                    <img src="Picrures All/eplw-removebg-preview.png" alt="Easypaisa"
+                        class="donateus-card-logo easypaisa-logo">
+                </div>
+                <div class="donateus-details-col">
+                    <div class="donateus-details-label">Account Title:</div>
+                    <div class="donateus-details-value">Syed Moez Ali</div>
+                    <div class="donateus-details-label">Account No:</div>
+                    <div class="donateus-details-value">
+                        <span class="copy-text">0331 2339459</span>
+                        <button class="copy-btn" data-copy="0331 2339459" title="Copy Account Number">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                            </svg>
+                        </button>
+                    </div>
+                    <div class="donateus-details-label">IBAN:</div>
+                    <div class="donateus-details-value">
+                        <span class="copy-text">0331 2339459</span>
+                        <button class="copy-btn" data-copy="0331 2339459" title="Copy IBAN">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                            </svg>
+                        </button>
+                    </div>
+                    <div class="donateus-details-label">Bank:</div>
+                    <div class="donateus-details-value">Easypaisa</div>
+                </div>
             </div>
         </div>
-        <div class="donateus-details-row">
-            <div class="donateus-details-col">
-                <div class="donateus-details-label">Account Title:</div>
-                <div class="donateus-details-value">Spreading Smile Foundation</div>
-                <div class="donateus-details-label">Account No:</div>
-                <div class="donateus-details-value">
-                    <span class="copy-text">PK72UNIL0110002010853675</span>
-                    <button class="copy-btn" data-copy="PK72UNIL0110002010853675" title="Copy Account Number">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-                            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
-                        </svg>
-                    </button>
-                </div>
-                <div class="donateus-details-label">IBAN:</div>
-                <div class="donateus-details-value">
-                    <span class="copy-text">PK72UNIL0110002010853675</span>
-                    <button class="copy-btn" data-copy="PK72UNIL0110002010853675" title="Copy IBAN">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-                            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
-                        </svg>
-                    </button>
-                </div>
-                <div class="donateus-details-label">Bank:</div>
-                <div class="donateus-details-value">United Bank Limited, Lahore</div>
-            </div>
-            <div class="donateus-details-col">
-                <div class="donateus-details-label">Account Title:</div>
-                <div class="donateus-details-value">Syed Moez Ali</div>
-                <div class="donateus-details-label">Account No:</div>
-                <div class="donateus-details-value">
-                    <span class="copy-text">0331 2339459</span>
-                    <button class="copy-btn" data-copy="0331 2339459" title="Copy Account Number">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-                            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
-                        </svg>
-                    </button>
-                </div>
-                <div class="donateus-details-label">IBAN:</div>
-                <div class="donateus-details-value">
-                    <span class="copy-text">PK67JCMA1611923312339459</span>
-                    <button class="copy-btn" data-copy="PK67JCMA1611923312339459" title="Copy IBAN">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-                            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
-                        </svg>
-                    </button>
-                </div>
-                <div class="donateus-details-label">Bank:</div>
-                <div class="donateus-details-value">Jazzcash</div>
-            </div>
-            <div class="donateus-details-col">
-                <div class="donateus-details-label">Account Title:</div>
-                <div class="donateus-details-value">Syed Moez Ali</div>
-                <div class="donateus-details-label">Account No:</div>
-                <div class="donateus-details-value">
-                    <span class="copy-text">0331 2339459</span>
-                    <button class="copy-btn" data-copy="0331 2339459" title="Copy Account Number">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-                            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
-                        </svg>
-                    </button>
-                </div>
-                <div class="donateus-details-label">IBAN:</div>
-                <div class="donateus-details-value">
-                    <span class="copy-text">0331 2339459</span>
-                    <button class="copy-btn" data-copy="0331 2339459" title="Copy IBAN">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-                            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
-                        </svg>
-                    </button>
-                </div>
-                <div class="donateus-details-label">Bank:</div>
-                <div class="donateus-details-value">Easypaisa</div>
-            </div>
-        </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        <!-- Mobile Layout: Card-Detail Pairs -->
-        <div class="donateus-card-detail-pair">
-            <div class="donateus-card donateus-card-silkbank">
-                <img src="Picrures All/ubl-logo-wob.png" alt="Silkbank" class="donateus-card-logo silkbank-logo">
-            </div>
-            <div class="donateus-details-col">
-                <div class="donateus-details-label">Account Title:</div>
-                <div class="donateus-details-value">Spreading Smile Foundation</div>
-                <div class="donateus-details-label">Account No:</div>
-                <div class="donateus-details-value">
-                    <span class="copy-text">PK72UNIL0110002010853675</span>
-                    <button class="copy-btn" data-copy="PK72UNIL0110002010853675" title="Copy Account Number">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-                            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
-                        </svg>
-                    </button>
-                </div>
-                <div class="donateus-details-label">IBAN:</div>
-                <div class="donateus-details-value">
-                    <span class="copy-text">PK72UNIL0110002010853675</span>
-                    <button class="copy-btn" data-copy="PK72UNIL0110002010853675" title="Copy IBAN">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-                            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
-                        </svg>
-                    </button>
-                </div>
-                <div class="donateus-details-label">Bank:</div>
-                <div class="donateus-details-value">United Bank Limited, Lahore</div>
-            </div>
-        </div>
-
-        <div class="donateus-card-detail-pair">
-            <div class="donateus-card donateus-card-jazzcash">
-                <img src="Picrures All/JazzCashLogo-wob.png" alt="JazzCash" class="donateus-card-logo jazzcash-logo">
-            </div>
-            <div class="donateus-details-col">
-                <div class="donateus-details-label">Account Title:</div>
-                <div class="donateus-details-value">Syed Moez Ali</div>
-                <div class="donateus-details-label">Account No:</div>
-                <div class="donateus-details-value">
-                    <span class="copy-text">0331 2339459</span>
-                    <button class="copy-btn" data-copy="0331 2339459" title="Copy Account Number">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-                            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
-                        </svg>
-                    </button>
-                </div>
-                <div class="donateus-details-label">IBAN:</div>
-                <div class="donateus-details-value">
-                    <span class="copy-text">PK67JCMA1611923312339459</span>
-                    <button class="copy-btn" data-copy="PK67JCMA1611923312339459" title="Copy IBAN">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-                            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
-                        </svg>
-                    </button>
-                </div>
-                <div class="donateus-details-label">Bank:</div>
-                <div class="donateus-details-value">Jazzcash</div>
-            </div>
-        </div>
-
-        <div class="donateus-card-detail-pair">
-            <div class="donateus-card donateus-card-easypaisa">
-                <img src="Picrures All/eplw-removebg-preview.png" alt="Easypaisa" class="donateus-card-logo easypaisa-logo">
-            </div>
-            <div class="donateus-details-col">
-                <div class="donateus-details-label">Account Title:</div>
-                <div class="donateus-details-value">Syed Moez Ali</div>
-                <div class="donateus-details-label">Account No:</div>
-                <div class="donateus-details-value">
-                    <span class="copy-text">0331 2339459</span>
-                    <button class="copy-btn" data-copy="0331 2339459" title="Copy Account Number">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-                            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
-                        </svg>
-                    </button>
-                </div>
-                <div class="donateus-details-label">IBAN:</div>
-                <div class="donateus-details-value">
-                    <span class="copy-text">0331 2339459</span>
-                    <button class="copy-btn" data-copy="0331 2339459" title="Copy IBAN">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-                            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
-                        </svg>
-                    </button>
-                </div>
-                <div class="donateus-details-label">Bank:</div>
-                <div class="donateus-details-value">Easypaisa</div>
-            </div>
-        </div>
-    </div>
-    <!-- Donation Page End -->
+        <!-- Donation Page End -->
 
 
 
@@ -237,7 +259,8 @@
         <div id="footer-container"></div>
         <div id="modal-container"></div>
     </div>
-    
+
     <script src="js/donation.js"></script>
 </body>
+
 </html>

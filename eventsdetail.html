@@ -1,8 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Cache Control Meta Tags - Prevents browser caching -->
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="icon" type="image/png" href="Picrures All/favicon.png">
@@ -14,146 +19,161 @@
     <script src="js/components.js"></script>
     <script src="js/animations.js"></script>
 </head>
+
 <body>
 
     <div id="nav-container"></div>
 
     <div class="main-content">
         <!-- Loading Container -->
-    <div id="loading-container" class="loading-container">
-        <div class="loader"></div>
-        <p class="loading-text">Loading event details...</p>
-    </div>
-
-    <!-- Error Container -->
-    <div id="error-container" class="error-container" style="display: none;">
-        <h2>Event Not Found</h2>
-        <p id="error-message">The event you're looking for doesn't exist or has been removed.</p>
-        <a href="events.html" class="back-btn">
-            <svg class="back-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <line x1="19" y1="12" x2="5" y2="12"></line>
-                <polyline points="12,19 5,12 12,5"></polyline>
-            </svg>
-            <span class="back-text">Back to Events</span>
-        </a>
-    </div>
-
-    <div id="event-details-container" class="event-details-container" style="display: none; background-color: transparent;">
-        <!-- Page Header -->
-        <div class="page-header">
-            <h1 class="page-title" id="event-title">Loading...</h1>
-            <p class="page-subtitle" id="event-subtitle">Loading event details...</p>
+        <div id="loading-container" class="loading-container">
+            <div class="loader"></div>
+            <p class="loading-text">Loading event details...</p>
         </div>
 
-        <!-- Image Carousel -->
-        <div class="event-image-carousel">
-            <div class="carousel-container">
-                <div class="carousel-images" id="carousel-images">
-                    <!-- Images will be dynamically loaded here -->
-                </div>
-                <button class="carousel-nav carousel-prev" onclick="changeSlide(-1)"><img src="Picrures All/left-arrow.svg" alt="Previous" class="carousel-nav-icon left"></button>
-                <button class="carousel-nav carousel-next" onclick="changeSlide(1)"><img src="Picrures All/right-arrow.svg" alt="Next" class="carousel-nav-icon right"></button>
-                <div class="carousel-dots" id="carousel-dots">
-                    <!-- Dots will be dynamically generated -->
-                </div>
+        <!-- Error Container -->
+        <div id="error-container" class="error-container" style="display: none;">
+            <h2>Event Not Found</h2>
+            <p id="error-message">The event you're looking for doesn't exist or has been removed.</p>
+            <a href="events.html" class="back-btn">
+                <svg class="back-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="19" y1="12" x2="5" y2="12"></line>
+                    <polyline points="12,19 5,12 12,5"></polyline>
+                </svg>
+                <span class="back-text">Back to Events</span>
+            </a>
+        </div>
+
+        <div id="event-details-container" class="event-details-container"
+            style="display: none; background-color: transparent;">
+            <!-- Page Header -->
+            <div class="page-header">
+                <h1 class="page-title" id="event-title">Loading...</h1>
+                <p class="page-subtitle" id="event-subtitle">Loading event details...</p>
             </div>
-        </div>
 
-        <!-- Event Content -->
-        <div class="event-content">
-            <!-- Event Info -->
-            <div class="event-info">
-                <h2>Event Information</h2>
-                <div class="info-grid">
-                    <div class="info-item">
-                        <div class="info-icon-fullevents">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
-                                <line x1="16" y1="2" x2="16" y2="6"></line>
-                                <line x1="8" y1="2" x2="8" y2="6"></line>
-                                <line x1="3" y1="10" x2="21" y2="10"></line>
-                            </svg>
-                        </div>
-                        <div class="info-details">
-                            <span class="info-label">Date</span>
-                            <span class="info-value" id="event-date">Loading...</span>
-                        </div>
+            <!-- Image Carousel -->
+            <div class="event-image-carousel">
+                <div class="carousel-container">
+                    <div class="carousel-images" id="carousel-images">
+                        <!-- Images will be dynamically loaded here -->
                     </div>
-                    <div class="info-item">
-                        <div class="info-icon-fullevents">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <circle cx="12" cy="12" r="10"></circle>
-                                <polyline points="12,6 12,12 16,14"></polyline>
-                            </svg>
-                        </div>
-                        <div class="info-details">
-                            <span class="info-label">Time</span>
-                            <span class="info-value" id="event-time">Loading...</span>
-                        </div>
+                    <button class="carousel-nav carousel-prev" onclick="changeSlide(-1)"><img
+                            src="Picrures All/left-arrow.svg" alt="Previous" class="carousel-nav-icon left"></button>
+                    <button class="carousel-nav carousel-next" onclick="changeSlide(1)"><img
+                            src="Picrures All/right-arrow.svg" alt="Next" class="carousel-nav-icon right"></button>
+                    <div class="carousel-dots" id="carousel-dots">
+                        <!-- Dots will be dynamically generated -->
                     </div>
-                    <div class="info-item">
-                        <div class="info-icon-fullevents">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
-                                <circle cx="12" cy="10" r="3"></circle>
-                            </svg>
-                        </div>
-                        <div class="info-details">
-                            <span class="info-label">Venue</span>
-                            <span class="info-value" id="event-venue">Loading...</span>
-                        </div>
-                    </div>
-
                 </div>
             </div>
 
-            <!-- Event Description -->
-            <div class="event-description">
-                <h2>About This Event</h2>
-                <div class="description-text" id="event-description" >
-                    <p>Loading event description...</p>
-                </div>
+            <!-- Event Content -->
+            <div class="event-content">
+                <!-- Event Info -->
+                <div class="event-info">
+                    <h2>Event Information</h2>
+                    <div class="info-grid">
+                        <div class="info-item">
+                            <div class="info-icon-fullevents">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                                    <line x1="16" y1="2" x2="16" y2="6"></line>
+                                    <line x1="8" y1="2" x2="8" y2="6"></line>
+                                    <line x1="3" y1="10" x2="21" y2="10"></line>
+                                </svg>
+                            </div>
+                            <div class="info-details">
+                                <span class="info-label">Date</span>
+                                <span class="info-value" id="event-date">Loading...</span>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-icon-fullevents">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <polyline points="12,6 12,12 16,14"></polyline>
+                                </svg>
+                            </div>
+                            <div class="info-details">
+                                <span class="info-label">Time</span>
+                                <span class="info-value" id="event-time">Loading...</span>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-icon-fullevents">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                                    <circle cx="12" cy="10" r="3"></circle>
+                                </svg>
+                            </div>
+                            <div class="info-details">
+                                <span class="info-label">Venue</span>
+                                <span class="info-value" id="event-venue">Loading...</span>
+                            </div>
+                        </div>
 
-                <div class="contact-info">
-                    <h3>For Donations & Queries Contact us at</h3>
-                    <div class="contact-details">
-                        <p>
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
-                            </svg>
-                            <a href="tel:03213214884">03213214884</a>
-                        </p>
-                        <p>
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
-                                <polyline points="22,6 12,13 2,6"></polyline>
-                            </svg>
-                            <a href="mailto:spreadingsmilefoundation@gmail.com">spreadingsmilefoundation@gmail.com</a>
-                        </p>
                     </div>
                 </div>
 
-                <div class="hashtags" id="event-hashtags">
-                    <span class="hashtag">#helpothers</span>
-                    <span class="hashtag">#NGO</span>
-                    <span class="hashtag">#Spreadingsmilefoundation</span>
-                    <span class="hashtag">#keepgiving</span>
-                    <span class="hashtag">#keepSupporting</span>
-                    <span class="hashtag">#keepSmiling</span>
+                <!-- Event Description -->
+                <div class="event-description">
+                    <h2>About This Event</h2>
+                    <div class="description-text" id="event-description">
+                        <p>Loading event description...</p>
+                    </div>
+
+                    <div class="contact-info">
+                        <h3>For Donations & Queries Contact us at</h3>
+                        <div class="contact-details">
+                            <p>
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path
+                                        d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z">
+                                    </path>
+                                </svg>
+                                <a href="tel:03213214884">03213214884</a>
+                            </p>
+                            <p>
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path
+                                        d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z">
+                                    </path>
+                                    <polyline points="22,6 12,13 2,6"></polyline>
+                                </svg>
+                                <a
+                                    href="mailto:spreadingsmilefoundation@gmail.com">spreadingsmilefoundation@gmail.com</a>
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="hashtags" id="event-hashtags">
+                        <span class="hashtag">#helpothers</span>
+                        <span class="hashtag">#NGO</span>
+                        <span class="hashtag">#Spreadingsmilefoundation</span>
+                        <span class="hashtag">#keepgiving</span>
+                        <span class="hashtag">#keepSupporting</span>
+                        <span class="hashtag">#keepSmiling</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Call to Action -->
+            <div class="cta-section">
+                <h2>Support Our Mission</h2>
+                <p>Help us continue making a difference in people's lives</p>
+                <div class="cta-buttons">
+                    <a href="donation.html" class="cta-btn primary">Donate Now</a>
+                    <a href="contact.html" class="cta-btn secondary">Contact Us</a>
                 </div>
             </div>
         </div>
-
-        <!-- Call to Action -->
-        <div class="cta-section">
-            <h2>Support Our Mission</h2>
-            <p>Help us continue making a difference in people's lives</p>
-            <div class="cta-buttons">
-                <a href="donation.html" class="cta-btn primary">Donate Now</a>
-                <a href="contact.html" class="cta-btn secondary">Contact Us</a>
-            </div>
-        </div>
-    </div>
 
         <div id="footer-container"></div>
         <div id="modal-container"></div>
@@ -164,29 +184,32 @@
         <div class="popup-overlay"></div>
         <div class="popup-content">
             <button class="popup-close" id="popup-close">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
                     <line x1="18" y1="6" x2="6" y2="18"></line>
                     <line x1="6" y1="6" x2="18" y2="18"></line>
                 </svg>
             </button>
-            
+
             <div class="popup-image-container">
                 <img id="popup-image" class="popup-image" src="" alt="Event Image">
             </div>
-            
+
             <div class="popup-navigation">
                 <button class="popup-nav-btn popup-prev" id="popup-prev">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
                         <polyline points="15,18 9,12 15,6"></polyline>
                     </svg>
                 </button>
                 <button class="popup-nav-btn popup-next" id="popup-next">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
                         <polyline points="9,18 15,12 9,6"></polyline>
                     </svg>
                 </button>
             </div>
-            
+
             <div class="popup-counter">
                 <span id="popup-counter">1 / 1</span>
             </div>
@@ -196,4 +219,5 @@
     <!-- Firebase SDK -->
     <script type="module" src="js/eventsdetail.js"></script>
 </body>
+
 </html>

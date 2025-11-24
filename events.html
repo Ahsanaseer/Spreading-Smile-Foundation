@@ -1,8 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Cache Control Meta Tags - Prevents browser caching -->
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="icon" type="image/png" href="Picrures All/favicon.png">
@@ -15,6 +20,7 @@
     <script src="js/components.js"></script>
     <script src="js/animations.js"></script>
 </head>
+
 <body>
 
     <div id="nav-container"></div>
@@ -25,23 +31,24 @@
         <div class="events-header" id="eventkiheading">
             <h1>Our Events</h1>
         </div>
-        
+
         <!-- Loader Container -->
         <div class="loader-container" id="loader-container">
             <div class="loader" id="loader"></div>
             <p class="loading-text">Loading events...</p>
         </div>
-        
+
         <!-- Events Container -->
         <div id="events-container" class="events-grid"></div>
         <!-- Event Content End -->
     </main>
 
-    
+
     <script type="module" src="js/event.js"></script>
-            
+
     <div id="footer-container"></div>
     <div id="modal-container"></div>
 
 </body>
+
 </html>
