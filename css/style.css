@@ -4259,7 +4259,7 @@ body.home-page.all-content-loaded .main-content {
 
 /* =================================================NEWS BANNER STYLES============================================================================== */
 .news-banner {
-  background: linear-gradient(90deg, #4A90E2 0%, #7B68EE 100%);
+  background: var(--primary-color);
   padding: 12px 0;
   position: relative;
   overflow: hidden;
