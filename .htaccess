@@ -7,12 +7,6 @@ RewriteEngine On
     Header set Expires "0"
 </FilesMatch>
 
-# Add this after your existing FilesMatch block
-<Files "index.html">
-    Header set Cache-Control "no-cache, no-store, must-revalidate, max-age=0, s-maxage=0"
-    Header set Pragma "no-cache"
-    Header set Expires "Thu, 01 Jan 1970 00:00:00 GMT"
-</Files>
 
 # Redirect URLs with .html to extensionless (keep query strings)
 RewriteCond %{THE_REQUEST} ^[A-Z]{3,}\s/([^\s]+)\.html(\?[^\s]*)?\sHTTP/

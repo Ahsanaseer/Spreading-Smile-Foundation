@@ -279,7 +279,7 @@ async function controlNewsBannerVisibility() {
 
     if (result.isDeadlinePassed) {
       // Hide banner if deadline has passed
-      banner.style.display = 'none';
+      banner.classList.add('deadline-passed');
       console.log('News banner hidden - deadline has passed');
     } else {
       // Show banner if deadline hasn't passed and populate title
@@ -297,13 +297,14 @@ async function controlNewsBannerVisibility() {
         currentNewsSubHeading = result.subHeading || '';
       }
 
-      banner.style.display = 'flex';
+      // Remove the deadline-passed class to allow CSS to control visibility
+      banner.classList.remove('deadline-passed');
       console.log('News banner shown - deadline has not passed');
     }
   } catch (error) {
     console.error('Error controlling news banner visibility:', error);
     // Hide banner on error
-    banner.style.display = 'none';
+    banner.classList.add('deadline-passed');
   }
 }
 

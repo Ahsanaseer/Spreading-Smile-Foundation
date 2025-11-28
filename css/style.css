@@ -2223,6 +2223,7 @@ body.home-page:not(.all-content-loaded) {
 }
 
 body.home-page:not(.all-content-loaded) .volunteer-announcement,
+body.home-page:not(.all-content-loaded) .news-banner,
 body.home-page:not(.all-content-loaded) .ngo-registration-banner,
 body.home-page:not(.all-content-loaded) .main-content,
 body.home-page:not(.all-content-loaded) .navbar,
@@ -2233,6 +2234,7 @@ body.home-page:not(.all-content-loaded) .main-navbar-row {
 }
 
 body.home-page.all-content-loaded .volunteer-announcement,
+body.home-page.all-content-loaded .news-banner,
 body.home-page.all-content-loaded .ngo-registration-banner,
 body.home-page.all-content-loaded .main-content,
 body.home-page.all-content-loaded .navbar,
@@ -2246,6 +2248,10 @@ body.home-page.all-content-loaded .main-navbar-row {
 /* Stagger the appearance for smooth loading (home page only) */
 body.home-page.all-content-loaded .volunteer-announcement {
   transition-delay: 0.1s;
+}
+
+body.home-page.all-content-loaded .news-banner {
+  transition-delay: 0.15s;
 }
 
 body.home-page.all-content-loaded .ngo-registration-banner {
@@ -4263,10 +4269,15 @@ body.home-page.all-content-loaded .main-content {
   padding: 12px 0;
   position: relative;
   overflow: hidden;
-  display: none;
-  /* Hidden by default, will be shown by JavaScript if deadline not passed */
+  display: flex;
+  /* Changed from 'none' to 'flex' so CSS loading system can control visibility */
   align-items: center;
   justify-content: center;
+}
+
+/* Hide banner when deadline has passed */
+.news-banner.deadline-passed {
+  display: none !important;
 }
 
 .news-container {
