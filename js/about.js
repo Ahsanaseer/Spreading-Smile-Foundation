@@ -73,13 +73,11 @@ const fetchAndRenderDirectors = async () => {
   directorCardsContainer.style.display = 'none';
   
   try {
-    console.log('Fetching directors data from Firebase...');
     
     // Fetch directorsData document from config collection
     const directorsDataDoc = await getDoc(doc(db, 'config', 'directorsData'));
     
     if (!directorsDataDoc.exists()) {
-      console.log('No directorsData document found');
       loaderContainer.style.display = 'none';
       directorCardsContainer.style.display = 'flex';
       directorCardsContainer.innerHTML = '<div style="display: flex; justify-content: center; align-items: center; min-height: 200px; width: 100%;"><p style="text-align: center; color: #666; padding: 40px; font-size: 1.1rem;">No directors found!</p></div>';
@@ -87,7 +85,6 @@ const fetchAndRenderDirectors = async () => {
     }
     
     const directorsData = directorsDataDoc.data();
-    console.log('Directors data fetched:', directorsData);
     
     // Clear existing cards
     directorCardsContainer.innerHTML = '';
@@ -121,7 +118,6 @@ const fetchAndRenderDirectors = async () => {
     });
     
     if (directors.length === 0) {
-      console.log('No valid directors found in data');
       loaderContainer.style.display = 'none';
       directorCardsContainer.style.display = 'flex';
       directorCardsContainer.innerHTML = '<div style="display: flex; justify-content: center; align-items: center; min-height: 200px; width: 100%;"><p style="text-align: center; color: #666; padding: 40px; font-size: 1.1rem;">No directors found!</p></div>';
@@ -131,7 +127,6 @@ const fetchAndRenderDirectors = async () => {
     // Sort by position number (ascending order)
     directors.sort((a, b) => a.position - b.position);
     
-    console.log(`Rendering ${directors.length} directors`);
     
     // Render sorted director cards
     directors.forEach((director, index) => {
@@ -200,7 +195,6 @@ const fetchAndRenderTeamMembers = async () => {
   const teamLoaderContainer = document.getElementById('team-loader-container');
   
   if (!teamGridContainer || !teamLoaderContainer) {
-    console.log('Team section elements not found');
     return;
   }
   
@@ -209,13 +203,11 @@ const fetchAndRenderTeamMembers = async () => {
   teamGridContainer.style.display = 'none';
   
   try {
-    console.log('Fetching team data from Firebase...');
     
     // Fetch membersData document from config collection
     const membersDataDoc = await getDoc(doc(db, 'config', 'membersData'));
     
     if (!membersDataDoc.exists()) {
-      console.log('No membersData document found');
       teamLoaderContainer.style.display = 'none';
       teamGridContainer.style.display = 'grid';
       teamGridContainer.innerHTML = '<div style="display: flex; justify-content: center; align-items: center; min-height: 200px; width: 100%; grid-column: 1 / -1;"><p style="text-align: center; color: #666; padding: 40px; font-size: 1.1rem;">No team members found!</p></div>';
@@ -223,7 +215,6 @@ const fetchAndRenderTeamMembers = async () => {
     }
     
     const membersData = membersDataDoc.data();
-    console.log('Team data fetched:', membersData);
     
     // Clear existing cards
     teamGridContainer.innerHTML = '';
@@ -257,7 +248,6 @@ const fetchAndRenderTeamMembers = async () => {
     });
     
     if (teamMembers.length === 0) {
-      console.log('No valid team members found in data');
       teamLoaderContainer.style.display = 'none';
       teamGridContainer.style.display = 'grid';
       teamGridContainer.innerHTML = '<div style="display: flex; justify-content: center; align-items: center; min-height: 200px; width: 100%; grid-column: 1 / -1;"><p style="text-align: center; color: #666; padding: 40px; font-size: 1.1rem;">No team members found!</p></div>';
@@ -267,7 +257,6 @@ const fetchAndRenderTeamMembers = async () => {
     // Sort by position number (ascending order)
     teamMembers.sort((a, b) => a.position - b.position);
     
-    console.log(`Rendering ${teamMembers.length} team members`);
     
     // Render sorted team member cards
     teamMembers.forEach((member) => {
@@ -289,7 +278,6 @@ const fetchAndRenderTeamMembers = async () => {
 
 // Initialize on page load
 document.addEventListener('DOMContentLoaded', function() {
-  console.log('About page loaded - fetching directors data...');
   fetchAndRenderDirectors();
   
   // Fetch and render team members

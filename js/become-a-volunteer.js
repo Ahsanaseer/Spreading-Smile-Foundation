@@ -56,13 +56,11 @@ function getCurrentPakistanTime() {
 // Function to fetch volunteer program title and update page heading
 async function fetchAndUpdateVolunteerPageTitle() {
     try {
-        console.log('--- Fetching Volunteer Program Title for Page ---');
         
         // Fetch config document from Firestore
         const configDoc = await getDoc(doc(db, 'config', 'volunteerDeadline'));
         
         if (!configDoc.exists()) {
-            console.log('No config document found in Firestore');
             // Set fallback title
             updatePageTitle('Volunteer Program Winter 25\'');
             return;
@@ -72,13 +70,11 @@ async function fetchAndUpdateVolunteerPageTitle() {
         const title = configData.title;
         
         if (!title) {
-            console.log('No title field found in document');
             // Set fallback title
             updatePageTitle('Volunteer Program Winter 25\'');
             return;
         }
         
-        console.log('Fetched title for page:', title);
         
         // Update the page title
         updatePageTitle(title);
@@ -96,53 +92,42 @@ function updatePageTitle(title) {
     if (pageHeading) {
         // Update the heading with the fetched title
         pageHeading.textContent = title;
-        console.log('✅ Page title updated successfully:', title);
     } else {
-        console.log('❌ Page heading element not found');
     }
 }
 
 // Function to check deadline from Firestore
 async function checkDeadlineFromFirestore() {
     try {
-        console.log('--- Checking Deadline from Firestore ---');
         
         // Fetch deadline from Firestore
         const configDoc = await getDoc(doc(db, 'config', 'volunteerDeadline'));
         
         if (!configDoc.exists()) {
-            console.log('No deadline document found in Firestore');
             return { isDeadlinePassed: false, error: 'No deadline document found' };
         }
         
         const deadlineStr = configDoc.data().deadline;
-        console.log('Fetched deadline string:', deadlineStr);
         
         if (!deadlineStr) {
-            console.log('No deadline field found in document');
             return { isDeadlinePassed: false, error: 'No deadline field found' };
         }
         
         // Parse deadline string
         const deadlineDate = parseDeadlineString(deadlineStr);
         if (!deadlineDate) {
-            console.log('Failed to parse deadline string');
             return { isDeadlinePassed: false, error: 'Failed to parse deadline' };
         }
         
         // Get current Pakistan time
         const currentTime = getCurrentPakistanTime();
         
-        console.log('Deadline Date (Pakistan time):', deadlineDate.toLocaleString());
-        console.log('Current Time (Pakistan time):', currentTime.toLocaleString());
         
         // Compare times
         const isDeadlinePassed = currentTime.getTime() > deadlineDate.getTime();
         
         if (isDeadlinePassed) {
-            console.log('❌ Deadline has passed!');
         } else {
-            console.log('✅ Deadline is not passed, you have time to submit.');
         }
         
         return { isDeadlinePassed, deadlineDate, currentTime };
@@ -473,7 +458,6 @@ if (form) {
                         const configData = configDoc.data();
                         if (configData.title) {
                             volunteerProgramTitle = configData.title;
-                            console.log('Fetched volunteer program title for email:', volunteerProgramTitle);
                         }
                     }
                 } catch (titleError) {
@@ -481,7 +465,6 @@ if (form) {
                     // Use fallback title
                 }
                 
-                console.log('Sending email with data:', {
                     email: volunteerData.email,
                     fullName: volunteerData.fullName,
                     volunteerProgramTitle: volunteerProgramTitle
@@ -505,12 +488,9 @@ if (form) {
                 });
                 
                 const emailResult = await emailResponse.text();
-                console.log('Email result:', emailResult);
                 
                 if (emailResult.includes('successfully')) {
-                    console.log('✅ Thank you email sent successfully');
                 } else {
-                    console.log('⚠️ Email sending failed:', emailResult);
                 }
             } catch (emailError) {
                 console.error('Email sending error:', emailError);

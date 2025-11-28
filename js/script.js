@@ -56,13 +56,11 @@ function getCurrentPakistanTime() {
 // Function to fetch volunteer program title and update banner
 async function fetchAndUpdateVolunteerTitle() {
   try {
-    console.log('--- Fetching Volunteer Program Title from Firestore ---');
 
     // Fetch config document from Firestore
     const configDoc = await getDoc(doc(db, 'config', 'volunteerDeadline'));
 
     if (!configDoc.exists()) {
-      console.log('No config document found in Firestore');
       // Set fallback title
       updateBannerTitle('Winter 2025 Volunteer Program');
       return;
@@ -72,13 +70,11 @@ async function fetchAndUpdateVolunteerTitle() {
     const title = configData.title;
 
     if (!title) {
-      console.log('No title field found in document');
       // Set fallback title
       updateBannerTitle('Winter 2025 Volunteer Program');
       return;
     }
 
-    console.log('Fetched title:', title);
 
     // Update the banner title
     updateBannerTitle(title);
@@ -96,53 +92,42 @@ function updateBannerTitle(title) {
   if (announcementTitle) {
     // Format: "Our [title] is Live!"
     announcementTitle.textContent = `Our ${title} is Live!`;
-    console.log('✅ Banner title updated successfully:', `Our ${title} is Live!`);
   } else {
-    console.log('❌ Banner title element not found');
   }
 }
 
 // Function to check deadline from Firestore
 async function checkDeadlineFromFirestore() {
   try {
-    console.log('--- Checking Deadline from Firestore for Banner ---');
 
     // Fetch deadline from Firestore
     const configDoc = await getDoc(doc(db, 'config', 'volunteerDeadline'));
 
     if (!configDoc.exists()) {
-      console.log('No deadline document found in Firestore');
       return { isDeadlinePassed: false, error: 'No deadline document found' };
     }
 
     const deadlineStr = configDoc.data().deadline;
-    console.log('Fetched deadline string:', deadlineStr);
 
     if (!deadlineStr) {
-      console.log('No deadline field found in document');
       return { isDeadlinePassed: false, error: 'No deadline field found' };
     }
 
     // Parse deadline string
     const deadlineDate = parseDeadlineString(deadlineStr);
     if (!deadlineDate) {
-      console.log('Failed to parse deadline string');
       return { isDeadlinePassed: false, error: 'Failed to parse deadline' };
     }
 
     // Get current Pakistan time
     const currentTime = getCurrentPakistanTime();
 
-    console.log('Deadline Date (Pakistan time):', deadlineDate.toLocaleString());
-    console.log('Current Time (Pakistan time):', currentTime.toLocaleString());
 
     // Compare times
     const isDeadlinePassed = currentTime.getTime() > deadlineDate.getTime();
 
     if (isDeadlinePassed) {
-      console.log('❌ Deadline has passed! Banner should be hidden.');
     } else {
-      console.log('✅ Deadline is not passed, banner should be shown.');
     }
 
     return { isDeadlinePassed, deadlineDate, currentTime };
@@ -157,7 +142,6 @@ async function checkDeadlineFromFirestore() {
 async function controlBannerVisibility() {
   const banner = document.getElementById('volunteer-announcement');
   if (!banner) {
-    console.log('Banner element not found');
     return Promise.resolve();
   }
 
@@ -170,11 +154,9 @@ async function controlBannerVisibility() {
     if (result.isDeadlinePassed) {
       // Hide banner if deadline has passed
       banner.style.display = 'none';
-      console.log('Banner hidden - deadline has passed');
     } else {
       // Show banner if deadline hasn't passed (use flex to match original CSS)
       banner.style.display = 'flex';
-      console.log('Banner shown - deadline has not passed');
     }
   } catch (error) {
     console.error('Error controlling banner visibility:', error);
@@ -191,13 +173,11 @@ let currentNewsSubHeading = '';
 // Function to fetch news data from Firestore
 async function fetchNewsData() {
   try {
-    console.log('--- Fetching News Data from Firestore ---');
 
     // Fetch config document from Firestore
     const configDoc = await getDoc(doc(db, 'config', 'newsDeadline'));
 
     if (!configDoc.exists()) {
-      console.log('No newsDeadline document found in Firestore');
       return null;
     }
 
@@ -208,11 +188,9 @@ async function fetchNewsData() {
     const subHeading = configData['sub-heading'] || ''; // Optional field
 
     if (!deadline || !news) {
-      console.log('Missing deadline or news field in document');
       return null;
     }
 
-    console.log('Fetched news data:', { deadline, newsLength: news.length, heading, subHeading });
 
     return { deadline, news, heading, subHeading };
 
@@ -225,38 +203,30 @@ async function fetchNewsData() {
 // Function to check news deadline from Firestore
 async function checkNewsDeadline() {
   try {
-    console.log('--- Checking News Deadline from Firestore ---');
 
     const newsData = await fetchNewsData();
 
     if (!newsData) {
-      console.log('No news data available');
       return { isDeadlinePassed: true, error: 'No news data' };
     }
 
     const deadlineStr = newsData.deadline;
-    console.log('Fetched deadline string:', deadlineStr);
 
     // Parse deadline string
     const deadlineDate = parseDeadlineString(deadlineStr);
     if (!deadlineDate) {
-      console.log('Failed to parse deadline string');
       return { isDeadlinePassed: true, error: 'Failed to parse deadline' };
     }
 
     // Get current Pakistan time
     const currentTime = getCurrentPakistanTime();
 
-    console.log('Deadline Date (Pakistan time):', deadlineDate.toLocaleString());
-    console.log('Current Time (Pakistan time):', currentTime.toLocaleString());
 
     // Compare times
     const isDeadlinePassed = currentTime.getTime() > deadlineDate.getTime();
 
     if (isDeadlinePassed) {
-      console.log('❌ News deadline has passed! Banner should be hidden.');
     } else {
-      console.log('✅ News deadline is not passed, banner should be shown.');
       return { isDeadlinePassed, deadlineDate, currentTime, news: newsData.news, heading: newsData.heading, subHeading: newsData.subHeading };
     }
 
@@ -270,7 +240,6 @@ async function checkNewsDeadline() {
 async function controlNewsBannerVisibility() {
   const banner = document.getElementById('news-banner');
   if (!banner) {
-    console.log('News banner element not found');
     return Promise.resolve();
   }
 
@@ -280,7 +249,6 @@ async function controlNewsBannerVisibility() {
     if (result.isDeadlinePassed) {
       // Hide banner if deadline has passed
       banner.classList.add('deadline-passed');
-      console.log('News banner hidden - deadline has passed');
     } else {
       // Show banner if deadline hasn't passed and populate title
       const newsTitle = document.getElementById('news-title');
@@ -299,7 +267,6 @@ async function controlNewsBannerVisibility() {
 
       // Remove the deadline-passed class to allow CSS to control visibility
       banner.classList.remove('deadline-passed');
-      console.log('News banner shown - deadline has not passed');
     }
   } catch (error) {
     console.error('Error controlling news banner visibility:', error);
@@ -314,7 +281,6 @@ function openNewsPopup() {
   const modalBody = document.getElementById('news-modal-body');
 
   if (!modal || !modalBody) {
-    console.log('News modal elements not found');
     return;
   }
 
@@ -343,7 +309,6 @@ function openNewsPopup() {
   modal.classList.add('show');
   document.body.style.overflow = 'hidden'; // Prevent background scrolling
 
-  console.log('News popup opened');
 }
 
 // Function to close news popup
@@ -351,7 +316,6 @@ function closeNewsPopup() {
   const modal = document.getElementById('news-modal');
 
   if (!modal) {
-    console.log('News modal element not found');
     return;
   }
 
@@ -359,7 +323,6 @@ function closeNewsPopup() {
   modal.classList.remove('show');
   document.body.style.overflow = ''; // Restore scrolling
 
-  console.log('News popup closed');
 }
 
 // Function to close news banner
@@ -367,7 +330,6 @@ function closeNewsBanner() {
   const banner = document.getElementById('news-banner');
   if (banner) {
     banner.style.display = 'none';
-    console.log('News banner closed by user');
   }
 }
 
@@ -499,13 +461,11 @@ const fetchAndRenderProcessingCases = async (forceRefresh = false) => {
   try {
     // Add cache busting timestamp
     const cacheBuster = `?t=${Date.now()}&r=${Math.random()}`;
-    console.log(`Fetching cases with cache buster: ${cacheBuster}`);
 
     // Force fresh data by disabling cache and using timestamp
     const querySnapshot = await getDocs(collection(db, "allCases"));
 
     if (querySnapshot.empty) {
-      console.log("No cases found");
       // Hide loader and show cards wrapper
       loaderContainer.style.display = 'none';
       casesCardsWrapper.style.display = 'flex';
@@ -618,20 +578,17 @@ const fetchAndPopulateMembers = async () => {
   if (memberReviewsNav) memberReviewsNav.style.display = 'none';
 
   try {
-    console.log('Fetching volunteers data from Firebase...');
 
     // Fetch volunteersData document from config collection
     const volunteerDataDoc = await getDoc(doc(db, 'config', 'volunteersData'));
 
     if (!volunteerDataDoc.exists()) {
-      console.log('No volunteersData document found');
       if (loaderContainer) loaderContainer.style.display = 'none';
       if (memberReviewCard) memberReviewCard.style.display = 'flex';
       return;
     }
 
     const volunteerData = volunteerDataDoc.data();
-    console.log('Volunteer data fetched:', volunteerData);
 
     // Clear existing members
     members = [];
@@ -661,7 +618,6 @@ const fetchAndPopulateMembers = async () => {
     });
 
     if (members.length === 0) {
-      console.log('No valid volunteers found in data');
       if (loaderContainer) loaderContainer.style.display = 'none';
       if (memberReviewCard) memberReviewCard.style.display = 'flex';
       return;
@@ -670,8 +626,6 @@ const fetchAndPopulateMembers = async () => {
     // Sort by position number (ascending order)
     members.sort((a, b) => a.position - b.position);
 
-    console.log(`Loaded ${members.length} volunteers`);
-    console.log('Members data:', members);
 
     // Hide loader and show content
     if (loaderContainer) loaderContainer.style.display = 'none';
@@ -713,7 +667,6 @@ let sliderInitialized = false;
 // Function to initialize member slider
 const initializeMemberSlider = () => {
   if (members.length === 0) {
-    console.log('No members to display');
     return;
   }
 
@@ -724,7 +677,6 @@ const initializeMemberSlider = () => {
   const nextBtn = document.getElementById('member-next-btn');
 
   if (!memberName || !memberDesc || !memberImg) {
-    console.log('Member review elements not found');
     return;
   }
 
@@ -822,7 +774,6 @@ const shouldRefreshData = () => {
 // Function to force refresh cases data
 const forceRefreshCases = () => {
   if (shouldRefreshData()) {
-    console.log('Force refreshing cases data...');
     lastRefreshTime = Date.now();
     fetchAndRenderProcessingCases(true);
   }
@@ -831,20 +782,17 @@ const forceRefreshCases = () => {
 // Page visibility API - refresh when page becomes visible
 document.addEventListener('visibilitychange', () => {
   if (!document.hidden) {
-    console.log('Page became visible, refreshing cases...');
     forceRefreshCases();
   }
 });
 
 // Refresh on page focus
 window.addEventListener('focus', () => {
-  console.log('Window focused, refreshing cases...');
   forceRefreshCases();
 });
 
 // Refresh on page load/reload
 window.addEventListener('load', () => {
-  console.log('Page loaded, refreshing cases...');
   forceRefreshCases();
 });
 
@@ -853,7 +801,6 @@ if ('ontouchstart' in window) {
   // Mobile device detected - add touch refresh
   document.addEventListener('touchstart', () => {
     if (shouldRefreshData()) {
-      console.log('Mobile touch detected, refreshing cases...');
       forceRefreshCases();
     }
   });
@@ -865,7 +812,6 @@ if (casesSection) {
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting && shouldRefreshData()) {
-        console.log('Cases section visible, refreshing...');
         forceRefreshCases();
       }
     });
@@ -877,20 +823,17 @@ if (casesSection) {
 // Periodic refresh every 2 minutes
 setInterval(() => {
   if (shouldRefreshData()) {
-    console.log('Periodic refresh triggered');
     forceRefreshCases();
   }
 }, 120000); // 2 minutes
 
 // Periodic banner visibility check every 5 minutes
 setInterval(() => {
-  console.log('Periodic volunteer banner visibility check triggered');
   controlBannerVisibility();
 }, 300000); // 5 minutes
 
 // Periodic news banner visibility check every 5 minutes
 setInterval(() => {
-  console.log('Periodic news banner visibility check triggered');
   controlNewsBannerVisibility();
 }, 300000); // 5 minutes
 
@@ -907,7 +850,6 @@ let loadingComponents = {
 function checkAllComponentsLoaded() {
   const allLoaded = Object.values(loadingComponents).every(loaded => loaded === true);
   if (allLoaded) {
-    console.log('🎉 All components loaded! Showing content...');
 
     // Add a small delay to ensure smooth transition
     setTimeout(() => {
@@ -920,7 +862,6 @@ function checkAllComponentsLoaded() {
 // Function to mark component as loaded
 function markComponentLoaded(componentName) {
   loadingComponents[componentName] = true;
-  console.log(`✅ ${componentName} loaded`);
   checkAllComponentsLoaded();
 }
 
@@ -964,7 +905,6 @@ document.addEventListener('DOMContentLoaded', function () {
   const isHomePage = document.body.classList.contains('home-page');
 
   if (isHomePage) {
-    console.log('🚀 Starting unified loading system for home page...');
 
     // Mark navbar as loaded (it's already in DOM)
     markComponentLoaded('navbarLoaded');
@@ -998,14 +938,12 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Fallback timeout - show content after 5 seconds regardless
     setTimeout(() => {
-      console.log('⏰ Fallback timeout reached - showing content');
       Object.keys(loadingComponents).forEach(key => {
         loadingComponents[key] = true;
       });
       checkAllComponentsLoaded();
     }, 5000);
   } else {
-    console.log('📄 Non-home page detected - loading normally');
   }
 
   // Fetch and populate members from Firebase (only on home page)
@@ -1062,12 +1000,10 @@ function bloodformfunc() {
 // Volunteer form function with deadline check
 async function volunteerFormFunc() {
   try {
-    console.log("🔄 Checking deadline before redirecting to volunteer form...");
 
     const result = await checkDeadlineFromFirestore();
 
     if (result.isDeadlinePassed) {
-      console.log("❌ Deadline has passed! Cannot access volunteer form.");
       // Show error message
       if (window.toastManager) {
         window.toastManager.show("❌ Deadline has passed! Cannot access volunteer form.", "error", 5000);
@@ -1076,13 +1012,11 @@ async function volunteerFormFunc() {
       }
       return; // Don't redirect
     } else {
-      console.log("✅ Deadline is not passed, redirecting to volunteer form...");
       window.location.href = "become-a-volunteer.html";
     }
 
   } catch (error) {
     console.error("❌ Error checking deadline:", error);
-    console.log("⚠️ Allowing form access due to error");
     // Show warning but still allow navigation
     if (window.toastManager) {
       window.toastManager.show("⚠️ Unable to check deadline. Proceeding to volunteer form...", "warning", 3000);
