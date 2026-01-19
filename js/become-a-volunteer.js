@@ -27,16 +27,16 @@ function parseDeadlineString(deadlineStr) {
         const [datePart, timePart] = deadlineStr.split(' ');
         const [day, month, year] = datePart.split('/');
         const [hours, minutes] = timePart.split(':');
-        
+
         // Create date in Pakistan timezone (UTC+5)
         // Note: JavaScript Date constructor uses local timezone, so we need to adjust
         const deadlineDate = new Date(year, month - 1, day, hours, minutes);
-        
+
         // Convert to Pakistan timezone (UTC+5)
         const pakistanOffset = 5 * 60; // 5 hours in minutes
         const utcTime = deadlineDate.getTime() + (deadlineDate.getTimezoneOffset() * 60000);
         const pakistanTime = new Date(utcTime + (pakistanOffset * 60000));
-        
+
         return pakistanTime;
     } catch (error) {
         console.error('Error parsing deadline string:', error);
@@ -56,29 +56,29 @@ function getCurrentPakistanTime() {
 // Function to fetch volunteer program title and update page heading
 async function fetchAndUpdateVolunteerPageTitle() {
     try {
-        
+
         // Fetch config document from Firestore
         const configDoc = await getDoc(doc(db, 'config', 'volunteerDeadline'));
-        
+
         if (!configDoc.exists()) {
             // Set fallback title
             updatePageTitle('Volunteer Program Winter 25\'');
             return;
         }
-        
+
         const configData = configDoc.data();
         const title = configData.title;
-        
+
         if (!title) {
             // Set fallback title
             updatePageTitle('Volunteer Program Winter 25\'');
             return;
         }
-        
-        
+
+
         // Update the page title
         updatePageTitle(title);
-        
+
     } catch (error) {
         console.error('Error fetching volunteer title for page:', error);
         // Set fallback title on error
@@ -99,39 +99,39 @@ function updatePageTitle(title) {
 // Function to check deadline from Firestore
 async function checkDeadlineFromFirestore() {
     try {
-        
+
         // Fetch deadline from Firestore
         const configDoc = await getDoc(doc(db, 'config', 'volunteerDeadline'));
-        
+
         if (!configDoc.exists()) {
             return { isDeadlinePassed: false, error: 'No deadline document found' };
         }
-        
+
         const deadlineStr = configDoc.data().deadline;
-        
+
         if (!deadlineStr) {
             return { isDeadlinePassed: false, error: 'No deadline field found' };
         }
-        
+
         // Parse deadline string
         const deadlineDate = parseDeadlineString(deadlineStr);
         if (!deadlineDate) {
             return { isDeadlinePassed: false, error: 'Failed to parse deadline' };
         }
-        
+
         // Get current Pakistan time
         const currentTime = getCurrentPakistanTime();
-        
-        
+
+
         // Compare times
         const isDeadlinePassed = currentTime.getTime() > deadlineDate.getTime();
-        
+
         if (isDeadlinePassed) {
         } else {
         }
-        
+
         return { isDeadlinePassed, deadlineDate, currentTime };
-        
+
     } catch (error) {
         console.error('Error checking deadline from Firestore:', error);
         return { isDeadlinePassed: false, error: error.message };
@@ -172,7 +172,7 @@ function showSuccessMessage() {
 // Main function to check deadline on page load
 async function checkDeadlineOnLoad() {
     const result = await checkDeadlineFromFirestore();
-    
+
     if (result.isDeadlinePassed) {
         showDeadlinePassedMessage();
         return false; // Don't load the form
@@ -190,12 +190,12 @@ const submitBtnText = document.querySelector('.send-msg-btn-text');
 document.addEventListener('DOMContentLoaded', async () => {
     // First, fetch and update the volunteer program title
     await fetchAndUpdateVolunteerPageTitle();
-    
+
     const shouldLoadForm = await checkDeadlineOnLoad();
     if (!shouldLoadForm) {
         return; // Stop here if deadline has passed
     }
-    
+
     // Continue with normal form initialization if deadline hasn't passed
     initializeFormInteractions();
 });
@@ -207,9 +207,9 @@ function initializeFormInteractions() {
     const isStudentInputs = document.querySelectorAll('input[name="isStudent"]');
     const instituteCard = document.getElementById('instituteCard');
     const educationCard = document.getElementById('educationCard');
-    
+
     isStudentInputs.forEach(input => {
-        input.addEventListener('change', function() {
+        input.addEventListener('change', function () {
             if (this.value === 'Yes') {
                 instituteCard.style.display = 'block';
                 educationCard.style.display = 'block';
@@ -229,9 +229,9 @@ function initializeFormInteractions() {
     // Show/hide past experience details based on past experience selection
     const pastExperienceInputs = document.querySelectorAll('input[name="pastExperience"]');
     const pastExperienceDetailsCard = document.getElementById('pastExperienceDetailsCard');
-    
+
     pastExperienceInputs.forEach(input => {
-        input.addEventListener('change', function() {
+        input.addEventListener('change', function () {
             if (this.value === 'Yes') {
                 pastExperienceDetailsCard.style.display = 'block';
                 document.getElementById('pastExperienceDetails').required = true;
@@ -246,7 +246,7 @@ function initializeFormInteractions() {
     // Clear form functionality (enhanced version)
     const clearFormBtn = document.getElementById('clearFormBtn');
     if (clearFormBtn) {
-        clearFormBtn.addEventListener('click', function() {
+        clearFormBtn.addEventListener('click', function () {
             document.getElementById('volunteerForm').reset();
             instituteCard.style.display = 'none';
             educationCard.style.display = 'none';
@@ -287,16 +287,16 @@ const resetForm = () => {
         const instituteCard = document.getElementById('instituteCard');
         const educationCard = document.getElementById('educationCard');
         const pastExperienceDetailsCard = document.getElementById('pastExperienceDetailsCard');
-        
+
         if (instituteCard) instituteCard.style.display = 'none';
         if (educationCard) educationCard.style.display = 'none';
         if (pastExperienceDetailsCard) pastExperienceDetailsCard.style.display = 'none';
-        
+
         // Reset required attributes
         const instituteName = document.getElementById('instituteName');
         const educationDetails = document.getElementById('educationDetails');
         const pastExperienceDetails = document.getElementById('pastExperienceDetails');
-        
+
         if (instituteName) instituteName.required = false;
         if (educationDetails) educationDetails.required = false;
         if (pastExperienceDetails) pastExperienceDetails.required = false;
@@ -329,25 +329,25 @@ const showToast = (message) => {
 if (form) {
     form.addEventListener('submit', async (e) => {
         e.preventDefault();
-        
+
         // First check deadline before processing form
         const deadlineResult = await checkDeadlineFromFirestore();
         if (deadlineResult.isDeadlinePassed) {
             showDeadlinePassedMessage();
             return;
         }
-        
+
         showLoading();
 
         try {
             // Validate required fields
             const requiredFields = [
-                'email', 'fullName', 'fatherGuardianName', 'fatherOccupation', 
-                'contactNumber', 'age', 'city', 'address', 'skills', 
-                'somethingGood', 'somethingBad', 'futurePlans', 'programInterest', 
+                'email', 'fullName', 'fatherGuardianName', 'fatherOccupation',
+                'contactNumber', 'age', 'city', 'address', 'skills',
+                'somethingGood', 'somethingBad', 'futurePlans', 'programInterest',
                 'awarenessCreation'
             ];
-            
+
             for (let field of requiredFields) {
                 const element = document.getElementById(field);
                 if (!element || !element.value.trim()) {
@@ -447,7 +447,7 @@ if (form) {
             // Submit to Firebase - Collection: "allVolunteersWinter25"
             const docRef = await addDoc(collection(db, "allVolunteersSummer25"), volunteerData);
             await updateDoc(docRef, { id: docRef.id });
-            
+
             // Send thank you email to the volunteer
             try {
                 // Fetch volunteer program title from Firebase
@@ -464,12 +464,9 @@ if (form) {
                     console.error('Error fetching volunteer program title:', titleError);
                     // Use fallback title
                 }
-                
-                    email: volunteerData.email,
-                    fullName: volunteerData.fullName,
-                    volunteerProgramTitle: volunteerProgramTitle
-                });
-                
+
+
+
                 // Validate that we have the required data for email
                 if (!volunteerData.email || !volunteerData.fullName) {
                     console.error('Missing email or fullName for sending email:', {
@@ -478,7 +475,7 @@ if (form) {
                     });
                     throw new Error('Missing email or fullName data');
                 }
-                
+
                 const emailResponse = await fetch('PHPMailer/sendVolunteerEmail.php', {
                     method: 'POST',
                     headers: {
@@ -486,9 +483,9 @@ if (form) {
                     },
                     body: `email=${encodeURIComponent(volunteerData.email)}&fullName=${encodeURIComponent(volunteerData.fullName)}&volunteerProgramTitle=${encodeURIComponent(volunteerProgramTitle)}`
                 });
-                
+
                 const emailResult = await emailResponse.text();
-                
+
                 if (emailResult.includes('successfully')) {
                 } else {
                 }
@@ -496,10 +493,10 @@ if (form) {
                 console.error('Email sending error:', emailError);
                 // Don't fail the entire process if email fails
             }
-            
+
             // Show success message instead of toast
             showSuccessMessage();
-            
+
         } catch (error) {
             if (error.message.includes('Please')) {
                 // Validation error

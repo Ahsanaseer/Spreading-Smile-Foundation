@@ -253,11 +253,8 @@ async function controlNewsBannerVisibility() {
       // Show banner if deadline hasn't passed and populate title
       const newsTitle = document.getElementById('news-title');
       if (newsTitle && result.news) {
-        // Use first 50 characters as title or full news if short
-        const titleText = result.news.length > 50
-          ? result.news.substring(0, 50) + '...'
-          : result.news;
-        newsTitle.textContent = titleText;
+        // Use full news text
+        newsTitle.textContent = result.news;
 
         // Store full news data for popup
         currentNewsContent = result.news;
@@ -950,24 +947,49 @@ document.addEventListener('DOMContentLoaded', function () {
   if (isHomePage) {
     fetchAndPopulateMembers();
   }
-
   // Video modal functionality
   const playBtn = document.getElementById('yt-video-btn');
   const videoOverlay = document.getElementById('video-overlay');
   const closeBtn = document.getElementById('close-btn');
   const youtubeFrame = document.getElementById('youtube-frame');
+  const storyLinks = document.querySelectorAll('.story-video-link');
 
-  if (playBtn && videoOverlay && closeBtn && youtubeFrame) {
-    playBtn.addEventListener('click', () => {
-      videoOverlay.style.display = 'flex';
-      youtubeFrame.src = "https://www.youtube.com/embed/mlzBAI8u1-8?autoplay=1";
+  if (videoOverlay && closeBtn && youtubeFrame) {
+    // Original Play Section Logic
+    if (playBtn) {
+      playBtn.addEventListener('click', () => {
+        videoOverlay.style.display = 'flex';
+        youtubeFrame.src = "https://www.youtube.com/embed/mlzBAI8u1-8?autoplay=1";
+      });
+    }
+
+    // New Success Stories Links Logic
+    storyLinks.forEach(link => {
+      link.addEventListener('click', function (e) {
+        e.preventDefault();
+        const videoSrc = this.getAttribute('data-video-src');
+        if (videoSrc) {
+          videoOverlay.style.display = 'flex';
+          youtubeFrame.src = videoSrc;
+        }
+      });
     });
 
-    closeBtn.addEventListener('click', () => {
+    const closeVideo = () => {
       videoOverlay.style.display = 'none';
       youtubeFrame.src = "";
+    };
+
+    closeBtn.addEventListener('click', closeVideo);
+
+    // Close on overlay click
+    videoOverlay.addEventListener('click', (e) => {
+      if (e.target === videoOverlay) {
+        closeVideo();
+      }
     });
   }
+
   // Cases cards navigation functionality
   const casesLeftBtn = document.getElementById('casesleft');
   const casesRightBtn = document.getElementById('casesright');
@@ -1006,9 +1028,9 @@ async function volunteerFormFunc() {
     if (result.isDeadlinePassed) {
       // Show error message
       if (window.toastManager) {
-        window.toastManager.show("❌ Deadline has passed! Cannot access volunteer form.", "error", 5000);
+        window.toastManager.show("  Deadline has passed! Cannot access volunteer form.", "error", 5000);
       } else {
-        alert("❌ Deadline has passed! Cannot access volunteer form.");
+        alert("  Deadline has passed! Cannot access volunteer form.");
       }
       return; // Don't redirect
     } else {
@@ -1016,12 +1038,12 @@ async function volunteerFormFunc() {
     }
 
   } catch (error) {
-    console.error("❌ Error checking deadline:", error);
+    console.error("  Error checking deadline:", error);
     // Show warning but still allow navigation
     if (window.toastManager) {
-      window.toastManager.show("⚠️ Unable to check deadline. Proceeding to volunteer form...", "warning", 3000);
+      window.toastManager.show("Unable to check deadline. Proceeding to volunteer form...", "warning", 3000);
     } else {
-      alert("⚠️ Unable to check deadline. Proceeding to volunteer form...");
+      alert("Unable to check deadline. Proceeding to volunteer form...");
     }
     // Small delay then redirect
     setTimeout(() => {
