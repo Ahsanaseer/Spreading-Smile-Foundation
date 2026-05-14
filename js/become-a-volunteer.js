@@ -198,6 +198,18 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     // Continue with normal form initialization if deadline hasn't passed
     initializeFormInteractions();
+
+    // Show the page with fade-in animation now that everything is loaded
+    const pageContainer = document.querySelector('.page-container');
+    const shimmerLoader = document.getElementById('shimmer-loader');
+    
+    if (shimmerLoader) {
+        shimmerLoader.classList.add('hidden');
+    }
+    
+    if (pageContainer) {
+        pageContainer.classList.add('visible');
+    }
 });
 
 // Function to initialize form interactions

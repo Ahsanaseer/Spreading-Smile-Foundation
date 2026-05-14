@@ -1,0 +1,50 @@
+.terms-container {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 40px;
+    background-color: var(--card-bg, #fff);
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+}
+
+.terms-container h1 {
+    color: var(--primary-color, #f44336);
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.terms-container h3 {
+    color: var(--heading-color, #333);
+    margin-top: 25px;
+    margin-bottom: 15px;
+}
+
+.terms-container p,
+.terms-container ul {
+    color: var(--text-color, #555);
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
+
+.terms-container ul {
+    padding-left: 20px;
+}
+
+.terms-container li {
+    margin-bottom: 8px;
+}
+
+/* Dark mode support if css/variables.css uses dark mode toggles */
+body.dark-mode .terms-container {
+    background-color: #222;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+body.dark-mode .terms-container h3 {
+    color: #eee;
+}
+
+body.dark-mode .terms-container p,
+body.dark-mode .terms-container ul {
+    color: #ccc;
+}
